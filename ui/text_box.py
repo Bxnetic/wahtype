@@ -1,9 +1,12 @@
 import pygame # imports pygame modules
+from config import BLACK, WHITE
 
 class Text():
     def __init__(self):
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
+        self.white = WHITE
+        self.black = BLACK
 
     def text_handle(self, event):
         if self.done:
@@ -18,5 +21,8 @@ class Text():
         else:
             self.usertext += event.unicode # adds user's letter to the usertext string
             print(self.usertext)
+
+    def draw_text(self):
+        return
 
 text = Text() # creates an object called "text"

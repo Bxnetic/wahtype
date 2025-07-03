@@ -8,6 +8,7 @@ class Game():
         self.running = True # main game loop
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT)) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
+        pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
     
     def run(self):
         while self.running:
