@@ -1,6 +1,6 @@
 import pygame # imports pygame modules
 from config import *
-from ui.text_input import *
+from ui.text_box import *
 
 class Game():
     def __init__(self): # game constructor
