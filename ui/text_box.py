@@ -9,13 +9,14 @@ class Text():
         if self.done:
             return # ignore input if typing is done
 
-        if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
+        if event.key == pygame.K_BACKSPACE and len(self.usertext) > 0: # if user presses backspace, removes last character 
             self.usertext = self.usertext[:-1]
             print(self.usertext)
-        elif event.key == pygame.K_RETURN: # if user presses return, then typing is done
+        elif event.key == pygame.K_RETURN: # if user presses enter / return, then typing is done
             self.done = True
+            # self.usertext = "" # resets the current string if enter / return is pressed
         else:
             self.usertext += event.unicode # adds user's letter to the usertext string
             print(self.usertext)
 
-text = Text()
+text = Text() # creates an object called "text"
