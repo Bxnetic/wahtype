@@ -15,10 +15,8 @@ class Game():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False # sets main game loop to false
-                elif event.type == pygame.KEYDOWN:
+                elif event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                     text.text_handle(event)
-    
-    
 
         pygame.quit()
         # exit() # closes program
