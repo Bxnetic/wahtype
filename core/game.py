@@ -9,6 +9,8 @@ class Game():
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT)) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
+
+        self.text = Text(self.screen) # create text object and passes screen to Text
     
     def run(self):
         while self.running:
@@ -17,7 +19,10 @@ class Game():
                 if event.type == pygame.QUIT:
                     self.running = False # sets main game loop to false
                 elif event.type == pygame.KEYDOWN: # if presses any key, then add character to string
-                    text.text_handle(event)
+                    self.text.text_handle(event)
+
+            self.text.draw_text() # draws to screen
+            pygame.display.flip() # continuously updates the screen
 
         pygame.quit()
         # exit() # closes program

@@ -1,12 +1,19 @@
 import pygame # imports pygame modules
-from config import BLACK, WHITE
+from config import *
 
 class Text():
-    def __init__(self):
+    def __init__(self, screen):
+        pygame.init()
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
-        self.white = WHITE
+
+        # basic colours
+        self.white = WHITE 
         self.black = BLACK
+        self.screen = screen
+
+        # font
+        self.font = pygame.font.Font(None, 32)
 
     def text_handle(self, event):
         if self.done:
@@ -23,6 +30,7 @@ class Text():
             print(self.usertext)
 
     def draw_text(self):
-        return
+        self.screen.fill(self.black) # sets the display background to black
 
-text = Text() # creates an object called "text"
+        test = self.font.render(self.usertext + "|", True, self.white) # renders the text "hello world!"
+        self.screen.blit(test, (20, 20)) # displays the text on screen
