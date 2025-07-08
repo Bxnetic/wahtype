@@ -13,7 +13,7 @@ class Text():
         self.screen = screen
 
         # font
-        self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 32)
+        self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
 
     def text_handle(self, event):
         if self.done:
@@ -33,4 +33,5 @@ class Text():
         self.screen.fill(self.black) # sets the display background to black
 
         test = self.font.render(self.usertext + "|", True, self.white) # renders the text "hello world!"
-        self.screen.blit(test, (20, 20)) # displays the text on screen
+        test_rect = test.get_rect(topleft = (20, 20))
+        self.screen.blit(test, test_rect) # displays the text on screen
