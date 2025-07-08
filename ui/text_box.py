@@ -13,7 +13,7 @@ class Text():
         self.screen = screen
 
         # font
-        self.font = pygame.font.Font(None, 32)
+        self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 32)
 
     def text_handle(self, event):
         if self.done:
