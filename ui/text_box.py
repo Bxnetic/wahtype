@@ -10,6 +10,17 @@ class Text():
         # basic colours
         self.white = WHITE 
         self.black = BLACK
+        
+        # theme colours
+        self.bgcolour = pygame.Color(BACKGROUND)
+        self.maincolour = pygame.Color(MAIN)
+        self.submaincolour = pygame.Color(SUBMAIN)
+        self.maintextcolour = pygame.Color(MAINTEXT)
+        self.subtextcolour = pygame.Color(SUBTEXT)
+        self.errorcolour = pygame.Color(ERROR)
+        self.suberror = pygame.Color(SUBERROR)
+
+        # screen
         self.screen = screen
 
         # font
@@ -19,8 +30,9 @@ class Text():
         if self.done:
             return # ignore input if typing is done
 
-        if event.key == pygame.K_BACKSPACE and len(self.usertext) > 0: # if user presses backspace, removes last character 
-            self.usertext = self.usertext[:-1]
+        if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
+            if len(self.usertext) > 0: 
+                self.usertext = self.usertext[:-1]
             print(self.usertext)
         elif event.key == pygame.K_RETURN: # if user presses enter / return, then typing is done
             self.done = True
@@ -30,8 +42,11 @@ class Text():
             print(self.usertext)
 
     def draw_text(self):
-        self.screen.fill(self.black) # sets the display background to black
 
-        test = self.font.render(self.usertext + "|", True, self.white) # renders the text "hello world!"
-        test_rect = test.get_rect(topleft = (20, 20))
-        self.screen.blit(test, test_rect) # displays the text on screen
+        usertext = self.font.render(self.usertext, True, self.maintextcolour) # renders the text "hello world!"
+        userstext_rect = usertext.get_rect(topleft = (20, 20))
+        sentence = self.font.render("hello horse beautiful yes test when they are", True, self.subtextcolour)
+        sentence_rect = sentence.get_rect(topleft = (20, 20))
+
+        self.screen.blit(usertext, userstext_rect) # displays the text on screen
+        self.screen.blit(sentence, sentence_rect) # displays the text on screen
