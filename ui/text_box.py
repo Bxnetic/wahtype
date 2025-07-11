@@ -33,9 +33,6 @@ class Text():
         if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
             if len(self.usertext) > 0: 
                 self.usertext = self.usertext[:-1]
-        elif event.key == pygame.K_RETURN: # if user presses enter / return, then typing is done
-            self.done = True
-            # self.usertext = "" # resets the current string if enter / return is pressed
         else:
             if event.unicode and event.unicode.isprintable():
                 self.usertext += event.unicode # adds user's letter to the usertext string
@@ -58,14 +55,17 @@ class Text():
             lines.append(current_line) # add it to the line array so it can appear on screen
 
         return lines
-            
+
+    def get_sentence(self):
+        return "Hello"
+
 
     def draw_text(self):
         
         max_width = WIDTH - 40 # add 20px padding to edge
         y_offset = 20 # height of the lin
         
-        target_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        target_text = self.get_sentence()
 
         target_text_lines = self.wrap_text(target_text, self.font, max_width)
 
@@ -73,17 +73,18 @@ class Text():
         user_chars = list(self.usertext)
 
         char_index = 0 # index of current character across all lines
-
+        
         for line in target_text_lines: # loop through each line in the target sentence
             x_offset = 20 # left padding for each line
             for char in line: # go through each character in the line
                 if char_index < len(user_chars): # checks if the user has typed the amount of characters
+                    
                     user_char = user_chars[char_index] # gets current character typed at same position as target character, to compare them
 
                     if user_char == char: # if user's character matches target char then print character in green
-                        color = pygame.Color("green")
+                        color = self.maintextcolour
                     else:
-                        color = pygame.Color("red") # if not, print character in red
+                        color = self.errorcolour # if not, print character in red
                 else:
                     color = self.subtextcolour # if neither, then display grey
 
@@ -101,12 +102,8 @@ class Text():
 
             # once line finishes, move the next line down vertically
             y_offset += self.font.get_linesize() + 10 # add 10px of vertical spacing
-
-                
-
-
-
-
-
         
-       
+        if self.usertext == target_text:
+            test = self.font.render("well done", True, self.maintextcolour)
+            self.screen.blit(test, (100, 100))
+        
