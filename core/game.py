@@ -35,7 +35,7 @@ class Game():
                 elif event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                     self.text.text_handle(event)
 
-            self.screen.fill(self.bgcolour) # sets the display background to selected background colour
+            self.screen.fill(self.black) # sets the display background to selected background colour
             self.text.draw_text() # draws to screen
             pygame.display.flip() # continuously updates the screen
 
