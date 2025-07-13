@@ -63,7 +63,7 @@ class Text():
     def draw_text(self):
         
         max_width = WIDTH - 40 # add 20px padding to edge
-        y_offset = 20 # height of the lin
+        y_offset = 20 # height of the line
         
         target_text = self.get_sentence()
 
@@ -90,9 +90,10 @@ class Text():
 
                 # display rendered character
                 rendered_char = self.font.render(char, True, color)
-
                 # draw the character at the (x, y) positions of the screen
-                self.screen.blit(rendered_char, (x_offset, y_offset))
+                rendered_char_rect = rendered_char.get_rect(topleft=(x_offset, y_offset))
+
+                self.screen.blit(rendered_char, rendered_char_rect)
 
                 # move x pos to the right, by the width of the character just drawn, so the characters dont overlap themselves
                 x_offset += self.font.size(char)[0] # gets x pos of the character just rendered
@@ -105,5 +106,6 @@ class Text():
         
         if self.usertext == target_text:
             test = self.font.render("well done", True, self.maintextcolour)
+            self.done = True
             self.screen.blit(test, (100, 100))
         
