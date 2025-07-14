@@ -1,7 +1,5 @@
-import re
 import pygame # imports pygame modules
 from config import *
-import wonderwords
 from wonderwords import RandomWord
 
 class Text():
@@ -11,6 +9,8 @@ class Text():
         self.usertext = "" # variable which stores what the user types
         self.randomword= RandomWord() # gets a random word
         self.target_text = self.get_sentence() # get the sentence in the target text
+        self.starttime = 0
+        self.endtime = 0
 
         # basic colours
         self.white = WHITE  
@@ -41,6 +41,7 @@ class Text():
         else:
             if event.unicode and event.unicode.isprintable():
                 self.usertext += event.unicode # adds user's letter to the usertext string
+                self.starttime = (pygame.time.get_ticks() / 1000)
 
 
     def wrap_text(self, text, font, max_width):
@@ -62,20 +63,18 @@ class Text():
         return lines
 
     def get_sentence(self):
-        words = []
-        sentence = ""
-        for _ in range(10):
+        words = [] # words are stored in the array
+        sentence = "" # to construct the sentence
+        for _ in range(15): # loop 15 times to create sentence with 15 words
             words.append(self.randomword.word())
-            sentence = " ".join(words)
+            sentence = " ".join(words) # adds a blank character 
 
         return sentence
 
     def draw_text(self):
         
-        max_width = WIDTH - 40 # add 20px padding to edge
+        max_width = WIDTH - 20 # add 20px padding to edge
         y_offset = 20 # height of the line
-
-        target_text = self.get_sentence()
 
         target_text_lines = self.wrap_text(self.target_text, self.font, max_width)
 
@@ -91,7 +90,7 @@ class Text():
                     
                     user_char = user_chars[char_index] # gets current character typed at same position as target character, to compare them
 
-                    if user_char == char: # if user's character matches target char then print character in green
+                    if user_char == char: # if user's character matches target char then print character in white
                         color = self.maintextcolour
                     else:
                         color = self.errorcolour # if not, print character in red
