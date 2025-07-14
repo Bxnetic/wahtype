@@ -1,14 +1,19 @@
+import re
 import pygame # imports pygame modules
 from config import *
+import wonderwords
+from wonderwords import RandomWord
 
 class Text():
     def __init__(self, screen):
         pygame.init()
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
+        self.randomword= RandomWord() # gets a random word
+        self.target_text = self.get_sentence() # get the sentence in the target text
 
         # basic colours
-        self.white = WHITE 
+        self.white = WHITE  
         self.black = BLACK
         
         # theme colours
@@ -57,17 +62,22 @@ class Text():
         return lines
 
     def get_sentence(self):
-        return "Hello"
+        words = []
+        sentence = ""
+        for _ in range(10):
+            words.append(self.randomword.word())
+            sentence = " ".join(words)
 
+        return sentence
 
     def draw_text(self):
         
         max_width = WIDTH - 40 # add 20px padding to edge
         y_offset = 20 # height of the line
-        
+
         target_text = self.get_sentence()
 
-        target_text_lines = self.wrap_text(target_text, self.font, max_width)
+        target_text_lines = self.wrap_text(self.target_text, self.font, max_width)
 
         # break words down into each character
         user_chars = list(self.usertext)
@@ -104,7 +114,7 @@ class Text():
             # once line finishes, move the next line down vertically
             y_offset += self.font.get_linesize() + 10 # add 10px of vertical spacing
         
-        if self.usertext == target_text:
+        if self.usertext == self.target_text:
             test = self.font.render("well done", True, self.maintextcolour)
             self.done = True
             self.screen.blit(test, (100, 100))
