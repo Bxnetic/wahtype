@@ -1,17 +1,16 @@
 import pygame # imports pygame modules
 from config import *
-from wonderwords import RandomWord
-import time
+from data.stats_tracker import *
+from data.sentence_manager import *
 
 class Text():
     def __init__(self, screen):
         pygame.init()
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
-        self.randomword = RandomWord() # creates instance of RandomWord class
-        self.target_text = self.get_sentence() # get the sentence in the target text
-        self.start_time = None
-        self.final_time = None
+        self.target_text = sentence.get_sentence() # grabs the constructed target sentence in the sentence class
+        self.final_time = False # set final time to false
+        self.timer = Stats()
 
         # basic colours
         self.white = WHITE  
@@ -31,16 +30,13 @@ class Text():
 
         # font
         self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
-
-    def get_wpm(self, start_time, end_time):
-        return
     
     def text_handle(self, event):
         if self.done:
             return # ignore input if typing is done
 
-        if self.start_time is None and event.unicode.isprintable():
-            self.start_time = time.time()
+        if not self.done and self.timer.start_time == False and event.unicode.isprintable():
+            self.timer.start() # start the timer
 
         if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
             if len(self.usertext) > 0: 
@@ -49,7 +45,6 @@ class Text():
             if event.unicode and event.unicode.isprintable():
                 self.usertext += event.unicode # adds user's letter to the usertext string
                 
-
 
     def wrap_text(self, text, font, max_width):
         words = text.split(" ") # split the words in the sentence
@@ -69,30 +64,10 @@ class Text():
 
         return lines
 
-    def get_sentence(self):
-        words = [] # words are stored in the array
-        sentence = "" # to construct the sentence
-        for _ in range(15): # loop 15 times to create sentence with 15 words
-            words.append(self.randomword.word(include_parts_of_speech=["nouns", "verbs", "adjectives"],
-             word_max_length=5, word_min_length=2))
-            sentence = " ".join(words) # adds a blank character 
-
-        return sentence
-
-    def get_timer(self):
-        return
 
     def draw_text(self):
         # timer
-        if self.start_time is not None: # if the timer has started, 
-            # and the user hasnt completed the sentence
-            if self.done and self.final_time is not None:
-                elapsed_time = self.final_time # get the current time
-            else:
-                elapsed_time = time.time() - self.start_time # if the user has finished typing and the final time has a value
-                # then display the final time
-        else:
-            elapsed_time = 0 # if none are true then set timer to 0
+        elapsed_time = self.timer.get_elapsed_time()
         
         # draw the timer
         timer_text = self.font.render(f"{elapsed_time}", True, self.subtextcolour)
@@ -140,10 +115,7 @@ class Text():
         if self.usertext == self.target_text and not self.done: # checks if user's sentence fully matches target sentence
             # and the condition to check if the sentence isn't done is false then
                 self.done = True
-
-                # calculate the final time
-                if self.start_time is not None: # checks that self.start_time always has a value
-                    self.final_time = time.time() - self.start_time  # store final time
+                self.timer.stop()
                 
                 test = self.font.render("well done", True, self.maintextcolour)
                 self.screen.blit(test, (200, 200))
