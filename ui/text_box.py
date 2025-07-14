@@ -1,16 +1,17 @@
 import pygame # imports pygame modules
 from config import *
 from wonderwords import RandomWord
+import time
 
 class Text():
     def __init__(self, screen):
         pygame.init()
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
-        self.randomword= RandomWord() # gets a random word
+        self.randomword = RandomWord() # creates instance of RandomWord class
         self.target_text = self.get_sentence() # get the sentence in the target text
-        self.starttime = 0
-        self.endtime = 0
+        self.start_time = None
+        self.final_time = None
 
         # basic colours
         self.white = WHITE  
@@ -31,9 +32,15 @@ class Text():
         # font
         self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
 
+    def get_wpm(self, start_time, end_time):
+        return
+    
     def text_handle(self, event):
         if self.done:
             return # ignore input if typing is done
+
+        if self.start_time is None and event.unicode.isprintable():
+            self.start_time = time.time()
 
         if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
             if len(self.usertext) > 0: 
@@ -41,7 +48,7 @@ class Text():
         else:
             if event.unicode and event.unicode.isprintable():
                 self.usertext += event.unicode # adds user's letter to the usertext string
-                self.starttime = (pygame.time.get_ticks() / 1000)
+                
 
 
     def wrap_text(self, text, font, max_width):
@@ -66,13 +73,31 @@ class Text():
         words = [] # words are stored in the array
         sentence = "" # to construct the sentence
         for _ in range(15): # loop 15 times to create sentence with 15 words
-            words.append(self.randomword.word())
+            words.append(self.randomword.word(include_parts_of_speech=["nouns", "verbs", "adjectives"],
+             word_max_length=5, word_min_length=2))
             sentence = " ".join(words) # adds a blank character 
 
         return sentence
 
+    def get_timer(self):
+        return
+
     def draw_text(self):
+        # timer
+        if self.start_time is not None: # if the timer has started, 
+            # and the user hasnt completed the sentence
+            if self.done and self.final_time is not None:
+                elapsed_time = self.final_time # get the current time
+            else:
+                elapsed_time = time.time() - self.start_time # if the user has finished typing and the final time has a value
+                # then display the final time
+        else:
+            elapsed_time = 0 # if none are true then set timer to 0
         
+        # draw the timer
+        timer_text = self.font.render(f"{elapsed_time}", True, self.subtextcolour)
+        self.screen.blit(timer_text, (200, 200))
+
         max_width = WIDTH - 20 # add 20px padding to edge
         y_offset = 20 # height of the line
 
@@ -101,7 +126,6 @@ class Text():
                 rendered_char = self.font.render(char, True, color)
                 # draw the character at the (x, y) positions of the screen
                 rendered_char_rect = rendered_char.get_rect(topleft=(x_offset, y_offset))
-
                 self.screen.blit(rendered_char, rendered_char_rect)
 
                 # move x pos to the right, by the width of the character just drawn, so the characters dont overlap themselves
@@ -113,8 +137,13 @@ class Text():
             # once line finishes, move the next line down vertically
             y_offset += self.font.get_linesize() + 10 # add 10px of vertical spacing
         
-        if self.usertext == self.target_text:
-            test = self.font.render("well done", True, self.maintextcolour)
-            self.done = True
-            self.screen.blit(test, (100, 100))
-        
+        if self.usertext == self.target_text and not self.done: # checks if user's sentence fully matches target sentence
+            # and the condition to check if the sentence isn't done is false then
+                self.done = True
+
+                # calculate the final time
+                if self.start_time is not None: # checks that self.start_time always has a value
+                    self.final_time = time.time() - self.start_time  # store final time
+                
+                test = self.font.render("well done", True, self.maintextcolour)
+                self.screen.blit(test, (200, 200))
