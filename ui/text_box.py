@@ -70,7 +70,7 @@ class Text():
         elapsed_time = self.timer.get_elapsed_time()
         
         # draw the timer
-        timer_text = self.font.render(f"{elapsed_time}", True, self.subtextcolour)
+        timer_text = self.font.render(f"{round(elapsed_time)}", True, self.subtextcolour)
         self.screen.blit(timer_text, (200, 200))
 
         max_width = WIDTH - 20 # add 20px padding to edge
@@ -113,9 +113,10 @@ class Text():
             y_offset += self.font.get_linesize() + 10 # add 10px of vertical spacing
         
         if self.usertext == self.target_text and not self.done: # checks if user's sentence fully matches target sentence
-            # and the condition to check if the sentence isn't done is false then
-                self.done = True
-                self.timer.stop()
-                
+            # and the condition to check if the target sentence hasn't been completed
+                self.timer.stop() # stop the time
+                self.done = True # stop the user from typing
+        elif self.usertext == self.target_text and self.done: # if the sentences match, and the user can't type anymore
+            # temporarily display well done (will be replaced with WPM)
                 test = self.font.render("well done", True, self.maintextcolour)
-                self.screen.blit(test, (200, 200))
+                self.screen.blit(test, (300, 200))
