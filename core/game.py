@@ -7,7 +7,7 @@ class Game():
         pygame.init() # initialises pygame
         pygame.key.set_repeat(300, 30)
         self.running = True # main game loop
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT)) # sets size of the window
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
 
         # basic colours
@@ -35,8 +35,22 @@ class Game():
                 elif event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                     self.text.text_handle(event)
 
+
+            # get current width & height
+            self.width = self.screen.get_width()
+            self.height = self.screen.get_height()
+
+            # prevents user from resizing window under 800x600
+            if self.width < 800: # if width is less than 800 (min width)
+                self.screen = pygame.display.set_mode((WIDTH, self.height), pygame.RESIZABLE) # set width back to 800 and
+                # keep current height
+            elif self.height < 600: # if height is less than 600 (min height)
+                self.screen = pygame.display.set_mode((self.width, HEIGHT), pygame.RESIZABLE)
+                # set height back to 600, keep current width
+
+
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
-            self.text.draw_text() # draws to screen
+            self.text.draw_text(self.width, self.height) # draws to screen and passed through current width to draw_text
             pygame.display.flip() # continuously updates the screen
 
         pygame.quit()

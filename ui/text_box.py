@@ -8,14 +8,12 @@ class Text():
         pygame.init()
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
-        self.target_text = sentence.get_sentence() # grabs the constructed target sentence in the sentence class
-        self.final_time = False # set final time to false
+        self.target_text = sentence.get_easy_sentence() # grabs the constructed target sentence in the sentence class
         self.timer = Stats()
 
         # basic colours
         self.white = WHITE  
         self.black = BLACK
-        
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
@@ -30,12 +28,15 @@ class Text():
 
         # font
         self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
+        self.font_underline = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
+        self.font_underline.set_underline(True)
     
     def text_handle(self, event):
         if self.done:
             return # ignore input if typing is done
 
-        if not self.done and self.timer.start_time == False and event.unicode.isprintable():
+        if not self.done and self.timer.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
+            # and the timer hasn't started (and the user types a key)
             self.timer.start() # start the timer
 
         if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
@@ -65,17 +66,21 @@ class Text():
         return lines
 
 
-    def draw_text(self):
+    def draw_text(self, currentWidth, currentHeight):
         # timer
         elapsed_time = self.timer.get_elapsed_time()
         
         # draw the timer
-        timer_text = self.font.render(f"{round(elapsed_time)}", True, self.subtextcolour)
-        self.screen.blit(timer_text, (200, 200))
+        if elapsed_time != 0:
+            timer_text = self.font.render(f"{round(elapsed_time)}", True, self.maincolour)
+            self.screen.blit(timer_text, (100, currentHeight / 2 - 135))
 
-        max_width = WIDTH - 20 # add 20px padding to edge
-        y_offset = 20 # height of the line
+        underline_char = self.font.render("_", True, self.white)
 
+        """ rendering characters """
+        max_width = currentWidth - 200 # add 20px padding to edge
+        y_offset =  (currentHeight / 2) - 100 # height of the line
+        
         target_text_lines = self.wrap_text(self.target_text, self.font, max_width)
 
         # break words down into each character
@@ -84,7 +89,7 @@ class Text():
         char_index = 0 # index of current character across all lines
         
         for line in target_text_lines: # loop through each line in the target sentence
-            x_offset = 20 # left padding for each line
+            x_offset = 100 # left padding for each line
             for char in line: # go through each character in the line
                 if char_index < len(user_chars): # checks if the user has typed the amount of characters
                     
@@ -112,11 +117,11 @@ class Text():
             # once line finishes, move the next line down vertically
             y_offset += self.font.get_linesize() + 10 # add 10px of vertical spacing
         
-        if self.usertext == self.target_text and not self.done: # checks if user's sentence fully matches target sentence
+        if len(self.usertext) == len(self.target_text) and not self.done: # checks if user's sentence fully matches target sentence
             # and the condition to check if the target sentence hasn't been completed
                 self.timer.stop() # stop the time
                 self.done = True # stop the user from typing
-        elif self.usertext == self.target_text and self.done: # if the sentences match, and the user can't type anymore
+        elif len(self.usertext) == len(self.target_text) and self.done: # if the sentences match, and the user can't type anymore
             # temporarily display well done (will be replaced with WPM)
                 test = self.font.render("well done", True, self.maintextcolour)
-                self.screen.blit(test, (300, 200))
+                self.screen.blit(test, (currentWidth / 2 - 75, currentHeight / 2 + 50))
