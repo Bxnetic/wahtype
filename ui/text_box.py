@@ -75,10 +75,8 @@ class Text():
             timer_text = self.font.render(f"{round(elapsed_time)}", True, self.maincolour)
             self.screen.blit(timer_text, (100, currentHeight / 2 - 135))
 
-        underline_char = self.font.render("_", True, self.white)
-
         """ rendering characters """
-        max_width = currentWidth - 200 # add 20px padding to edge
+        max_width = currentWidth - 200 # add 200px padding to edge
         y_offset =  (currentHeight / 2) - 100 # height of the line
         
         target_text_lines = self.wrap_text(self.target_text, self.font, max_width)
@@ -124,4 +122,4 @@ class Text():
         elif len(self.usertext) == len(self.target_text) and self.done: # if the sentences match, and the user can't type anymore
             # temporarily display well done (will be replaced with WPM)
                 test = self.font.render("well done", True, self.maintextcolour)
-                self.screen.blit(test, (currentWidth / 2 - 75, currentHeight / 2 + 50))
+                self.screen.blit(test, (currentWidth / 2 - 75, currentHeight / 2 + 50)) # display under & middle of sentence
