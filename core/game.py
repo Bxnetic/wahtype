@@ -5,13 +5,12 @@ from ui.text_box import *
 class Game():
     def __init__(self): # game constructor
         pygame.init() # initialises pygame
-        pygame.key.set_repeat(300, 30)
+        pygame.key.set_repeat(300, 30) # allows user to hold key
+
+        # screen, fps and run
         self.running = True # main game loop
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
-
-        # basic colours
-        self.black = BLACK
 
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
@@ -36,7 +35,7 @@ class Game():
                     self.text.text_handle(event)
 
 
-            # get current width & height
+            # get current width & height of window
             self.width = self.screen.get_width()
             self.height = self.screen.get_height()
 

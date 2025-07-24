@@ -5,11 +5,13 @@ from data.sentence_manager import *
 
 class Text():
     def __init__(self, screen):
-        pygame.init()
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
         self.target_text = sentence.get_easy_sentence() # grabs the constructed target sentence in the sentence class
-        self.timer = Stats() # create stats object
+        self.timer = Timer() # create timer object
+        self.wpm = Wpm() # create wpm object
+        self.display_wpm = 0
+        self.last_wpm = 0
 
         # basic colours
         self.white = WHITE  
@@ -31,6 +33,7 @@ class Text():
         self.font_underline = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
         self.font_underline.set_underline(True)
     
+    """ text inputs from user """
     def text_handle(self, event):
         if self.done:
             return # ignore input if typing is done
@@ -46,7 +49,7 @@ class Text():
             if event.unicode and event.unicode.isprintable():
                 self.usertext += event.unicode # adds user's letter to the usertext string
                 
-
+    """ text wrapping """
     def wrap_text(self, text, font, max_width):
         words = text.split(" ") # split the words in the sentence
         lines = [] # lines array
@@ -76,13 +79,30 @@ class Text():
 
 
     def draw_text(self, currentWidth, currentHeight):
-        # timer
+        # once the test is over
+        if self.done:
+            test = self.font.render("well done", True, self.maintextcolour)
+            self.screen.blit(test, (currentWidth / 2 - 75, currentHeight / 2 + 50)) # display under & middle of sentence
+
+        """ timer & wpm"""
         elapsed_time = self.timer.get_elapsed_time()
+
+        # update wpm once every second
+        if int(elapsed_time) != self.last_wpm:
+            self.last_wpm = int(elapsed_time)
+            self.display_wpm = self.wpm.get_wpm(self.usertext, elapsed_time)
+            
         
-        # draw the timer
-        if elapsed_time != 0:
+        # draw the timer & wpm
+        if elapsed_time != 0: # if the timer hasn't started
+            # display timer
             timer_text = self.font.render(f"{round(elapsed_time)}", True, self.maincolour)
             self.screen.blit(timer_text, (100, currentHeight / 2 - 135))
+
+            # display wpm
+            wpm_text = self.font.render(f"{round(self.display_wpm)}", True, self.maincolour)
+            self.screen.blit(wpm_text, (125, currentHeight / 2 - 135))
+
 
         """ rendering characters """
         max_width = currentWidth - 200 # add 200px padding to edge
@@ -131,7 +151,3 @@ class Text():
             # and the condition to check if the target sentence hasn't been completed
                 self.timer.stop() # stop the time
                 self.done = True # stop the user from typing
-        elif len(self.usertext) == len(self.target_text) and self.done: # if the sentences match, and the user can't type anymore
-            # temporarily display well done (will be replaced with WPM)
-                test = self.font.render("well done", True, self.maintextcolour)
-                self.screen.blit(test, (currentWidth / 2 - 75, currentHeight / 2 + 50)) # display under & middle of sentence
