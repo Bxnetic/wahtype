@@ -9,7 +9,7 @@ class Text():
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
         self.target_text = sentence.get_easy_sentence() # grabs the constructed target sentence in the sentence class
-        self.timer = Stats()
+        self.timer = Stats() # create stats object
 
         # basic colours
         self.white = WHITE  
@@ -64,6 +64,15 @@ class Text():
             lines.append(current_line) # add it to the line array so it can appear on screen
 
         return lines
+    
+    def get_cursor(self, char_index, user_chars, x_offset, y_offset):
+        cursor = self.font.render("|", True, self.maintextcolour) # create cursor
+        cursor_rect = cursor.get_rect(topright=(x_offset + self.font.get_height() // 4, y_offset)) # cursor rect    
+
+        # display cursor
+        if (char_index == len(user_chars)) and not self.done: # checks the number of characters the user has inputted
+            # matches the current characters
+            return self.screen.blit(cursor, cursor_rect) # display the cursor
 
 
     def draw_text(self, currentWidth, currentHeight):
@@ -111,6 +120,9 @@ class Text():
 
                 # increase the character index, so it goes to the next character
                 char_index += 1
+                
+                # get cursor
+                self.get_cursor(char_index, user_chars, x_offset, y_offset)
 
             # once line finishes, move the next line down vertically
             y_offset += self.font.get_linesize() + 10 # add 10px of vertical spacing
