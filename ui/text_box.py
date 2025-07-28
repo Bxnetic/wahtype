@@ -5,15 +5,19 @@ from data.sentence_manager import *
 
 class Text:
     def __init__(self, screen):
+        # text
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
         self.target_text = sentence.get_easy_sentence() # grabs the constructed target sentence in the sentence class
+
+        # classes
         self.timer = Timer() # create timer object
         self.wpm = Wpm() # create wpm object
 
         # basic colours
         self.white = WHITE  
         self.black = BLACK
+
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
@@ -40,12 +44,33 @@ class Text:
             # and the timer hasn't started (and the user types a key)
             self.timer.start() # start the timer
 
+        # split words into own variable
+        user_words = self.usertext.split(" ") # put current words into array
+        target_words = self.target_text.split(" ") # put target words into array
+
+        current_index = len(user_words) - 1 # get the index of current word
+        current_word = user_words[current_index] # get the current word the user is typing
+
+        if current_index < len(target_words): # checks if the current index is less than the length of the no. of words
+            target_word = target_words[current_index] # if it is then get the target word
+        else:
+            target_word = "" # no target word
+
         if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
             if len(self.usertext) > 0: 
                 self.usertext = self.usertext[:-1]
+
+        # can only press space if the length of the user's word and target word matches, 
+        # adds blank space & prevents spamming
+        elif event.key == pygame.K_SPACE:
+            if len(current_word) == len(target_word):
+                self.usertext += " "
+
         else:
             if event.unicode and event.unicode.isprintable():
-                self.usertext += event.unicode # adds user's letter to the usertext string
+                if len(current_word) < len(target_word): # if the length of current word is less than the target word
+                    # then let the user type
+                    self.usertext += event.unicode # adds user's letter to the usertext string
                 
     """ text wrapping """
     def wrap_text(self, text, font, max_width):
@@ -119,7 +144,11 @@ class Text:
                     color = self.subtextcolour # if neither, then display grey
 
                 # display rendered character
-                rendered_char = self.font.render(char, True, color)
+                if color == self.errorcolour: # if user get character incorrect
+                    rendered_char = self.font_underline.render(char, True, color) # underline character
+                else:
+                    rendered_char = self.font.render(char, True, color) # display normally
+
                 # draw the character at the (x, y) positions of the screen
                 rendered_char_rect = rendered_char.get_rect(topleft=(x_offset, y_offset))
                 self.screen.blit(rendered_char, rendered_char_rect)
