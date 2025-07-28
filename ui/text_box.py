@@ -3,15 +3,13 @@ from config import *
 from data.stats_tracker import *
 from data.sentence_manager import *
 
-class Text():
+class Text:
     def __init__(self, screen):
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
         self.target_text = sentence.get_easy_sentence() # grabs the constructed target sentence in the sentence class
         self.timer = Timer() # create timer object
         self.wpm = Wpm() # create wpm object
-        self.display_wpm = 0
-        self.last_wpm = 0
 
         # basic colours
         self.white = WHITE  
@@ -68,6 +66,7 @@ class Text():
 
         return lines
     
+    """ cursor """
     def get_cursor(self, char_index, user_chars, x_offset, y_offset):
         cursor = self.font.render("|", True, self.maintextcolour) # create cursor
         cursor_rect = cursor.get_rect(topright=(x_offset + self.font.get_height() // 4, y_offset)) # cursor rect    
@@ -86,22 +85,12 @@ class Text():
 
         """ timer & wpm"""
         elapsed_time = self.timer.get_elapsed_time()
-
-        # update wpm once every second
-        if int(elapsed_time) != self.last_wpm:
-            self.last_wpm = int(elapsed_time)
-            self.display_wpm = self.wpm.get_wpm(self.usertext, elapsed_time)
-            
-        
-        # draw the timer & wpm
+   
         if elapsed_time != 0: # if the timer hasn't started
-            # display timer
-            timer_text = self.font.render(f"{round(elapsed_time)}", True, self.maincolour)
-            self.screen.blit(timer_text, (100, currentHeight / 2 - 135))
-
-            # display wpm
-            wpm_text = self.font.render(f"{round(self.display_wpm)}", True, self.maincolour)
-            self.screen.blit(wpm_text, (125, currentHeight / 2 - 135))
+            # display timer & wpm
+            stats_text = self.font.render(f"{round(elapsed_time)} {round(self.wpm.get_wpm(self.usertext, elapsed_time))}",
+             True, self.maincolour)
+            self.screen.blit(stats_text, (100, currentHeight / 2 - 135))
 
 
         """ rendering characters """

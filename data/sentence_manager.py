@@ -1,7 +1,7 @@
 from wonderwords import RandomWord
 import random
 
-class Sentence():
+class Sentence:
     def __init__(self):
         self.randomword = RandomWord()
     

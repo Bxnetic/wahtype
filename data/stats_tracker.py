@@ -1,6 +1,6 @@
 import time
 
-class Timer():
+class Timer:
     def __init__(self):
         self.start_time = 0
         self.end_time = 0
@@ -31,11 +31,14 @@ class Timer():
         return time.time() - self.start_time # if the user has finished typing and the final time has a value
         # then display the final time
 
-class Wpm():
+class Wpm:
     def __init__(self):
         self.wpm = 0
+        self.last_wpm_time = 0
 
     def get_wpm(self, text, elapsed_time):
-        self.wpm = (len(text)/5)/(elapsed_time / 60) # get wpm
+        if int(elapsed_time) != self.last_wpm_time:
+            self.last_wpm_time = int(elapsed_time)
+            self.wpm = (len(text)/5)/(elapsed_time / 60) # get wpm
 
         return self.wpm

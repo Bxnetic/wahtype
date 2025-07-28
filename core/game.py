@@ -2,7 +2,7 @@ import pygame # imports pygame modules
 from config import *
 from ui.text_box import *
 
-class Game():
+class Game:
     def __init__(self): # game constructor
         pygame.init() # initialises pygame
         pygame.key.set_repeat(300, 30) # allows user to hold key
