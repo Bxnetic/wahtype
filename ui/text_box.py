@@ -101,13 +101,13 @@ class Text:
             # matches the current characters
             return self.screen.blit(cursor, cursor_rect) # display the cursor
 
-
     def draw_text(self, currentWidth, currentHeight):
         # once the test is over
         if self.done:
-            test = self.font.render("well done", True, self.maintextcolour)
-            self.screen.blit(test, (currentWidth / 2 - 75, currentHeight / 2 + 50)) # display under & middle of sentence
-
+            # test = self.font.render("well done", True, self.maintextcolour)
+            # self.screen.blit(test, (currentWidth / 2 - 75, currentHeight / 2 + 50)) # display under & middle of sentence
+            return
+            
         """ timer & wpm"""
         elapsed_time = self.timer.get_elapsed_time()
    
@@ -116,7 +116,6 @@ class Text:
             stats_text = self.font.render(f"{round(elapsed_time)} {round(self.wpm.get_wpm(self.usertext, elapsed_time))}",
              True, self.maincolour)
             self.screen.blit(stats_text, (100, currentHeight / 2 - 135))
-
 
         """ rendering characters """
         max_width = currentWidth - 200 # add 200px padding to edge
