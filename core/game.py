@@ -16,12 +16,11 @@ class Game:
         # images for all the buttons
         self.reset_img = pygame.image.load("images\\reset_button.png").convert_alpha()
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
-        self.reset_img_active = pygame.image.load("images\\reset_button_active.png").convert_alpha()
 
         
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
-            self.reset_img_active, self.reset_img_hover, 0.2)
+             self.reset_img_hover, 0.2)
 
         
         # theme colours
@@ -64,8 +63,10 @@ class Game:
             """ game elements """
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
             self.text.draw_text(self.width, self.height) # draws to screen and passed through current width to draw_text
-
-            self.reset_button.rect.topleft = (int((self.width / 2)) - 30, int((self.height / 2)) + 50)
+            
+            # buttons
+            self.reset_button.rect.topleft = (int((self.width / 2)) - int(self.reset_button.rect.width / 2),
+             int((self.height / 2)) + 50) # set the positioning of the button depending on the current width & height
 
             if self.reset_button.draw(self.screen): # if the button is clicked
                 print("Reset")
