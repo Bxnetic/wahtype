@@ -100,6 +100,8 @@ class Text:
 
     def draw_text(self, currentWidth, currentHeight):
         # once the test is over
+        if self.done:
+            return
             
         """ timer & wpm"""
         elapsed_time = self.timer.get_elapsed_time()

@@ -22,7 +22,6 @@ class Game:
         self.reset_button = Button(0, 0, self.reset_img, 
              self.reset_img_hover, 0.2)
 
-        
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
