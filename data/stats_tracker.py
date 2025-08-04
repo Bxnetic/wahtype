@@ -20,6 +20,7 @@ class Timer:
         # resets timer
         self.start_time = 0
         self.end_time = 0
+        self.final_time = 0
 
     def get_elapsed_time(self):
         if self.start_time == 0: # if the timer hasn't started then display 0
@@ -33,6 +34,10 @@ class Timer:
 
 class Wpm:
     def __init__(self):
+        self.wpm = 0
+        self.last_wpm_time = 0
+    
+    def reset(self):
         self.wpm = 0
         self.last_wpm_time = 0
 

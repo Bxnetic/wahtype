@@ -69,7 +69,7 @@ class Game:
              int((self.height / 2)) + 50) # set the positioning of the button depending on the current width & height
 
             if self.reset_button.draw(self.screen): # if the button is clicked
-                print("Reset")
+                self.text.reset()
 
             pygame.display.flip() # continuously updates the screen
 

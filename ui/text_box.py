@@ -37,9 +37,6 @@ class Text:
     
     """ text inputs from user """
     def text_handle(self, event):
-        if self.done:
-            return # ignore input if typing is done
-
         if not self.done and self.timer.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
             # and the timer hasn't started (and the user types a key)
             self.timer.start() # start the timer
@@ -103,10 +100,6 @@ class Text:
 
     def draw_text(self, currentWidth, currentHeight):
         # once the test is over
-        if self.done:
-            # test = self.font.render("well done", True, self.maintextcolour)
-            # self.screen.blit(test, (currentWidth / 2 - 75, currentHeight / 2 + 50)) # display under & middle of sentence
-            return
             
         """ timer & wpm"""
         elapsed_time = self.timer.get_elapsed_time()
@@ -114,7 +107,7 @@ class Text:
         if elapsed_time != 0: # if the timer hasn't started
             # display timer & wpm
             stats_text = self.font.render(f"{round(elapsed_time)} {round(self.wpm.get_wpm(self.usertext, elapsed_time))}",
-             True, self.maincolour)
+            True, self.maincolour)
             self.screen.blit(stats_text, (100, currentHeight / 2 - 135))
 
         """ rendering characters """
@@ -168,3 +161,10 @@ class Text:
             # and the condition to check if the target sentence hasn't been completed
                 self.timer.stop() # stop the time
                 self.done = True # stop the user from typing
+
+    def reset(self):
+        self.usertext = "" # set usertext back to normal state
+        self.target_text = sentence.get_easy_sentence() # set target_text back to normal state
+        self.timer.reset() # set timer back to normal state
+        self.wpm.reset() # set wpm back to normal state
+        self.done = False # set done back to false state
