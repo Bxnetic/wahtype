@@ -42,8 +42,8 @@ class Wpm:
         self.last_wpm_time = 0
 
     def get_wpm(self, text, elapsed_time):
-        if int(elapsed_time) != self.last_wpm_time:
-            self.last_wpm_time = int(elapsed_time)
+        if int(elapsed_time) != self.last_wpm_time: # if the current time doesnt match the last wpm time
+            self.last_wpm_time = int(elapsed_time) # update the last wpm time
             self.wpm = (len(text)/5)/(elapsed_time / 60) # get wpm
 
-        return self.wpm
+        return self.wpm # return wpm

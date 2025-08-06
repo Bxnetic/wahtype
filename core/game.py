@@ -36,7 +36,7 @@ class Game:
 
         # classes
         self.text = Text(self.screen) # create text object and passes screen to Text
-    
+
     def run(self):
         while self.running:
             self.clock.tick(FPS) # sets the frames to 60

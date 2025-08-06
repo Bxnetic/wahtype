@@ -2,9 +2,13 @@ import pygame # imports pygame modules
 from config import *
 from data.stats_tracker import *
 from data.sentence_manager import *
+from ui.results_screen import *
 
 class Text:
     def __init__(self, screen):
+        # screen
+        self.screen = screen
+
         # text
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
@@ -13,6 +17,7 @@ class Text:
         # classes
         self.timer = Timer() # create timer object
         self.wpm = Wpm() # create wpm object
+        self.results_screen = Results(self.screen)
 
         # basic colours
         self.white = WHITE  
@@ -26,9 +31,6 @@ class Text:
         self.subtextcolour = pygame.Color(SUBTEXT)
         self.errorcolour = pygame.Color(ERROR)
         self.suberror = pygame.Color(SUBERROR)
-
-        # screen
-        self.screen = screen
 
         # font
         self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
@@ -99,10 +101,7 @@ class Text:
             return self.screen.blit(cursor, cursor_rect) # display the cursor
 
     def draw_text(self, currentWidth, currentHeight):
-        # once the test is over
-        if self.done:
-            return
-            
+
         """ timer & wpm"""
         elapsed_time = self.timer.get_elapsed_time()
    
@@ -163,6 +162,11 @@ class Text:
             # and the condition to check if the target sentence hasn't been completed
                 self.timer.stop() # stop the time
                 self.done = True # stop the user from typing
+
+        # once the test is over
+        if self.done:
+            return self.results_screen.end_stats(round(self.wpm.get_wpm(self.usertext, elapsed_time)), 
+             round(elapsed_time))
 
     def reset(self):
         self.usertext = "" # set usertext back to normal state
