@@ -16,7 +16,6 @@ class Game:
         # images for all the buttons
         self.reset_img = pygame.image.load("images\\reset_button.png").convert_alpha()
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
-
         
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
@@ -64,8 +63,12 @@ class Game:
             self.text.draw_text(self.width, self.height) # draws to screen and passed through current width to draw_text
             
             # buttons
-            self.reset_button.rect.topleft = (int((self.width / 2)) - int(self.reset_button.rect.width / 2),
-             int((self.height / 2)) + 50) # set the positioning of the button depending on the current width & height
+            if self.text.done: # if the test has been completed
+                self.reset_button.rect.topleft = (int((self.width / 2)) - int(self.reset_button.rect.width / 2),
+                int((self.height / 2)) + 150) # move the button further down the screen
+            else:
+                 self.reset_button.rect.topleft = (int((self.width / 2)) - int(self.reset_button.rect.width / 2),
+                int((self.height / 2)) + 50) # set the positioning of the button depending on the current width & height
 
             if self.reset_button.draw(self.screen): # if the button is clicked
                 self.text.reset()

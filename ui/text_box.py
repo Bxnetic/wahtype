@@ -166,7 +166,7 @@ class Text:
         # once the test is over
         if self.done:
             return self.results_screen.end_stats(round(self.wpm.get_wpm(self.usertext, elapsed_time)), 
-             round(elapsed_time))
+             round(elapsed_time), currentWidth, currentHeight)
 
     def reset(self):
         self.usertext = "" # set usertext back to normal state

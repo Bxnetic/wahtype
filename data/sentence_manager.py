@@ -16,7 +16,7 @@ class Sentence:
                 for word in line.split():
                     words.append(word) # add word to words array
 
-        sentence = " ".join(random.choices(words, k=15)) # randomly choose 15 words to be added into sentence
+        sentence = " ".join(random.choices(words, k=10)) # randomly choose 15 words to be added into sentence
         # and add spaces between every word
 
         return sentence
