@@ -5,7 +5,7 @@ class Sentence:
     def __init__(self):
         self.randomword = RandomWord()
     
-    def get_easy_sentence(self):
+    def get_easy_sentence(self, number):
         words = [] # words are stored in the array
         sentence = "" # to construct the sentence
 
@@ -16,7 +16,7 @@ class Sentence:
                 for word in line.split():
                     words.append(word) # add word to words array
 
-        sentence = " ".join(random.choices(words, k=10)) # randomly choose 15 words to be added into sentence
+        sentence = " ".join(random.choices(words, k=number)) # randomly choose x words to be added into sentence
         # and add spaces between every word
 
         return sentence

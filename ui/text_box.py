@@ -12,11 +12,13 @@ class Text:
         # text
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
-        self.target_text = sentence.get_easy_sentence() # grabs the constructed target sentence in the sentence class
+        self.number_of_words = 15
+        self.target_text = sentence.get_easy_sentence(self.number_of_words) # grabs the constructed target sentence in the sentence class
 
         # classes
         self.timer = Timer() # create timer object
         self.wpm = Wpm() # create wpm object
+        self.accuracy = Accuracy()
         self.results_screen = Results(self.screen)
 
         # basic colours
@@ -102,7 +104,7 @@ class Text:
 
     def draw_text(self, currentWidth, currentHeight):
 
-        """ timer & wpm"""
+        """ stats """
         elapsed_time = self.timer.get_elapsed_time()
    
         if elapsed_time != 0: # if the timer hasn't started
@@ -110,6 +112,8 @@ class Text:
             stats_text = self.font.render(f"{round(elapsed_time)} {round(self.wpm.get_wpm(self.usertext, elapsed_time))}",
             True, self.maincolour)
             self.screen.blit(stats_text, (100, currentHeight / 2 - 135))
+
+        final_accuracy = self.accuracy.get_accuracy(self.target_text, self.usertext) # calculate accuracy
 
         """ rendering characters """
         max_width = currentWidth - 200 # add 200px padding to edge
@@ -127,7 +131,8 @@ class Text:
             for char in line: # go through each character in the line
                 if char_index < len(user_chars): # checks if the user has typed the amount of characters
                     
-                    user_char = user_chars[char_index] # gets current character typed at same position as target character, to compare them
+                    user_char = user_chars[char_index] # gets current character typed at same position as 
+                    # target character, to compare them
 
                     if user_char == char: # if user's character matches target char then print character in white
                         color = self.maintextcolour
@@ -166,11 +171,12 @@ class Text:
         # once the test is over
         if self.done:
             return self.results_screen.end_stats(round(self.wpm.get_wpm(self.usertext, elapsed_time)), 
-             round(elapsed_time), currentWidth, currentHeight)
+             round(elapsed_time), round(final_accuracy), currentWidth, currentHeight)
 
     def reset(self):
         self.usertext = "" # set usertext back to normal state
-        self.target_text = sentence.get_easy_sentence() # set target_text back to normal state
+        self.target_text = sentence.get_easy_sentence(self.number_of_words) # set target_text back to normal state
         self.timer.reset() # set timer back to normal state
         self.wpm.reset() # set wpm back to normal state
+        self.accuracy.reset() # set accuracy back to normal state
         self.done = False # set done back to false state

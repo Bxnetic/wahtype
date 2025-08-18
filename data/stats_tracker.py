@@ -47,3 +47,24 @@ class Wpm:
             self.wpm = (len(text)/5)/(elapsed_time / 60) # get wpm
 
         return self.wpm # return wpm
+
+class Accuracy:
+    def __init__(self):
+        self.accuracy = 0
+
+    def reset(self):
+        self.accuracy = 0 # accuracy to go back to 0
+
+    def get_accuracy(self, target_text, user_text):
+        correct_chars = 0 # number of correct characters
+        total_chars = len(user_text) # get total number of characters
+
+        for i, char in enumerate(user_text): # go through each character, and get the index and character typed
+            if i < len(target_text) and char == target_text[i]: # check the length is in range, and the character
+                # equals the target character
+                correct_chars += 1 # add 1 to correct characters
+            self.accuracy = (correct_chars / total_chars) * 100 # calculate accuracy
+        if total_chars == 0: # if the user hasn't typed anything yet
+            return 0
+        else:
+            return self.accuracy # return accuracy value
