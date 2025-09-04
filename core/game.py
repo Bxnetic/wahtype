@@ -23,12 +23,6 @@ class Game:
 
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
-        self.maincolour = pygame.Color(MAIN)
-        self.submaincolour = pygame.Color(SUBMAIN)
-        self.maintextcolour = pygame.Color(MAINTEXT)
-        self.subtextcolour = pygame.Color(SUBTEXT)
-        self.errorcolour = pygame.Color(ERROR)
-        self.suberror = pygame.Color(SUBERROR)
 
         # pygame window
         pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
@@ -45,7 +39,7 @@ class Game:
                 elif event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                     self.text.text_handle(event)
 
-
+            """ size of window """
             # get current width & height of window
             self.width = self.screen.get_width()
             self.height = self.screen.get_height()
@@ -60,8 +54,8 @@ class Game:
 
             """ game elements """
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
-            self.text.draw_text(self.width, self.height) # draws to screen and passed through current width to draw_text
-            
+            self.text.draw_text(self.width, self.height) # draws to screen and passes current width to draw_text
+              
             # buttons
             if self.text.done: # if the test has been completed
                 self.reset_button.rect.topleft = (int((self.width / 2)) - int(self.reset_button.rect.width / 2),
