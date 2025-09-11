@@ -4,7 +4,9 @@ from data.stats_tracker import *
 
 class Results:
     def __init__(self, screen):
-
+        # screen
+        self.screen = screen
+        
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
@@ -13,7 +15,6 @@ class Results:
         # fonts
         self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
         self.font_big = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 70)
-        self.screen = screen
 
     def test_ended(self):
         return True

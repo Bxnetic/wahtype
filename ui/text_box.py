@@ -103,7 +103,6 @@ class Text:
             return self.screen.blit(cursor, cursor_rect) # display the cursor
 
     def draw_text(self, currentWidth, currentHeight):
-
         """ stats """
         elapsed_time = self.timer.get_elapsed_time()
    

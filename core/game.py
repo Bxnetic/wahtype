@@ -2,6 +2,7 @@ import pygame # imports pygame modules
 from config import *
 from ui.text_box import *
 from ui.button import *
+from core.menu import *
 
 class Game:
     def __init__(self): # game constructor
@@ -10,7 +11,7 @@ class Game:
 
         # screen, fps and run
         self.running = True # main game loop
-        self.game_paused = True
+        self.game_paused = False # current game condition
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
 
@@ -34,6 +35,7 @@ class Game:
 
         # classes
         self.text = Text(self.screen) # create text object and passes screen to Text
+        self.menu = Menu(self.screen) # create menu object and passes screen to Menu
 
     def run(self):
         while self.running:
@@ -59,28 +61,32 @@ class Game:
                 # set height back to 600, keep current width
 
             """ game elements """
+            def center(button, widthPadding, heightPadding): # function that centers buttons on the middle of the screen
+                return int((self.width / 2)) - int(button.rect.width / 2) + widthPadding, int((self.height / 2)) + heightPadding
+                
             if self.game_paused == False: # if the game is currently paused
                 self.screen.fill(self.bgcolour) # sets the display background to selected background colour
                 self.text.draw_text(self.width, self.height) # draws to screen and passes current width to draw_text
                 
                 # buttons
-                if self.text.done: # if the test has been completed
+                if self.text.done: # once the test has been completed
                     # move the buttons further down the screen
-                    self.reset_button.rect.topleft = (int((self.width / 2)) - int(self.reset_button.rect.width / 2) + 30,
-                    int((self.height / 2)) + 150)
-                    self.home_button.rect.topleft = (int((self.width / 2)) - int(self.home_button.rect.width / 2) - 30,
-                    int((self.height / 2)) + 150)
+                    self.reset_button.rect.topleft = (center(self.reset_button, 30, 150)) # reset button # 30 150
+                    self.home_button.rect.topleft = (center(self.home_button, -30, 150)) # home button -30 150
                 else:
-                    # set the positioning of the buttons depending on the current width & height
-                    self.reset_button.rect.topleft = (int((self.width / 2)) - int(self.reset_button.rect.width / 2) + 30,
-                    int((self.height / 2)) + 50) 
-                    self.home_button.rect.topleft = (int((self.width / 2)) - int(self.home_button.rect.width / 2) - 30,
-                    int((self.height / 2)) + 50)
-
-                if self.reset_button.draw(self.screen): # if the button is clicked
-                    self.text.reset()
-                if self.home_button.draw(self.screen):
-                    pass
+                    # set the the buttons to its default positions
+                    self.reset_button.rect.topleft = (center(self.reset_button, 30, 50)) # reset button 30 50
+                    self.home_button.rect.topleft = (center(self.home_button, -30, 50)) # home button - 30 50
+                # clicking buttons
+                if self.reset_button.draw(self.screen): # if the reset button is clicked
+                    self.text.reset() # call the reset method in the Text class (resets all variables)
+                if self.home_button.draw(self.screen): # if the home button is clicked
+                    self.game_paused = True # set game to paused state
+                    self.menu.draw() # calls the draw method in the menu class (go)
+            else:
+                self.game_paused = True # game is paused
+                self.text.reset() # reset the test
+                self.menu.draw() # display the menu
 
             pygame.display.flip() # continuously updates the screen
 
