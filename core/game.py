@@ -45,7 +45,7 @@ class Game:
                     self.running = False # sets main game loop to false
                 if self.game_paused == False: # if the game is currently paused
                     if event.type == pygame.KEYDOWN: # if presses any key, then add character to string
-                        self.text.text_handle(event)
+                        self.text.text_handle(event) # call text_handle method
 
             """ size of window """
             # get current width & height of window

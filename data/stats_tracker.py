@@ -63,8 +63,8 @@ class Accuracy:
             if i < len(target_text) and char == target_text[i]: # check the length is in range, and the character
                 # equals the target character
                 correct_chars += 1 # add 1 to correct characters
-            self.accuracy = (correct_chars / total_chars) * 100 # calculate accuracy
         if total_chars == 0: # if the user hasn't typed anything yet
             return 0
         else:
+            self.accuracy = (correct_chars / total_chars) * 100 # calculate accuracy
             return self.accuracy # return accuracy value

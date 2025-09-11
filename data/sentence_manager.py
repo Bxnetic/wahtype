@@ -1,10 +1,9 @@
-from wonderwords import RandomWord
 import random
 
 class Sentence:
     def __init__(self):
-        self.randomword = RandomWord()
-    
+        pass
+
     def get_easy_sentence(self, number):
         words = [] # words are stored in the array
         sentence = "" # to construct the sentence
@@ -18,17 +17,6 @@ class Sentence:
 
         sentence = " ".join(random.choices(words, k=number)) # randomly choose x words to be added into sentence
         # and add spaces between every word
-
-        return sentence
-
-
-    def get_sentence(self):
-        words = [] # words are stored in the array
-        sentence = "" # to construct the sentence
-        for _ in range(15): # loop 15 times to create sentence with 15 words
-            words.append(self.randomword.word(include_parts_of_speech=["nouns", "verbs", "adjectives"],
-             word_max_length=5, word_min_length=2))
-            sentence = " ".join(words) # put words into sentence and add spaces between every word
 
         return sentence
 
