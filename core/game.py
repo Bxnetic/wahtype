@@ -11,9 +11,13 @@ class Game:
 
         # screen, fps and run
         self.running = True # main game loop
-        self.game_paused = False # current game condition
+        self.game_paused = True # current game condition
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
+
+        # theme colours
+        self.bgcolour = pygame.Color(BACKGROUND)
+        self.white = WHITE 
 
         # images for all the buttons
         self.reset_img = pygame.image.load("images\\reset_button.png").convert_alpha()
@@ -23,12 +27,9 @@ class Game:
         
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
-            self.reset_img_hover, 0.2)
+            self.reset_img_hover, 0.2, "test", 0, self.white)
         self.home_button = Button(0, 0, self.home_img,
-            self.home_img_hover, 0.2)
-
-        # theme colours
-        self.bgcolour = pygame.Color(BACKGROUND)
+            self.home_img_hover, 0.2, "", 0, self.white)
 
         # pygame window
         pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
@@ -61,8 +62,11 @@ class Game:
                 # set height back to 600, keep current width
 
             """ game elements """
-            def center(button, widthPadding, heightPadding): # function that centers buttons on the middle of the screen
-                return int((self.width / 2)) - int(button.rect.width / 2) + widthPadding, int((self.height / 2)) + heightPadding
+            def centre(button, widthPadding, heightPadding): # function that centers buttons on the middle of the screen
+                return (
+                    int((self.width / 2)) - int(button.rect.width / 2) + widthPadding,
+                     int((self.height / 2)) + heightPadding
+                )
                 
             if self.game_paused == False: # if the game is currently paused
                 self.screen.fill(self.bgcolour) # sets the display background to selected background colour
@@ -71,22 +75,22 @@ class Game:
                 # buttons
                 if self.text.done: # once the test has been completed
                     # move the buttons further down the screen
-                    self.reset_button.rect.topleft = (center(self.reset_button, 30, 150)) # reset button # 30 150
-                    self.home_button.rect.topleft = (center(self.home_button, -30, 150)) # home button -30 150
+                    self.reset_button.rect.topleft = (centre(self.reset_button, 30, 150)) # reset button
+                    self.home_button.rect.topleft = (centre(self.home_button, -30, 150)) # home button
                 else:
                     # set the the buttons to its default positions
-                    self.reset_button.rect.topleft = (center(self.reset_button, 30, 50)) # reset button 30 50
-                    self.home_button.rect.topleft = (center(self.home_button, -30, 50)) # home button - 30 50
+                    self.reset_button.rect.topleft = (centre(self.reset_button, 30, 50)) # reset button
+                    self.home_button.rect.topleft = (centre(self.home_button, -30, 50)) # home button
                 # clicking buttons
                 if self.reset_button.draw(self.screen): # if the reset button is clicked
                     self.text.reset() # call the reset method in the Text class (resets all variables)
                 if self.home_button.draw(self.screen): # if the home button is clicked
                     self.game_paused = True # set game to paused state
-                    self.menu.draw() # calls the draw method in the menu class (go)
+                    self.menu.draw(self.width, self.height) # calls the draw method in the menu class (go)
             else:
                 self.game_paused = True # game is paused
                 self.text.reset() # reset the test
-                self.menu.draw() # display the menu
+                self.menu.draw(self.width, self.height) # display the menu
 
             pygame.display.flip() # continuously updates the screen
 
