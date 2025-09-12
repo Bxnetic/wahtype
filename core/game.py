@@ -8,10 +8,8 @@ class Game:
     def __init__(self): # game constructor
         pygame.init() # initialises pygame
         pygame.key.set_repeat(300, 30) # allows user to hold key
-
         # screen, fps and run
         self.running = True # main game loop
-        self.game_paused = True # current game condition
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         # theme colours
@@ -39,7 +37,7 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False # sets main game loop to false
-                if self.game_paused == False: # if the game is currently paused
+                if self.menu.getGameState() == False: # if the game is currently paused
                     if event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                         self.text.text_handle(event) # call text_handle method
 
@@ -63,10 +61,9 @@ class Game:
                      int((self.height / 2)) + heightPadding
                 )
                 
-            if self.game_paused == False: # if the game is currently paused
+            if self.menu.getGameState() == False: # if the game is currently NOT paused
                 self.screen.fill(self.bgcolour) # sets the display background to selected background colour
                 self.text.draw_text(self.width, self.height) # draws to screen and passes current width to draw_text
-                
                 # buttons
                 if self.text.done: # once the test has been completed
                     # move the buttons further down the screen
@@ -80,10 +77,9 @@ class Game:
                 if self.reset_button.draw(self.screen): # if the reset button is clicked
                     self.text.reset() # call the reset method in the Text class (resets all variables)
                 if self.home_button.draw(self.screen): # if the home button is clicked
-                    self.game_paused = True # set game to paused state
+                    self.menu.setGameState(True) # set game to paused state
                     self.menu.draw(self.width, self.height) # calls the draw method in the menu class (go)
             else:
-                self.game_paused = True # game is paused
                 self.text.reset() # reset the test
                 self.menu.draw(self.width, self.height) # display the menu
 
