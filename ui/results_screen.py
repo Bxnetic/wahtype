@@ -21,7 +21,6 @@ class Results:
                  - (text.get_height() / 2 + paddingHeight)
             ) # display text on the top
             
-
         def draw_text(text, x, y, color, size):
             font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", size) # font
             current_text = font.render(text, True, color) # render the text

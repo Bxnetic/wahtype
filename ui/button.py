@@ -10,7 +10,7 @@ class Button:
         self.rect = self.image.get_rect() # get rectangular area of the image
         self.rect.topleft = (x, y) # get the coords of the top left of the rect around image
         # text
-        self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", text_size) # font
+        self.font = pygame.font.Font("fonts\\ari-w9500-condensed-display.ttf", text_size) # font
         self.text = self.font.render(text_input, True, text_color)
         self.text_rect = self.text.get_rect(center=self.rect.center)
         self.clicked = False # value that is held whether the user has clicked the button or not

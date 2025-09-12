@@ -14,26 +14,21 @@ class Game:
         self.game_paused = True # current game condition
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
-
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
         self.white = WHITE 
-
         # images for all the buttons
         self.reset_img = pygame.image.load("images\\reset_button.png").convert_alpha()
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
-        
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
             self.reset_img_hover, 0.2, "test", 0, self.white)
         self.home_button = Button(0, 0, self.home_img,
             self.home_img_hover, 0.2, "", 0, self.white)
-
         # pygame window
         pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
-
         # classes
         self.text = Text(self.screen) # create text object and passes screen to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
