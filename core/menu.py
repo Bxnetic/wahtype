@@ -6,7 +6,9 @@ class Menu:
     def __init__(self, screen):
         # screen
         self.screen = screen
+        # run / game loop
         self.game_paused = True
+        self.running = True
         # colours
         self.white = pygame.Color(WHITE)
         self.bgcolour = pygame.Color(BACKGROUND)
@@ -24,17 +26,17 @@ class Menu:
         self.quit_button = Button(0, 0, self.rounded_button_img, 
             self.rounded_button_hover_img, 0.55, "Quit", 25, self.white) # button that displays "Quit"
     
-    def setGameState(self, state):
+    def setRun(self, state): # set run / game loop state
+        self.running = state
+
+    def getRun(self): # get current run / game loop state
+        return self.running
+    
+    def setGameState(self, state): # set game state
         self.game_paused = state
     
-    def getGameState(self):
+    def getGameState(self): # get current game state
         return self.game_paused
-
-    def draw_text(self, text, x, y, color, size):
-            font = pygame.font.Font("fonts\\ari-w9500-condensed-display.ttf", size) # font
-            current_text = font.render(text, True, color) # render the text
-            current_text_rect = current_text.get_rect(centre=(x, y))
-            self.screen.blit(current_text, current_text_rect) # display the text on screen
 
     def draw(self, width, height):
         def centre(surface, widthPadding, heightPadding): # function that centres surface
@@ -58,7 +60,7 @@ class Menu:
             pass
         self.quit_button.rect.topleft = (centre(self.quit_button.image, 0, 200)) # centre the button
         if self.quit_button.draw(self.screen): # if the play_button is clicked
-            pass
+            self.setRun(False) # set run / game loop to false, closing the program
         self.screen.blit(self.game_img, self.game_img_rect) # display game image on screen
 
         

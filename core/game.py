@@ -9,7 +9,6 @@ class Game:
         pygame.init() # initialises pygame
         pygame.key.set_repeat(300, 30) # allows user to hold key
         # screen, fps and run
-        self.running = True # main game loop
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         # theme colours
@@ -32,11 +31,11 @@ class Game:
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
 
     def run(self):
-        while self.running:
+        while self.menu.getRun(): # gets current status of game
             self.clock.tick(FPS) # sets the frames to 60
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    self.running = False # sets main game loop to false
+                    self.menu.setRun(False) # sets main game loop to false
                 if self.menu.getGameState() == False: # if the game is currently paused
                     if event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                         self.text.text_handle(event) # call text_handle method
