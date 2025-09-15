@@ -22,7 +22,7 @@ class Results:
             ) # display text on the top
             
         def draw_text(text, x, y, color, size):
-            font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", size) # font
+            font = pygame.font.Font("fonts\\ari-w9500-bold.ttf", size) # font
             current_text = font.render(text, True, color) # render the text
             current_text_rect = current_text.get_rect(
                 topleft=(centre(current_text, x, y))) # display text in the centre
