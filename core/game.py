@@ -98,8 +98,8 @@ class Game:
 
     def run(self):
         while self.menu.getRun(): # gets current status of game
-            self.resizableWindow()
-            self.testElements()
+            self.resizableWindow() # calls function so user can resize window
+            self.testElements() # test elements to be displayed on screen
             self.clock.tick(FPS) # sets the frames to 60
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
