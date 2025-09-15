@@ -58,7 +58,6 @@ class Game:
                 int((self.width / 2)) - int(button.rect.width / 2) + widthPadding,
                     int((self.height / 2)) + heightPadding
             )
-
         
         if self.menu.getGameState() == False: # if the game is currently NOT paused
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
