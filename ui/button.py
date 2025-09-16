@@ -14,6 +14,7 @@ class Button:
         self.text_color = text_color
         self.text_hover_color = text_hover_color
         self.text_input = text_input
+        self.text = self.font.render(self.text_input, True, self.text_color)
         self.text_rect = self.text.get_rect(center=self.rect.center)
         self.clicked = False # value that is held whether the user has clicked the button or not
 
