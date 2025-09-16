@@ -29,7 +29,7 @@ class Menu:
         self.quit_button = Button(0, 0, self.rounded_button_img, 
             self.rounded_button_hover_img, 0.55, "Quit", 25, self.white, self.white) # button that displays "Quit"
         self.about_button = Button(0, 0, self.blank_img, 
-            self.blank_img, 1, "v1 • bxnetic", 20, self.white, self.submaincolour) # button that displays "Quit"
+            self.blank_img, 1, "v1 • bxnetic", 20, self.white, self.submaincolour) # button that displays "v1 • bxnetic"
     
     # set and get methods
     def setRun(self, state): # set run / game loop state
@@ -48,12 +48,6 @@ class Menu:
                 int((width / 2)) - int(rect.width / 2) + widthPadding,
              int((height / 2)) - int(rect.height / 2) + heightPadding
             ) # centre surface
-        def draw_text(text, x, y, color, size): # function that draws text onto screen
-            font = pygame.font.Font("fonts\\RobotoMono-Medium.ttf", size) # font
-            current_text = font.render(text, True, color) # render the text
-            current_text_rect = current_text.get_rect(
-                topleft=(centre(current_text, x, y))) # display text in the centre
-            self.screen.blit(current_text, current_text_rect) # display the text on screen
 
         self.screen.fill(self.bgcolour) # clear all the entities on screen
         # game icon
@@ -76,4 +70,3 @@ class Menu:
         self.about_button.rect.topleft = (centre(self.blank_img, 0, 280)) # centre the button
         if self.about_button.draw(self.screen): # if the quit button is clicked
             pass
-        
