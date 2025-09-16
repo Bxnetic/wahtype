@@ -18,20 +18,14 @@ class Text:
         self.white = WHITE  
         self.black = BLACK
         # theme colours
-        self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
-        self.submaincolour = pygame.Color(SUBMAIN)
         self.maintextcolour = pygame.Color(MAINTEXT)
         self.subtextcolour = pygame.Color(SUBTEXT)
         self.errorcolour = pygame.Color(ERROR)
-        self.suberror = pygame.Color(SUBERROR)
         # fonts
         self.font_roboto = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
         self.font_roboto_underline = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
         self.font_roboto_underline.set_underline(True)
-        self.font_ari = pygame.font.Font("fonts\\ari-w9500-bold.ttf", 24)
-        self.font_ari_underline = pygame.font.Font("fonts\\ari-w9500-bold.ttf", 24)
-        self.font_ari_underline.set_underline(True)
     
     """ text inputs from user """
     def text_handle(self, event):

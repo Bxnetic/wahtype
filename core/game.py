@@ -22,9 +22,9 @@ class Game:
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
-            self.reset_img_hover, 0.2, "test", 0, self.white)
+            self.reset_img_hover, 0.2, "test", 0, self.white, self.white)
         self.home_button = Button(0, 0, self.home_img,
-            self.home_img_hover, 0.2, "", 0, self.white)
+            self.home_img_hover, 0.2, "", 0, self.white, self.white)
         # pygame window
         pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
         # classes

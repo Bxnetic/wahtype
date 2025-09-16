@@ -1,7 +1,7 @@
 import pygame
 
 class Button:
-    def __init__(self, x, y, image, hover_image, scale, text_input, text_size, text_color):
+    def __init__(self, x, y, image, hover_image, scale, text_input, text_size, text_color, text_hover_color):
         width = image.get_width() # current width of image
         height = image.get_height() # current height of image
         # image
@@ -11,7 +11,10 @@ class Button:
         self.rect.topleft = (x, y) # get the coords of the top left of the rect around image
         # text
         self.font = pygame.font.Font("fonts\\RobotoMono-Medium.ttf", text_size) # font
-        self.text = self.font.render(text_input, True, text_color)
+        self.text_color = text_color
+        self.text_hover_color = text_hover_color
+        self.text_input = text_input
+        self.text = self.font.render(self.text_input, True, self.text_color)
         self.text_rect = self.text.get_rect(center=self.rect.center)
         self.clicked = False # value that is held whether the user has clicked the button or not
 
@@ -34,7 +37,9 @@ class Button:
                 self.clicked = False # set back to false
 
             screen.blit(self.image_hover, (self.rect.x, self.rect.y)) # display hover button
+            self.text = self.font.render(self.text_input, True, self.text_hover_color)
         else:
+            self.text = self.font.render(self.text_input, True, self.text_color)
             screen.blit(self.image, (self.rect.x, self.rect.y)) # display button
             
         screen.blit(self.text, self.text_rect) # display text
