@@ -3,7 +3,7 @@
 </p>
 
 # wahtype
-wahtype is a type racing game inspired by monkeytype, fully written in Python.
+wahtype is a type racing game inspired by monkeytype, fully written in Python, utilising the Pygame library.
 
 ## proposed features
 - live colour feedback when typing ✅
