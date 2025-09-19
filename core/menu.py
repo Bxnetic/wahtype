@@ -1,5 +1,6 @@
 import pygame
 from config import *
+from core.selection import modeSelection
 from ui.button import *
 
 class Menu:
@@ -13,7 +14,6 @@ class Menu:
         self.white = pygame.Color(WHITE)
         self.submaincolour = pygame.Color(SUBMAIN)
         self.bgcolour = pygame.Color(BACKGROUND)
-        self.black = pygame.Color(BLACK)
         # images & buttons
         self.game_img = pygame.image.load("images\\game_logo.png").convert_alpha()
         self.rounded_button_img  = pygame.image.load("images\\rounded_button.png").convert_alpha()
@@ -30,6 +30,8 @@ class Menu:
             self.rounded_button_hover_img, 0.55, "Quit", 25, self.white, self.white) # button that displays "Quit"
         self.about_button = Button(0, 0, self.blank_img, 
             self.blank_img, 1, "v1 • bxnetic", 20, self.white, self.submaincolour) # button that displays "v1 • bxnetic"
+        # classes
+        self.modeSelection = modeSelection(self.screen)
     
     # set and get methods
     def setRun(self, state): # set run / game loop state
@@ -57,7 +59,8 @@ class Menu:
         # buttons
         self.play_button.rect.topleft = (centre(self.play_button.image, 0, -40)) # centre the button
         if self.play_button.draw(self.screen): # if the play button is clicked
-            self.setGameState(False) # set game to unpaused
+            self.modeSelection.draw
+            # self.setGameState(False) # set game to unpaused
         self.scores_button.rect.topleft = (centre(self.scores_button.image, 0, 40)) # centre the button
         if self.scores_button.draw(self.screen): # if the scores button is clicked
             pass
