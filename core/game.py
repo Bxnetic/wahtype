@@ -2,8 +2,9 @@ import pygame # imports pygame modules
 from config import *
 from ui.text_box import *
 from ui.button import *
-from core.menu import *
 from ui.results_screen import *
+from core.menu import *
+from core.selection import *
 
 class Game:
     def __init__(self): # game constructor
@@ -11,7 +12,9 @@ class Game:
         pygame.key.set_repeat(300, 30) # allows user to hold key
         # screen, fps and run
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
+        self.current_screen = "menu"
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
+        self.running = True
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
         self.white = pygame.Color(WHITE) 
@@ -31,12 +34,13 @@ class Game:
         self.text = Text(self.screen) # create text object and passes screen to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
         self.results_screen = Results(self.screen) # create results screen object and passes screen to Results
+        self.gameSelection = gameSelection(self.screen)
 
     def reset(self):
-        self.text.usertext = "" # set usertext back to normal state
-        self.text.target_text = sentence.get_easy_sentence(self.text.number_of_words) # set target_text back to normal state
-        self.text.stats.reset() # set timer back to normal state
-        self.text.done = False # set done back to false state
+        self.text.usertext = "" # set usertext back to normal game_state
+        self.text.target_text = sentence.get_easy_sentence(self.text.number_of_words) # set target_text back to normal game_state
+        self.text.stats.reset() # set timer back to normal game_state
+        self.text.done = False # set done back to false game_state
 
     def resizableWindow(self): # get current width & height of window
             self.width = self.screen.get_width()
@@ -59,7 +63,7 @@ class Game:
                     int((self.height / 2)) + heightPadding
             )
         
-        if self.menu.getGameState() == False: # if the game is currently NOT paused
+        if self.current_screen == "game": # if the game is currently NOT paused
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
             self.text.draw_text(self.width, self.height) # draws to screen and passes current width to draw_text
 
@@ -89,21 +93,33 @@ class Game:
             if self.reset_button.draw(self.screen): # if the reset button is clicked
                 self.reset() # call the reset method in the Text class (resets all variables)
             if self.home_button.draw(self.screen): # if the home button is clicked
-                self.menu.setGameState(True) # set game to paused state
-                self.menu.draw(self.width, self.height) # calls the draw method in the menu class (go)
+                self.current_screen == "menu"
+  
         else:
             self.reset() # reset the test
-            self.menu.draw(self.width, self.height) # display the menu
 
     def run(self):
-        while self.menu.getRun(): # gets current status of game
-            self.resizableWindow() # calls function so user can resize window
-            self.testElements() # test elements to be displayed on screen
+        while self.running: # gets current status of game
             self.clock.tick(FPS) # sets the frames to 60
+            self.resizableWindow() # calls function so user can resize window
+
+            if self.current_screen == "menu":
+                game_state = self.menu.draw(self.width, self.height) # display the menu
+                if game_state:
+                    self.current_screen = game_state
+            elif self.current_screen == "selection":
+                game_state = self.gameSelection.draw(self.width, self.height) # display the menu
+                if game_state:
+                    self.current_screen = game_state
+            elif self.current_screen == "game":
+                self.testElements() # test elements to be displayed on screen
+            elif self.current_screen == "quit":
+                self.running = False
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    self.menu.setRun(False) # sets main game loop to false
-                if self.menu.getGameState() == False: # if the game is currently paused
+                    self.running = False
+                if self.current_screen == "game": # if the game is currently paused
                     if event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                         self.text.text_handle(event) # call text_handle method
         pygame.quit() # closes program

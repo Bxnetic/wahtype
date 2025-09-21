@@ -1,7 +1,7 @@
 import pygame
 from config import *
 
-class modeSelection:
+class gameSelection:
     def __init__(self, screen):
         # screen
         self.screen = screen
