@@ -19,8 +19,8 @@ class Menu:
         # initiate button
         self.play_button = Button(0, 0, self.rounded_button_img, 
             self.rounded_button_hover_img, 0.55, "Play", 25, self.white, self.white) # button that displays "Play"
-        self.scores_button = Button(0, 0, self.rounded_button_img, 
-            self.rounded_button_hover_img, 0.55, "Scores", 25, self.white, self.white) # button that displays "Scores"
+        self.stats_button = Button(0, 0, self.rounded_button_img, 
+            self.rounded_button_hover_img, 0.55, "Stats", 25, self.white, self.white) # button that displays "Stats"
         self.settings_button = Button(0, 0, self.rounded_button_img, 
             self.rounded_button_hover_img, 0.55, "Settings", 25, self.white, self.white) # button that displays "Settings"
         self.quit_button = Button(0, 0, self.rounded_button_img, 
@@ -45,15 +45,15 @@ class Menu:
         self.play_button.rect.topleft = (centre(self.play_button.image, 0, -40)) # centre the button
         if self.play_button.draw(self.screen): # if the play button is clicked
             return "selection"
-        self.scores_button.rect.topleft = (centre(self.scores_button.image, 0, 40)) # centre the button
-        if self.scores_button.draw(self.screen): # if the scores button is clicked
-            pass
+        self.stats_button.rect.topleft = (centre(self.stats_button.image, 0, 40)) # centre the button
+        if self.stats_button.draw(self.screen): # if the scores button is clicked
+            return "scores"
         self.settings_button.rect.topleft = (centre(self.settings_button.image, 0, 120)) # centre the button
         if self.settings_button.draw(self.screen): # if the settings button is clicked
-            pass
+            return "settings"
         self.quit_button.rect.topleft = (centre(self.quit_button.image, 0, 200)) # centre the button
         if self.quit_button.draw(self.screen): # if the quit button is clicked
             return "quit"
         self.about_button.rect.topleft = (centre(self.blank_img, 0, 280)) # centre the button
         if self.about_button.draw(self.screen): # if the quit button is clicked
-            pass
+            return "about"

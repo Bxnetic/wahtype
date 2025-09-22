@@ -93,7 +93,7 @@ class Game:
             if self.reset_button.draw(self.screen): # if the reset button is clicked
                 self.reset() # call the reset method in the Text class (resets all variables)
             if self.home_button.draw(self.screen): # if the home button is clicked
-                self.current_screen == "menu"
+                self.current_screen = "menu"
   
         else:
             self.reset() # reset the test
