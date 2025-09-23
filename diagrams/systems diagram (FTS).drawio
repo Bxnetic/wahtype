@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:143.0) Gecko/20100101 Firefox/143.0" version="28.2.3">
   <diagram name="Page-1" id="OhJJ3mjOy6TYojQHY7Uv">
-    <mxGraphModel dx="2772" dy="822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="3774" dy="1335" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -38,10 +38,10 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="iwysc34U7rKxAF9Snj9z-38" value="Target Sentece" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
-          <mxGeometry x="-250" y="240" width="120" height="60" as="geometry" />
+          <mxGeometry x="1070" y="240" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="iwysc34U7rKxAF9Snj9z-40" value="Generate sentence" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
-          <mxGeometry x="-380" y="340" width="120" height="60" as="geometry" />
+        <mxCell id="iwysc34U7rKxAF9Snj9z-40" value="Compare" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="1210" y="340" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="DoSgNZzDinJcJUlmRz6c-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iwysc34U7rKxAF9Snj9z-43" target="DoSgNZzDinJcJUlmRz6c-1">
           <mxGeometry relative="1" as="geometry" />
@@ -49,11 +49,14 @@
         <mxCell id="DoSgNZzDinJcJUlmRz6c-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iwysc34U7rKxAF9Snj9z-43" target="DoSgNZzDinJcJUlmRz6c-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="iwysc34U7rKxAF9Snj9z-43" value="Text handle" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
-          <mxGeometry x="10" y="240" width="120" height="60" as="geometry" />
+        <mxCell id="DoSgNZzDinJcJUlmRz6c-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="iwysc34U7rKxAF9Snj9z-43" target="DoSgNZzDinJcJUlmRz6c-9">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="iwysc34U7rKxAF9Snj9z-45" value="Compare" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
-          <mxGeometry x="-250" y="340" width="120" height="60" as="geometry" />
+        <mxCell id="iwysc34U7rKxAF9Snj9z-43" value="Text handle" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="-120" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iwysc34U7rKxAF9Snj9z-45" value="&lt;div&gt;Generate&lt;/div&gt;&lt;div&gt;Sentence&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="1070" y="340" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="iwysc34U7rKxAF9Snj9z-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="iwysc34U7rKxAF9Snj9z-48" target="iwysc34U7rKxAF9Snj9z-50" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -122,9 +125,12 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="DoSgNZzDinJcJUlmRz6c-1" value="User&#39;s input" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
-          <mxGeometry x="-120" y="340" width="120" height="60" as="geometry" />
+          <mxGeometry x="-250" y="340" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="DoSgNZzDinJcJUlmRz6c-5" value="Wrap text" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-120" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="DoSgNZzDinJcJUlmRz6c-9" value="Draw text" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
           <mxGeometry x="10" y="340" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
