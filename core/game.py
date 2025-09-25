@@ -102,7 +102,7 @@ class Game:
         while self.running: # gets current status of game
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
-            print(self.current_screen)
+            # print(self.current_screen)
             if self.current_screen == "menu":
                 game_state = self.menu.draw(self.width, self.height) # display the menu
                 if game_state:

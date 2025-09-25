@@ -47,7 +47,7 @@ class Menu:
             return "selection"
         self.stats_button.rect.topleft = (centre(self.stats_button.image, 0, 40)) # centre the button
         if self.stats_button.draw(self.screen): # if the scores button is clicked
-            return "scores"
+            return "stats"
         self.settings_button.rect.topleft = (centre(self.settings_button.image, 0, 120)) # centre the button
         if self.settings_button.draw(self.screen): # if the settings button is clicked
             return "settings"

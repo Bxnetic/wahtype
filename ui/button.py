@@ -18,6 +18,11 @@ class Button:
         self.text_rect = self.text.get_rect(center=self.rect.center)
         self.clicked = False # value that is held whether the user has clicked the button or not
 
+    def setText(self, new_text): # update the text on the button
+        self.text_input = new_text # set the current text to the new text
+        self.text = self.font.render(self.text_input, True, self.text_color)
+        self.text_rect = self.text.get_rect(center=self.rect.center)
+
     def draw(self, screen):
         action = False
         # get mouse position
