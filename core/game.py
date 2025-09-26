@@ -12,7 +12,7 @@ class Game:
         pygame.key.set_repeat(300, 30) # allows user to hold key
         # screen, fps and run
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
-        self.current_screen = "menu"
+        self.current_screen = "game"
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         self.running = True
         # theme colours
