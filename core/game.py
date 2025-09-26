@@ -34,8 +34,9 @@ class Game:
         self.text = Text(self.screen) # create text object and passes screen to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
         self.results_screen = Results(self.screen) # create results screen object and passes screen to Results
-        self.game_selection = gameSelection(self.screen) # create game selection object and passes screen to gameSelection
-
+        self.game_selection = gameSelection(self.screen, self.home_button, self.current_screen)
+        # create game selection object and passes screen, home button, and current screen to gameSelection
+        
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
         self.text.target_text = sentence.get_easy_sentence(self.text.number_of_words) # set target_text back to normal state
@@ -96,12 +97,13 @@ class Game:
                 self.current_screen = "menu"
         else:
             self.reset() # reset the test
+        
 
     def run(self):
         while self.running: # gets current status of game
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
-            # print(self.current_screen)
+            # print(self.current_screen) # debug
             if self.current_screen == "menu":
                 game_state = self.menu.draw(self.width, self.height) # display the menu
                 if game_state:
