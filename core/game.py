@@ -12,7 +12,7 @@ class Game:
         pygame.key.set_repeat(300, 30) # allows user to hold key
         # screen, fps and run
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
-        self.current_screen = "game"
+        self.current_screen = "menu"
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         self.running = True
         # theme colours
@@ -34,7 +34,7 @@ class Game:
         self.text = Text(self.screen) # create text object and passes screen to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
         self.results_screen = Results(self.screen) # create results screen object and passes screen to Results
-        self.gameSelection = gameSelection(self.screen) # create game selection object and passes screen to gameSelection
+        self.game_selection = gameSelection(self.screen) # create game selection object and passes screen to gameSelection
 
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
@@ -94,7 +94,6 @@ class Game:
                 self.reset() # call the reset method in the Text class (resets all variables)
             if self.home_button.draw(self.screen): # if the home button is clicked
                 self.current_screen = "menu"
-  
         else:
             self.reset() # reset the test
 
@@ -108,7 +107,7 @@ class Game:
                 if game_state:
                     self.current_screen = game_state
             elif self.current_screen == "selection":
-                game_state = self.gameSelection.draw(self.width, self.height) # display the menu
+                game_state = self.game_selection.draw(self.width, self.height) # display the menu
                 if game_state:
                     self.current_screen = game_state
             elif self.current_screen == "game":

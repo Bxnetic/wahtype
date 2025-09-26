@@ -38,17 +38,12 @@ class gameSelection:
 
         self.gamemode_select_button.rect.topleft = (centre(self.gamemode_select_button.image, 0, -80)) # centre the button
         if self.gamemode_select_button.draw(self.screen): # if the game mode button is clicked
-            print(self.game_current_index) # debug 
-            print(self.game_mode_list[self.game_current_index]) # debug
-            self.game_current_index = (self.game_current_index + 1) % len(self.game_mode_list) # go to the next value self.game_mode_list
-            # once current_index = 3, the current index will become 0 again
+            self.game_current_index = (self.game_current_index + 1) % len(self.game_mode_list) # go to the next value,
             self.gamemode_select_button.setText(self.game_mode_list[self.game_current_index]) # update the button text with
             # the next game mode
         self.character_select_button.rect.topleft = (centre(self.character_select_button.image, 0, 40)) # centre the button
         if self.character_select_button.draw(self.screen): # if the game mode button is clicked
-            print(self.character_current_index) # debug 
-            print(self.character_list[self.character_current_index]) # debug
-            self.character_current_index = (self.character_current_index + 1) % len(self.character_list) # go to the next value self.game_mode_list
+            self.character_current_index = (self.character_current_index + 1) % len(self.character_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
             self.character_select_button.setText(self.character_list[self.character_current_index]) # update the button text with
             # the next game mode
