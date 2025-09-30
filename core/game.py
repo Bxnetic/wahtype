@@ -34,7 +34,7 @@ class Game:
         self.text = Text(self.screen) # create text object and passes screen to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
         self.results_screen = Results(self.screen) # create results screen object and passes screen to Results
-        self.game_selection = gameSelection(self.screen, self.home_button, self.current_screen)
+        self.game_selection = gameSelection(self.screen, self.current_screen)
         # create game selection object and passes screen, home button, and current screen to gameSelection
         
     def reset(self):

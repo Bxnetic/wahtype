@@ -4,7 +4,7 @@ from ui.button import *
 from core.game import *
 
 class gameSelection:
-    def __init__(self, screen, home_button, current_screen):
+    def __init__(self, screen, current_screen):
         # screen
         self.screen = screen
         self.current_screen = current_screen
@@ -15,17 +15,21 @@ class gameSelection:
         # images of buttons
         self.rounded_button_img  = pygame.image.load("images\\rounded_button.png").convert_alpha()
         self.rounded_button_hover_img = pygame.image.load("images\\rounded_button_hover.png").convert_alpha()
+        self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
+        self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
         # list
         self.game_mode_list = ["Normal", "Timed", "Survival"] # game modes
         self.words_list = ["15 words", "25 words"] # no. of words
         self.game_current_index = 0 # current index of the game mode list
         self.words_current_index = 0 # current index of the no. of words list
         # initiate buttons
-        self.home_button = home_button # home button from Game class
+        self.home_button = Button(0, 0, self.home_img,
+         self.home_img_hover, 0.2, "", 0, self.white, self.white)
         self.gamemode_select_button = Button(0, 0, self.rounded_button_img, 
          self.rounded_button_hover_img, 0.55, self.game_mode_list[self.game_current_index], 25, self.white, self.white)
         self.words_select_button = Button(0, 0, self.rounded_button_img, 
          self.rounded_button_hover_img, 0.55, self.words_list[self.words_current_index], 25, self.white, self.white)
+         
         # button that displays game mode
 
     def draw(self, width, height):
@@ -64,6 +68,8 @@ class gameSelection:
             self.words_select_button.setText(self.words_list[self.words_current_index]) # update the button text with
             # the next game mode
         # home button
+        self.home_button.rect.topleft = (centre(self.home_button.image, 0, 200)) # home button
         if self.home_button.draw(self.screen):
             self.current_screen = "menu"
             return self.current_screen
+        
