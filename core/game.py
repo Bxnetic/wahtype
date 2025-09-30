@@ -23,6 +23,7 @@ class Game:
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
+        self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha()
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
             self.reset_img_hover, 0.2, "test", 0, self.white, self.white)
@@ -30,6 +31,7 @@ class Game:
             self.home_img_hover, 0.2, "", 0, self.white, self.white)
         # pygame window
         pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
+        pygame.display.set_icon(self.game_icon)
         # classes
         self.text = Text(self.screen) # create text object and passes screen to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
