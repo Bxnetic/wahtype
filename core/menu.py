@@ -28,7 +28,7 @@ class Menu:
         self.about_button = Button(0, 0, self.blank_img, 
             self.blank_img, 1, "v1 • bxnetic", 20, self.white, self.submaincolour) # button that displays "v1 • bxnetic"
 
-    def draw(self, width, height):
+    def draw(self, width, height, mouse_released):
         def centre(surface, widthPadding, heightPadding): # function that centres surface
             rect = surface.get_rect()
             return (
@@ -43,17 +43,17 @@ class Menu:
         self.screen.blit(self.game_img, self.game_img_rect) # display game image on screen
         # buttons
         self.play_button.rect.topleft = (centre(self.play_button.image, 0, -40)) # centre the button
-        if self.play_button.draw(self.screen): # if the play button is clicked
+        if self.play_button.draw(self.screen, mouse_released): # if the play button is clicked
             return "selection"
         self.stats_button.rect.topleft = (centre(self.stats_button.image, 0, 40)) # centre the button
-        if self.stats_button.draw(self.screen): # if the scores button is clicked
+        if self.stats_button.draw(self.screen, mouse_released): # if the scores button is clicked
             return "stats"
         self.settings_button.rect.topleft = (centre(self.settings_button.image, 0, 120)) # centre the button
-        if self.settings_button.draw(self.screen): # if the settings button is clicked
+        if self.settings_button.draw(self.screen, mouse_released): # if the settings button is clicked
             return "settings"
         self.quit_button.rect.topleft = (centre(self.quit_button.image, 0, 200)) # centre the button
-        if self.quit_button.draw(self.screen): # if the quit button is clicked
+        if self.quit_button.draw(self.screen, mouse_released): # if the quit button is clicked
             return "quit"
         self.about_button.rect.topleft = (centre(self.blank_img, 0, 280)) # centre the button
-        if self.about_button.draw(self.screen): # if the quit button is clicked
+        if self.about_button.draw(self.screen, mouse_released): # if the quit button is clicked
             return "about"

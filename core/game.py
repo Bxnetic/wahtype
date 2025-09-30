@@ -10,11 +10,15 @@ class Game:
     def __init__(self): # game constructor
         pygame.init() # initialises pygame
         pygame.key.set_repeat(300, 30) # allows user to hold key
+        # pygame window
+        pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
         # screen, fps and run
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.current_screen = "menu"
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         self.running = True
+        self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha()
+        pygame.display.set_icon(self.game_icon)
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND)
         self.white = pygame.Color(WHITE) 
@@ -23,15 +27,12 @@ class Game:
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
-        self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha()
+        self.mouse_released = True
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
             self.reset_img_hover, 0.2, "test", 0, self.white, self.white)
         self.home_button = Button(0, 0, self.home_img,
             self.home_img_hover, 0.2, "", 0, self.white, self.white)
-        # pygame window
-        pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
-        pygame.display.set_icon(self.game_icon)
         # classes
         self.text = Text(self.screen) # create text object and passes screen to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
@@ -93,35 +94,42 @@ class Game:
                 self.home_button.rect.topleft = (centre(self.home_button, -30, 50)) # home button
                 
             # clicking buttons
-            if self.reset_button.draw(self.screen): # if the reset button is clicked
+            if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
                 self.reset() # call the reset method in the Text class (resets all variables)
-            if self.home_button.draw(self.screen): # if the home button is clicked
+                self.mouse_released = False
+            if self.home_button.draw(self.screen, self.mouse_released): # if the home button is clicked
                 self.current_screen = "menu"
+                self.mouse_released = False
         else:
             self.reset() # reset the test
         
 
     def run(self):
         while self.running: # gets current status of game
+            print(self.mouse_released)
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
             # print(self.current_screen) # debug
             if self.current_screen == "menu":
-                game_state = self.menu.draw(self.width, self.height) # display the menu
+                game_state = self.menu.draw(self.width, self.height, self.mouse_released) # display the menu
                 if game_state:
                     self.current_screen = game_state
+                    self.mouse_released = False
             elif self.current_screen == "selection":
-                game_state = self.game_selection.draw(self.width, self.height) # display the menu
+                game_state = self.game_selection.draw(self.width, self.height, self.mouse_released) # display the menu
                 if game_state:
                     self.current_screen = game_state
+                    self.mouse_released = False
             elif self.current_screen == "game":
                 self.testElements() # test elements to be displayed on screen
             elif self.current_screen == "quit":
                 self.running = False
 
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
+                if event.type == pygame.QUIT: # if user quits progra,
+                    self.running = False # end program
+                elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                    self.mouse_released = True
                 if self.current_screen == "game": # if the test is running
                     if event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                         self.text.text_handle(event) # call text_handle method

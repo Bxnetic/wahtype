@@ -23,7 +23,7 @@ class Button:
         self.text = self.font.render(self.text_input, True, self.text_color)
         self.text_rect = self.text.get_rect(center=self.rect.center)
 
-    def draw(self, screen):
+    def draw(self, screen, mouse_released=True):
         action = False
         # get mouse position
         pos = pygame.mouse.get_pos()
@@ -32,7 +32,7 @@ class Button:
         self.text_rect = self.text.get_rect(center=self.rect.center)
 
         # check if the mouse is over button and has been clicked
-        if self.rect.collidepoint(pos): # if the mouse hovering the button
+        if self.rect.collidepoint(pos) and mouse_released: # if the mouse hovering the button
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False: # checks if left click has been clicked
                 # but self.clicked is currently false
                 self.clicked = True # user has clicked the button

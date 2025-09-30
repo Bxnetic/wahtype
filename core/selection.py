@@ -32,7 +32,7 @@ class gameSelection:
          
         # button that displays game mode
 
-    def draw(self, width, height):
+    def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clean entities
 
         """ functions """
@@ -56,20 +56,20 @@ class gameSelection:
         """ buttons """
         # gamemode button
         self.gamemode_select_button.rect.topleft = (centre(self.gamemode_select_button.image, 100, -80)) # centre the button
-        if self.gamemode_select_button.draw(self.screen): # if the game mode button is clicked
+        if self.gamemode_select_button.draw(self.screen, mouse_released): # if the game mode button is clicked
             self.game_current_index = (self.game_current_index + 1) % len(self.game_mode_list) # go to the next value,
             self.gamemode_select_button.setText(self.game_mode_list[self.game_current_index]) # update the button text with
             # the next game mode
         # words button
         self.words_select_button.rect.topleft = (centre(self.words_select_button.image, 100, 40)) # centre the button
-        if self.words_select_button.draw(self.screen): # if the game mode button is clicked
+        if self.words_select_button.draw(self.screen, mouse_released): # if the game mode button is clicked
             self.words_current_index = (self.words_current_index + 1) % len(self.words_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
             self.words_select_button.setText(self.words_list[self.words_current_index]) # update the button text with
             # the next game mode
         # home button
         self.home_button.rect.topleft = (centre(self.home_button.image, 0, 200)) # home button
-        if self.home_button.draw(self.screen):
+        if self.home_button.draw(self.screen, mouse_released):
             self.current_screen = "menu"
             return self.current_screen
         
