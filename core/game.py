@@ -34,11 +34,13 @@ class Game:
         self.home_button = Button(0, 0, self.home_img,
             self.home_img_hover, 0.2, "", 0, self.white, self.white)
         # classes
-        self.text = Text(self.screen) # create text object and passes screen to Text
+        self.game_selection = gameSelection(self.screen, self.current_screen)
+        self.number_of_words = self.game_selection.getNumberOfWords()
+        self.text = Text(self.screen, self.number_of_words) # create text object and passes screen to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
         self.results_screen = Results(self.screen) # create results screen object and passes screen to Results
-        self.game_selection = gameSelection(self.screen, self.current_screen)
-        # create game selection object and passes screen, home button, and current screen to gameSelection
+        # create game selection object and passes screen, home button, and current screen to 
+        
         
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
@@ -79,6 +81,7 @@ class Game:
                 
             # once the test is over
             if self.text.done: # once test has been completed
+                self.current_screen = "results"
                 self.results_screen.end_stats(
                     round(self.text.current_wpm), 
                     round(self.text.elapsed_time),
@@ -103,10 +106,10 @@ class Game:
         else:
             self.reset() # reset the test
         
-
     def run(self):
         while self.running: # gets current status of game
-            print(self.mouse_released)
+            print(self.number_of_words)
+            self.number_of_words = self.game_selection.getNumberOfWords()
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
             # print(self.current_screen) # debug
@@ -121,6 +124,7 @@ class Game:
                     self.current_screen = game_state
                     self.mouse_released = False
             elif self.current_screen == "game":
+                self.text = Text(self.screen, self.game_selection.getNumberOfWords)
                 self.testElements() # test elements to be displayed on screen
             elif self.current_screen == "quit":
                 self.running = False

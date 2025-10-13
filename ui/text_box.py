@@ -4,13 +4,13 @@ from data.stats_tracker import *
 from data.sentence_manager import *
 
 class Text:
-    def __init__(self, screen):
+    def __init__(self, screen, number_of_words):
         # screen
         self.screen = screen
         # text
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
-        self.number_of_words = 15
+        self.number_of_words = int(number_of_words)
         self.target_text = sentence.get_easy_sentence(self.number_of_words) # grabs the constructed target sentence in the sentence class
         # classes
         self.stats = Stats() # create stats object
