@@ -124,7 +124,7 @@ class Game:
                     self.current_screen = game_state
                     self.mouse_released = False
             elif self.current_screen == "game":
-                self.text = Text(self.screen, self.game_selection.getNumberOfWords)
+                self.text = Text(self.screen, self.number_of_words)
                 self.testElements() # test elements to be displayed on screen
             elif self.current_screen == "quit":
                 self.running = False
