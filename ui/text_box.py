@@ -2,6 +2,7 @@ import pygame # imports pygame modules
 from config import *
 from data.stats_tracker import *
 from data.sentence_manager import *
+from core.selection import gameSelection
 
 class Text:
     def __init__(self, screen, number_of_words):
@@ -26,6 +27,11 @@ class Text:
         self.font_roboto = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
         self.font_roboto_underline = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
         self.font_roboto_underline.set_underline(True)
+
+    def create_sentence(self, number_of_words):
+        self.number_of_words = int(number_of_words)
+        # grabs the constructed target sentence in the sentence class
+        self.target_text = sentence.get_easy_sentence(self.number_of_words)
     
     """ text inputs from user """
     def text_handle(self, event):
