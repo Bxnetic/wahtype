@@ -4,7 +4,7 @@ from ui.text_box import *
 from ui.button import *
 from ui.results_screen import *
 from core.menu import *
-from core.selection import *
+from core.selection import gameSelection
 
 class Game:
     def __init__(self): # game constructor
@@ -34,9 +34,11 @@ class Game:
         self.home_button = Button(0, 0, self.home_img,
             self.home_img_hover, 0.2, "", 0, self.white, self.white)
         # classes
-        self.game_selection = gameSelection(self.screen, self.current_screen)
-        self.number_of_words = self.game_selection.getNumberOfWords()
-        self.text = Text(self.screen, self.number_of_words) # create text object and passes screen to Text
+        self.game_selection = gameSelection(self.screen, self.current_screen) # create gameselection object, pass screen
+        # and current screen
+        self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from gameselection class
+        self.text = Text(self.screen, self.number_of_words) # create text object and passes screen and
+        # number of words to Text
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
         self.results_screen = Results(self.screen) # create results screen object and passes screen to Results
         # create game selection object and passes screen, home button, and current screen to 

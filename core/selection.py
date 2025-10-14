@@ -70,18 +70,18 @@ class gameSelection:
             # once current_index = 3, the current index will become 0 again
             self.words_select_button.setText(self.words_list[self.words_current_index]) # update the button text with
             # the next game mode
-            print(self.number_of_words)
             
         # home button
         self.home_button.rect.topleft = (centre(self.home_button.image, 0, 240)) # home button
         if self.home_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
-            self.current_screen = "menu"
-            return self.current_screen
+            self.current_screen = "menu" # set current screen to menu
+            return self.current_screen # return current screen state
         self.start_button.rect.topleft = (centre(self.start_button.image, 0, 160)) # start button
         if self.start_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
-            self.current_screen = "game"
-            return self.current_screen
+            self.current_screen = "game" # set current screen to game
+            return self.current_screen # return current screen state
 
     def getNumberOfWords(self):
-        self.number_of_words = self.words_list[self.words_current_index][:2]
-        return self.number_of_words
+        self.number_of_words = self.words_list[self.words_current_index][:2] # only get the first 2 letters;
+        # cut off the rest
+        return self.number_of_words # return number of words
