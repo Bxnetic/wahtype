@@ -5,7 +5,7 @@ from core.game import *
 
 class gameSelection:
     def __init__(self, screen, current_screen):
-        self.number_of_words = 0
+        self.__number_of_words = 0
         # screen
         self.screen = screen
         self.current_screen = current_screen
@@ -82,6 +82,6 @@ class gameSelection:
             return self.current_screen # return current screen state
 
     def getNumberOfWords(self):
-        self.number_of_words = self.words_list[self.words_current_index][:2] # only get the first 2 letters;
+        self.__number_of_words = self.words_list[self.words_current_index][:2] # only get the first 2 letters;
         # cut off the rest
-        return self.number_of_words # return number of words
+        return self.__number_of_words # return number of words

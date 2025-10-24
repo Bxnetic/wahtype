@@ -13,6 +13,8 @@ class Game:
         # pygame window
         pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
         # screen, fps and run
+        self.width = 0
+        self.height = 0
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
         self.current_screen = "menu"
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
@@ -43,10 +45,6 @@ class Game:
         self.menu = Menu(self.screen) # create menu object and passes screen to Menu
         self.results_screen = Results(self.screen) # create results screen object and passes screen to Results
         # create game selection object and passes screen, home button, and current screen to 
-    
-    def update_number_of_words(self):
-        self.number_of_words = self.game_selection.getNumberOfWords()
-        return self.number_of_words
             
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
@@ -69,11 +67,13 @@ class Game:
             pygame.display.flip() # continuously updates the screen
 
     def testElements(self):
-        def centre(button, widthPadding, heightPadding): # function that centers buttons on the middle of the screen
+        """ function """
+        def centre(surface, widthPadding, heightPadding): # function that centres surface
+            rect = surface.get_rect()
             return (
-                int((self.width / 2)) - int(button.rect.width / 2) + widthPadding,
-                    int((self.height / 2)) + heightPadding
-            )
+                int((self.width / 2)) - int(rect.width / 2) + widthPadding,
+            int((self.height / 2)) - int(rect.height / 2) + heightPadding
+            ) # centre surface
         
         if self.current_screen == "game": # if the test is running
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
@@ -94,12 +94,12 @@ class Game:
                     self.width, self.height
                 ) # call the results_screen method
                 # move the buttons further down the screen
-                self.reset_button.rect.topleft = (centre(self.reset_button, 30, 150)) # reset button
-                self.home_button.rect.topleft = (centre(self.home_button, -30, 150)) # home button
+                self.reset_button.rect.topleft = (centre(self.reset_button.image, 30, 150)) # reset button
+                self.home_button.rect.topleft = (centre(self.home_button.image, -30, 150)) # home button
             else:
                 # set the the buttons to its default positions
-                self.reset_button.rect.topleft = (centre(self.reset_button, 30, 50)) # reset button
-                self.home_button.rect.topleft = (centre(self.home_button, -30, 50)) # home button
+                self.reset_button.rect.topleft = (centre(self.reset_button.image, 30, 50)) # reset button
+                self.home_button.rect.topleft = (centre(self.home_button.image, -30, 50)) # home button
                 
             # clicking buttons
             if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
@@ -116,29 +116,32 @@ class Game:
             """ debug """
             # print(self.number_of_words)
             print(self.current_screen)
+            print(self.height)
 
             """ methods """
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
-
+            
+            """ screen states """
             if self.current_screen == "menu":
                 game_state = self.menu.draw(self.width, self.height, self.mouse_released) # display the menu
                 if game_state:
-                    self.current_screen = game_state
-                    self.mouse_released = False
-                    self.game_started = False
-                    self.reset()
+                    self.current_screen = game_state # set current screen as current game state
+                    self.mouse_released = False # left click has been clicked
+                    self.game_started = False # don't start the game
+                    self.reset() # reset the attributes for the test itself
 
             elif self.current_screen == "selection":
                 game_state = self.game_selection.draw(self.width, self.height, self.mouse_released) # display the menu
                 if game_state:
-                    self.current_screen = game_state
+                    self.current_screen = game_state # set current screen as current game state
                     self.mouse_released = False
 
-            elif self.current_screen == "game":
-                if not self.game_started:
-                    self.text.create_sentence(self.update_number_of_words())
-                    self.game_started = True
+            elif self.current_screen == "game": # if the current screen is the game
+                if not self.game_started: # and the game start condition is false
+                    self.number_of_words = self.game_selection.getNumberOfWords() # get number of words
+                    self.text.create_sentence(self.number_of_words) # create target sentence
+                    self.game_started = True # game has started - so sentence stops being created
                 self.testElements() # test elements to be displayed on screen
 
             elif self.current_screen == "quit":
