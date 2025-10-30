@@ -3,7 +3,7 @@ from config import *
 from ui.button import *
 from core.game import *
 
-class gameSelection:
+class Selection:
     def __init__(self, screen, current_screen):
         self.__number_of_words = 0
         # screen

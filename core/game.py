@@ -1,50 +1,52 @@
 import pygame # imports pygame modules
-from config import *
-from ui.text_box import *
-from ui.button import *
-from ui.results_screen import *
-from core.menu import *
-from core.selection import gameSelection
+from config import* # import config variables, classes
+from ui.text_box import * # import text_box variables, classes
+from ui.button import * # import button variables, classes
+from ui.results_screen import * # import results_screen variables, classes
+from core.menu import * # import menu variables, classes
+from core.selection import Selection # import selection class
 
 class Game:
     def __init__(self): # game constructor
         pygame.init() # initialises pygame
         pygame.key.set_repeat(300, 30) # allows user to hold key
-        # pygame window
-        pygame.display.set_caption("Another Type Racing Game") # sets name of window (new)
-        # screen, fps and run
-        self.width = 0
-        self.height = 0
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE) # sets size of the window
-        self.current_screen = "menu"
+        pygame.display.set_caption("wahtype") # sets name of window
+        self.width = WIDTH # width of window
+        self.height = HEIGHT # height of window
+        self.screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE) # sets size of the window
+
+        # runtime
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
-        self.running = True
-        self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha()
-        self.game_started = False
-        pygame.display.set_icon(self.game_icon)
+        self.running = True # tracks if program is running
+        self.mouse_released = True # check if user has stopped holding left click
+        self.game_started = False # tracks if game has started
+        self.current_screen = "menu" # tracks the current screen
+    
         # theme colours
-        self.bgcolour = pygame.Color(BACKGROUND)
-        self.white = pygame.Color(WHITE) 
-        # images for all the buttons
+        self.bgcolour = pygame.Color(BACKGROUND) # theme colours
+        self.white = pygame.Color(WHITE) # theme colours
+
+        # images
         self.reset_img = pygame.image.load("images\\reset_button.png").convert_alpha()
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
-        self.mouse_released = True
+        self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha() # game icon
+        
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
             self.reset_img_hover, 0.2, "test", 0, self.white, self.white)
         self.home_button = Button(0, 0, self.home_img,
             self.home_img_hover, 0.2, "", 0, self.white, self.white)
+        
+        pygame.display.set_icon(self.game_icon) # set window icon
+        
         # classes
-        self.game_selection = gameSelection(self.screen, self.current_screen) # create gameselection object, pass screen
-        # and current screen
-        self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from gameselection class
-        self.text = Text(self.screen, self.number_of_words) # create text object and passes screen and
-        # number of words to Text
-        self.menu = Menu(self.screen) # create menu object and passes screen to Menu
-        self.results_screen = Results(self.screen) # create results screen object and passes screen to Results
-        # create game selection object and passes screen, home button, and current screen to 
+        self.game_selection = Selection(self.screen, self.current_screen) # create selection object
+        self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
+        self.text = Text(self.screen, self.number_of_words) # create text object
+        self.menu = Menu(self.screen) # create menu object and passes screen to menu
+        self.results_screen = Results(self.screen) # create results screen object
             
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state

@@ -2,7 +2,6 @@ import pygame # imports pygame modules
 from config import *
 from data.stats_tracker import *
 from data.sentence_manager import *
-from core.selection import gameSelection
 
 class Text:
     def __init__(self, screen, number_of_words):
