@@ -34,7 +34,7 @@ class Text:
         self.target_text = sentence.get_easy_sentence(self.number_of_words)
     
     """ text inputs from user """
-    def text_handle(self, event):
+    def text_handle(self, event, gameMode):
         if not self.done and self.stats.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
             # and the timer hasn't started (and the user types a key)
             self.stats.start() # start the timer
@@ -62,6 +62,11 @@ class Text:
             if event.unicode and event.unicode.isprintable():
                 if len(current_word) < len(target_word): # if the length of current word is less than the target word
                     # then let the user type
+                    expected_char = target_word[len(current_word)]
+
+                    if gameMode == "Survival" and event.unicode != expected_char:
+                        self.game_lives -= 1
+                    
                     self.usertext += event.unicode # adds user's letter to the usertext string
                 
     """ text wrapping """
@@ -139,8 +144,6 @@ class Text:
 
                 # display rendered character
                 if color == self.errorcolour: # if user get character incorrect
-                    if gameMode == "Survival":
-                        self.game_lives -= 1
                     rendered_char = self.font_roboto_underline.render(char, True, color) # underline character
                 else:
                     rendered_char = self.font_roboto.render(char, True, color) # display normally

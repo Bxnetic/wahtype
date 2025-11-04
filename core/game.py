@@ -160,5 +160,5 @@ class Game:
                     self.mouse_released = True
                 if self.current_screen == "game": # if the test is running
                     if event.type == pygame.KEYDOWN: # if presses any key, then add character to string
-                        self.text.text_handle(event) # call text_handle method
+                        self.text.text_handle(event, self.game_mode) # call text_handle method
         pygame.quit() # closes program
