@@ -62,8 +62,9 @@ class Text:
             if event.unicode and event.unicode.isprintable():
                 if len(current_word) < len(target_word): # if the length of current word is less than the target word
                     # then let the user type
-                    expected_char = target_word[len(current_word)]
+                    expected_char = target_word[len(current_word)] # get expected character
 
+                    # check for mistake if game mode is survival
                     if gameMode == "Survival" and event.unicode != expected_char:
                         self.game_lives -= 1
                     
@@ -105,17 +106,18 @@ class Text:
         self.final_accuracy = self.stats.get_accuracy(self.target_text, self.usertext) # calculate accuracy
         self.current_wpm = self.stats.get_wpm(self.usertext, self.elapsed_time)
    
-        if self.elapsed_time != 0: # if the timer hasn't started
-            # display timer & wpm
+        # if the timer hasn't started, display timer & wpm
+        if self.elapsed_time != 0:
             stats_text = self.font_roboto.render(
                 f"{round(self.elapsed_time)}s {round(self.current_wpm)} wpm",
             True, self.maincolour) # call the stats
             self.screen.blit(stats_text, (100, currentHeight / 2 - 135)) # display stats on screen
         
+        # display no. of lives
         if gameMode == "Survival":
             lives_text = self.font_roboto.render(
                 f"Lives: {self.game_lives}", True, self.maincolour
-            )
+            ) 
             self.screen.blit(lives_text, (200, currentHeight / 2))
 
         """ rendering characters """
