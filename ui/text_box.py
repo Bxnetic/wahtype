@@ -101,6 +101,14 @@ class Text:
 
     """ drawing text """
     def draw_text(self, currentWidth, currentHeight, gameMode):
+        """ functions """
+        def centre(surface, widthPadding, heightPadding): # function that centres surface
+            rect = surface.get_rect()
+            return (
+                int((currentWidth / 2)) - int(rect.width / 2) + widthPadding,
+                int((currentHeight / 2)) - int(rect.height / 2) + heightPadding
+            ) # centre surface
+        
         """ stats """
         self.elapsed_time = self.stats.get_elapsed_time()
         self.final_accuracy = self.stats.get_accuracy(self.target_text, self.usertext) # calculate accuracy
@@ -118,7 +126,7 @@ class Text:
             lives_text = self.font_roboto.render(
                 f"Lives: {self.game_lives}", True, self.maincolour
             ) 
-            self.screen.blit(lives_text, (200, currentHeight / 2))
+            self.screen.blit(lives_text, (centre(lives_text, 0, 150)))
 
         """ rendering characters """
         max_width = currentWidth - 200 # add 200px padding to edge

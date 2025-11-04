@@ -102,8 +102,8 @@ class Game:
                 self.home_button.rect.topleft = (centre(self.home_button.image, -30, 150)) # home button
             else:
                 # set the the buttons to its default positions
-                self.reset_button.rect.topleft = (centre(self.reset_button.image, 30, 50)) # reset button
-                self.home_button.rect.topleft = (centre(self.home_button.image, -30, 50)) # home button
+                self.reset_button.rect.topleft = (centre(self.reset_button.image, 30, 100)) # reset button
+                self.home_button.rect.topleft = (centre(self.home_button.image, -30, 100)) # home button
                 
             # clicking buttons
             if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
