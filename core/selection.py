@@ -63,6 +63,7 @@ class Selection:
             self.game_current_index = (self.game_current_index + 1) % len(self.game_mode_list) # go to the next value,
             self.gamemode_select_button.setText(self.game_mode_list[self.game_current_index]) # update the button text with
             # the next game mode
+            
         # words button
         self.words_select_button.rect.topleft = (centre(self.words_select_button.image, 100, 40)) # centre the button
         if self.words_select_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
@@ -81,7 +82,10 @@ class Selection:
             self.current_screen = "game" # set current screen to game
             return self.current_screen # return current screen state
 
+    def getGameMode(self):
+        self.__game_mode = self.game_mode_list[self.game_current_index]
+        return self.__game_mode
+    
     def getNumberOfWords(self):
-        self.__number_of_words = self.words_list[self.words_current_index][:2] # only get the first 2 letters;
-        # cut off the rest
+        self.__number_of_words = self.words_list[self.words_current_index][:2] # get the first 2 letters
         return self.__number_of_words # return number of words

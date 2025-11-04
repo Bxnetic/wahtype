@@ -6,7 +6,6 @@ class Menu:
     def __init__(self, screen):
         # screen
         self.screen = screen
-        # run / game loop
         # colours
         self.white = pygame.Color(WHITE)
         self.submaincolour = pygame.Color(SUBMAIN)

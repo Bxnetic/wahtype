@@ -44,12 +44,14 @@ class Game:
         # classes
         self.game_selection = Selection(self.screen, self.current_screen) # create selection object
         self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
+        self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
         self.text = Text(self.screen, self.number_of_words) # create text object
         self.menu = Menu(self.screen) # create menu object and passes screen to menu
         self.results_screen = Results(self.screen) # create results screen object
             
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
+        self.text.game_lives = 3 # reset number of lives
         self.text.target_text = sentence.get_easy_sentence(self.text.number_of_words) # set target_text back to normal state
         self.text.stats.reset() # set timer back to normal state
         self.text.done = False # set done back to false state
@@ -79,7 +81,7 @@ class Game:
         
         if self.current_screen == "game": # if the test is running
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
-            self.text.draw_text(self.width, self.height) # draws to screen and passes current width to draw_text
+            self.text.draw_text(self.width, self.height, self.game_mode) # draws to screen and passes current width to draw_text
 
             if len(self.text.usertext) == len(self.text.target_text) and not self.text.done:
             # checks if user's sentence fully matches target sentence
@@ -117,8 +119,9 @@ class Game:
         while self.running: # gets current status of game
             """ debug """
             # print(self.number_of_words)
-            print(self.current_screen)
-            print(self.height)
+            # print(self.current_screen)
+            # print(self.height)
+            print(self.game_mode)
 
             """ methods """
             self.clock.tick(FPS) # sets the frames to 60
@@ -134,14 +137,15 @@ class Game:
                     self.reset() # reset the attributes for the test itself
 
             elif self.current_screen == "selection":
-                game_state = self.game_selection.draw(self.width, self.height, self.mouse_released) # display the menu
+                game_state = self.game_selection.draw(self.width, self.height, self.mouse_released) # display the selection screen
                 if game_state:
                     self.current_screen = game_state # set current screen as current game state
-                    self.mouse_released = False
+                    self.mouse_released = False # left click has been clicked
 
             elif self.current_screen == "game": # if the current screen is the game
                 if not self.game_started: # and the game start condition is false
                     self.number_of_words = self.game_selection.getNumberOfWords() # get number of words
+                    self.game_mode = self.game_selection.getGameMode() # get game mode
                     self.text.create_sentence(self.number_of_words) # create target sentence
                     self.game_started = True # game has started - so sentence stops being created
                 self.testElements() # test elements to be displayed on screen

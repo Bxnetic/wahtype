@@ -10,6 +10,7 @@ class Text:
         # text
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
+        self.game_lives = 3
         self.number_of_words = int(number_of_words)
         self.target_text = sentence.get_easy_sentence(self.number_of_words) # grabs the constructed target sentence in the sentence class
         # classes
@@ -93,7 +94,7 @@ class Text:
             return self.screen.blit(cursor, cursor_rect) # display the cursor
 
     """ drawing text """
-    def draw_text(self, currentWidth, currentHeight):
+    def draw_text(self, currentWidth, currentHeight, gameMode):
         """ stats """
         self.elapsed_time = self.stats.get_elapsed_time()
         self.final_accuracy = self.stats.get_accuracy(self.target_text, self.usertext) # calculate accuracy
@@ -102,9 +103,15 @@ class Text:
         if self.elapsed_time != 0: # if the timer hasn't started
             # display timer & wpm
             stats_text = self.font_roboto.render(
-                f"{round(self.elapsed_time)} {round(self.current_wpm)}",
+                f"{round(self.elapsed_time)}s {round(self.current_wpm)} wpm",
             True, self.maincolour) # call the stats
             self.screen.blit(stats_text, (100, currentHeight / 2 - 135)) # display stats on screen
+        
+        if gameMode == "Survival":
+            lives_text = self.font_roboto.render(
+                f"Lives: {self.game_lives}", True, self.maincolour
+            )
+            self.screen.blit(lives_text, (200, currentHeight / 2))
 
         """ rendering characters """
         max_width = currentWidth - 200 # add 200px padding to edge
@@ -132,6 +139,8 @@ class Text:
 
                 # display rendered character
                 if color == self.errorcolour: # if user get character incorrect
+                    if gameMode == "Survival":
+                        self.game_lives -= 1
                     rendered_char = self.font_roboto_underline.render(char, True, color) # underline character
                 else:
                     rendered_char = self.font_roboto.render(char, True, color) # display normally
