@@ -19,7 +19,10 @@ class Game:
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         self.running = True # tracks if program is running
         self.mouse_released = True # check if user has stopped holding left click
+
+        # game conditions
         self.game_started = False # tracks if game has started
+        self.test_failed = False # checks if user has failed test
         self.current_screen = "menu" # tracks the current screen
     
         # theme colours
@@ -55,6 +58,7 @@ class Game:
         self.text.target_text = sentence.get_easy_sentence(self.text.number_of_words) # set target_text back to normal state
         self.text.stats.reset() # set timer back to normal state
         self.text.done = False # set done back to false state
+        self.test_failed = False # set failed state back to false
 
     def resizableWindow(self): # get current width & height of window
             self.width = self.screen.get_width()
@@ -96,6 +100,7 @@ class Game:
             if self.game_mode == "Survival" and self.text.game_lives <= 0:
                 self.text.stats.stop() # stop the time
                 self.text.done = True
+                self.test_failed = True
 
             # once the test is over
             if self.text.done: # once test has been completed
@@ -107,7 +112,7 @@ class Game:
                 self.reset() # call the reset method in the Text class (resets all variables)
                 self.mouse_released = False
             if self.home_button.draw(self.screen, self.mouse_released): # if the home button is clicked
-                self.current_screen = "menu"
+                self.current_screen = "menu" # display menu
                 self.mouse_released = False
         else:
             self.reset() # reset the test
@@ -153,7 +158,7 @@ class Game:
                     round(self.text.current_wpm), 
                     round(self.text.elapsed_time),
                     round(self.text.final_accuracy),
-                    self.width, self.height
+                    self.width, self.height, self.game_mode, self.test_failed
                 ) # call the results_screen method
 
                 # move the buttons further down the screen

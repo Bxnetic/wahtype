@@ -11,8 +11,9 @@ class Results:
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
         self.subtextcolour = pygame.Color(SUBTEXT)
+        self.white = pygame.Color(WHITE)
 
-    def end_stats(self, wpm, time, accuracy, width, height):
+    def end_stats(self, wpm, time, accuracy, width, height, gameMode, testFailed):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
 
         def centre(text, paddingWidth, paddingHeight):
@@ -28,14 +29,18 @@ class Results:
                 topleft=(centre(current_text, x, y))) # display text in the centre
             self.screen.blit(current_text, current_text_rect) # display the text on screen
 
-        """ wpm """
+        # display FAILED if the user fails test
+        if gameMode == "Survival" and testFailed:
+            draw_text("FAILED", 0, 150, self.white, 60)
+        
+        # wpm
         draw_text("wpm", 0, 50, self.subtextcolour, 24) # display "wpm"
         draw_text(f"{wpm}", 0, 0, self.maincolour, 70) # display wpm
 
-        """ time """
+        # time
         draw_text("time", -200, 50, self.subtextcolour, 24) # display "time"
         draw_text(f"{time}", -200, 0, self.maincolour, 70) # display final time
 
-        """ accuracy """
+        # accuracy
         draw_text("accuracy", 200, 50, self.subtextcolour, 24) # display "accuracy"
         draw_text(f"{accuracy}%", 200, 0, self.maincolour, 70) # display accuracy
