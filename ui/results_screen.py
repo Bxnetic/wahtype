@@ -31,7 +31,7 @@ class Results:
 
         # display FAILED if the user fails test
         if gameMode == "Survival" and testFailed:
-            draw_text("FAILED", 0, 150, self.white, 60)
+            draw_text("FAILED", 0, 150, self.subtextcolour, 60) # display "FAILED"
         
         # wpm
         draw_text("wpm", 0, 50, self.subtextcolour, 24) # display "wpm"
@@ -44,3 +44,7 @@ class Results:
         # accuracy
         draw_text("accuracy", 200, 50, self.subtextcolour, 24) # display "accuracy"
         draw_text(f"{accuracy}%", 200, 0, self.maincolour, 70) # display accuracy
+
+        # game mode
+        draw_text("game mode", 0, -80, self.subtextcolour, 24) # display "game mode"
+        draw_text(f"{gameMode}", 0, -110, self.maincolour, 24) # display "game mode"

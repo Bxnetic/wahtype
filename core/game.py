@@ -124,7 +124,7 @@ class Game:
             # print(self.current_screen)
             # print(self.height)
             # print(self.game_mode)
-            print(f"lives: {self.text.game_lives}")
+            # print(f"lives: {self.text.game_lives}")
 
             """ methods """
             self.clock.tick(FPS) # sets the frames to 60
@@ -162,8 +162,8 @@ class Game:
                 ) # call the results_screen method
 
                 # move the buttons further down the screen
-                self.reset_button.rect.topleft = (self.centre(self.reset_button.image, 30, 150)) # reset button
-                self.home_button.rect.topleft = (self.centre(self.home_button.image, -30, 150)) # home button
+                self.reset_button.rect.topleft = (self.centre(self.reset_button.image, 30, 250)) # reset button
+                self.home_button.rect.topleft = (self.centre(self.home_button.image, -30, 250)) # home button
 
                 # clicking buttons
                 if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
