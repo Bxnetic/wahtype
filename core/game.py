@@ -70,41 +70,38 @@ class Game:
 
             pygame.display.flip() # continuously updates the screen
 
-    def testElements(self):
-        """ function """
-        def centre(surface, widthPadding, heightPadding): # function that centres surface
-            rect = surface.get_rect()
-            return (
-                int((self.width / 2)) - int(rect.width / 2) + widthPadding,
-            int((self.height / 2)) - int(rect.height / 2) + heightPadding
-            ) # centre surface
+    def centre(self, surface, widthPadding, heightPadding): # function that centres surface
+        rect = surface.get_rect()
+        return (
+            int((self.width / 2)) - int(rect.width / 2) + widthPadding,
+        int((self.height / 2)) - int(rect.height / 2) + heightPadding
+        ) # centre surface
         
+
+    def testElements(self):
         if self.current_screen == "game": # if the test is running
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
             self.text.draw_text(self.width, self.height, self.game_mode) # draws to screen and passes current width to draw_text
+
+            # set the the buttons to its default positions
+            self.reset_button.rect.topleft = (self.centre(self.reset_button.image, 30, 100)) # reset button
+            self.home_button.rect.topleft = (self.centre(self.home_button.image, -30, 100)) # home button
 
             if len(self.text.usertext) == len(self.text.target_text) and not self.text.done:
             # checks if user's sentence fully matches target sentence
             # and the condition to check if the target sentence hasn't been completed
                 self.text.stats.stop() # stop the time
                 self.text.done = True # stop the user from typing
-                
+            
+            if self.game_mode == "Survival" and self.text.game_lives <= 0:
+                self.text.stats.stop() # stop the time
+                self.text.done = True
+
             # once the test is over
             if self.text.done: # once test has been completed
-                self.results_screen.end_stats(
-                    round(self.text.current_wpm), 
-                    round(self.text.elapsed_time),
-                    round(self.text.final_accuracy),
-                    self.width, self.height
-                ) # call the results_screen method
-                # move the buttons further down the screen
-                self.reset_button.rect.topleft = (centre(self.reset_button.image, 30, 150)) # reset button
-                self.home_button.rect.topleft = (centre(self.home_button.image, -30, 150)) # home button
-            else:
-                # set the the buttons to its default positions
-                self.reset_button.rect.topleft = (centre(self.reset_button.image, 30, 100)) # reset button
-                self.home_button.rect.topleft = (centre(self.home_button.image, -30, 100)) # home button
-                
+                self.current_screen = "results"
+                return self.current_screen
+            
             # clicking buttons
             if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
                 self.reset() # call the reset method in the Text class (resets all variables)
@@ -121,7 +118,8 @@ class Game:
             # print(self.number_of_words)
             # print(self.current_screen)
             # print(self.height)
-            print(self.game_mode)
+            # print(self.game_mode)
+            print(f"lives: {self.text.game_lives}")
 
             """ methods """
             self.clock.tick(FPS) # sets the frames to 60
@@ -149,6 +147,27 @@ class Game:
                     self.text.create_sentence(self.number_of_words) # create target sentence
                     self.game_started = True # game has started - so sentence stops being created
                 self.testElements() # test elements to be displayed on screen
+
+            elif self.current_screen == "results": # if the current screen is the result screen
+                self.results_screen.end_stats(
+                    round(self.text.current_wpm), 
+                    round(self.text.elapsed_time),
+                    round(self.text.final_accuracy),
+                    self.width, self.height
+                ) # call the results_screen method
+
+                # move the buttons further down the screen
+                self.reset_button.rect.topleft = (self.centre(self.reset_button.image, 30, 150)) # reset button
+                self.home_button.rect.topleft = (self.centre(self.home_button.image, -30, 150)) # home button
+
+                # clicking buttons
+                if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
+                    self.reset() # call the reset method in the Text class (set values to default)
+                    self.mouse_released = False
+                if self.home_button.draw(self.screen, self.mouse_released): # if the home button is clicked
+                    self.current_screen = "menu" # display menu
+                    self.reset() # reset the test
+                    self.mouse_released = False
 
             elif self.current_screen == "quit":
                 self.running = False
