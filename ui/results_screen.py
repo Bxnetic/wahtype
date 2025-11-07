@@ -11,9 +11,9 @@ class Results:
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
         self.subtextcolour = pygame.Color(SUBTEXT)
-        self.white = pygame.Color(WHITE)
+        self.error = pygame.Color(ERROR)
 
-    def end_stats(self, wpm, time, accuracy, width, height, gameMode, testFailed):
+    def end_stats(self, wpm, time, accuracy, width, height, gameMode, testFailed, lives):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
 
         def centre(text, paddingWidth, paddingHeight):
@@ -31,7 +31,7 @@ class Results:
 
         # display FAILED if the user fails test
         if gameMode == "Survival" and testFailed:
-            draw_text("FAILED", 0, 150, self.subtextcolour, 60) # display "FAILED"
+            draw_text("FAILED", 0, 150, self.error, 60) # display "FAILED"
         
         # wpm
         draw_text("wpm", 0, 50, self.subtextcolour, 24) # display "wpm"
@@ -48,3 +48,5 @@ class Results:
         # game mode
         draw_text("game mode", 0, -80, self.subtextcolour, 24) # display "game mode"
         draw_text(f"{gameMode}", 0, -110, self.maincolour, 24) # display "game mode"
+        if gameMode == "Survival":
+            draw_text(f"{lives} lives left", 0, -140, self.maincolour, 20) # display number of lives left

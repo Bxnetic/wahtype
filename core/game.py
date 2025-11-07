@@ -158,7 +158,8 @@ class Game:
                     round(self.text.current_wpm), 
                     round(self.text.elapsed_time),
                     round(self.text.final_accuracy),
-                    self.width, self.height, self.game_mode, self.test_failed
+                    self.width, self.height,
+                    self.game_mode, self.test_failed, self.text.game_lives
                 ) # call the results_screen method
 
                 # move the buttons further down the screen
@@ -168,6 +169,7 @@ class Game:
                 # clicking buttons
                 if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
                     self.reset() # call the reset method in the Text class (set values to default)
+                    self.current_screen = "game" # start game
                     self.mouse_released = False
                 if self.home_button.draw(self.screen, self.mouse_released): # if the home button is clicked
                     self.current_screen = "menu" # display menu
