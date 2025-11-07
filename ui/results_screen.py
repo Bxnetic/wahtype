@@ -29,9 +29,11 @@ class Results:
                 topleft=(centre(current_text, x, y))) # display text in the centre
             self.screen.blit(current_text, current_text_rect) # display the text on screen
 
-        # display FAILED if the user fails test
-        if gameMode == "Survival" and testFailed:
-            draw_text("FAILED", 0, 150, self.error, 60) # display "FAILED"
+        
+        if gameMode == "Survival":
+            draw_text(f"{lives} lives left", 0, -140, self.maincolour, 20) # display number of lives left
+            if testFailed:
+                draw_text("FAILED", 0, 150, self.error, 60) # display "FAILED" # display FAILED if the user fails test
         
         # wpm
         draw_text("wpm", 0, 50, self.subtextcolour, 24) # display "wpm"
@@ -48,5 +50,4 @@ class Results:
         # game mode
         draw_text("game mode", 0, -80, self.subtextcolour, 24) # display "game mode"
         draw_text(f"{gameMode}", 0, -110, self.maincolour, 24) # display "game mode"
-        if gameMode == "Survival":
-            draw_text(f"{lives} lives left", 0, -140, self.maincolour, 20) # display number of lives left
+            
