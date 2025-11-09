@@ -36,8 +36,9 @@ class Text:
     """ text inputs from user """
     def text_handle(self, event, gameMode):
         if not self.done and self.stats.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
-            # and the timer hasn't started (and the user types a key)
-            self.stats.start() # start the timer
+            if gameMode == "Normal" or "Survival":
+                # and the timer hasn't started (and the user types a key)
+                self.stats.start() # start the timer
 
         # split words into own variable
         user_words = self.usertext.split(" ") # put current words into array
