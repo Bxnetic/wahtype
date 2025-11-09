@@ -104,7 +104,7 @@ class Game:
                 self.test_failed = True
 
             if self.game_mode == "Timed":
-                self.text.stats.countdown()
+                self.text.stats.countdown() # call countdown method
 
             # once the test is over
             if self.text.done: # once test has been completed

@@ -55,8 +55,8 @@ class Stats:
             print(self.count_time) # debug
     
     def get_countdown_timer(self):
-        return self.count_time
-    
+        return self.count_time # return countdown time
+
     # wpm
     def get_wpm(self, text, elapsed_time):
         if int(elapsed_time) != self.last_wpm_time: # if the current time doesnt match the last wpm time
