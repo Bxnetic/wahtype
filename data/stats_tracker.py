@@ -1,10 +1,13 @@
 import time
+import pygame
 
 class Stats:
     def __init__(self):
         self.start_time = 0 # start time of timer
         self.end_time = 0 # end time of timer
         self.final_time = 0 # final time of timer
+        self.current_tick = 0 # count down timer
+        self.last_tick = 0 # previous number of countdown
         self.wpm = 0 # current wpm
         self.last_wpm_time = 0 # last time the wpm was calculated
         self.accuracy = 0 # end accuracy
@@ -14,11 +17,12 @@ class Stats:
         self.start_time = 0
         self.end_time = 0
         self.final_time = 0
+        self.count_time = 0
         self.wpm = 0
         self.last_wpm_time = 0
         self.accuracy = 0
     
-    """ timer """
+   # timer
     def start(self):
         # starts timer
         self.start_time = time.time()
@@ -38,7 +42,22 @@ class Stats:
         return time.time() - self.start_time # if the user has finished typing and the final time has a value
         # then display the final time
 
-    """ wpm """
+    # countdown timer
+    def start_countdown(self, user_time):
+        self.count_time = user_time # user's selected time
+        self.last_tick = pygame.time.get_ticks() # get starting tick
+
+    def countdown(self):
+        self.current_tick = pygame.time.get_ticks() # get current tick
+        if self.current_tick - self.last_tick >= 1000: # 1000ms = 1s
+            self.count_time -= 1 # decrease timer by 1
+            self.last_tick = self.current_tick # update last tick to current tick
+            print(self.count_time) # debug
+    
+    def get_countdown_timer(self):
+        return self.count_time
+    
+    # wpm
     def get_wpm(self, text, elapsed_time):
         if int(elapsed_time) != self.last_wpm_time: # if the current time doesnt match the last wpm time
             self.last_wpm_time = int(elapsed_time) # update the last wpm time
@@ -46,7 +65,7 @@ class Stats:
 
         return self.wpm # return wpm
 
-    """ accuracy """
+    # accuracy
     def get_accuracy(self, target_text, user_text):
         correct_chars = 0 # number of correct characters
         total_chars = len(user_text) # get total number of characters

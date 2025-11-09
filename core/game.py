@@ -97,10 +97,14 @@ class Game:
                 self.text.stats.stop() # stop the time
                 self.text.done = True # stop the user from typing
             
+            # survival mode
             if self.game_mode == "Survival" and self.text.game_lives <= 0:
                 self.text.stats.stop() # stop the time
                 self.text.done = True
                 self.test_failed = True
+
+            if self.game_mode == "Timed":
+                self.text.stats.countdown()
 
             # once the test is over
             if self.text.done: # once test has been completed

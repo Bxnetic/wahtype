@@ -36,9 +36,11 @@ class Text:
     """ text inputs from user """
     def text_handle(self, event, gameMode):
         if not self.done and self.stats.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
-            if gameMode == "Normal" or "Survival":
+            if gameMode == "Normal" or "Survival": # stopwatch timer for normal / survival
                 # and the timer hasn't started (and the user types a key)
                 self.stats.start() # start the timer
+            if gameMode == "Timed":
+                self.stats.start_countdown(60)
 
         # split words into own variable
         user_words = self.usertext.split(" ") # put current words into array
@@ -111,19 +113,27 @@ class Text:
             ) # centre surface
         
         """ stats """
+        stats_text = self.font_roboto.render("", True, self.maincolour) # call the stats
         self.elapsed_time = self.stats.get_elapsed_time()
+        self.countdown_time = self.stats.get_countdown_timer()
         self.final_accuracy = self.stats.get_accuracy(self.target_text, self.usertext) # calculate accuracy
         self.current_wpm = self.stats.get_wpm(self.usertext, self.elapsed_time)
    
         # if the timer hasn't started, display timer & wpm
         if self.elapsed_time != 0:
-            stats_text = self.font_roboto.render(
-                f"{round(self.elapsed_time)}s {round(self.current_wpm)} wpm",
-            True, self.maincolour) # call the stats
+            if gameMode == "Normal" or gameMode == "Survival":
+                stats_text = self.font_roboto.render(
+                    f"{round(self.elapsed_time)}s {round(self.current_wpm)} wpm",
+                True, self.maincolour) # call the stats
+            if gameMode == "Timed":
+                stats_text = self.font_roboto.render(
+                    f"{round(self.countdown_time)}s {round(self.current_wpm)} wpm",
+                True, self.maincolour) # call the stats
             self.screen.blit(stats_text, (100, currentHeight / 2 - 135)) # display stats on screen
         
         # display no. of lives
         if gameMode == "Survival":
+            print("THIS IS SURVIVAL")
             lives_text = self.font_roboto.render(
                 f"Lives: {self.game_lives}", True, self.maincolour
             ) 
