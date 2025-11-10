@@ -6,8 +6,9 @@ class Stats:
         self.start_time = 0 # start time of timer
         self.end_time = 0 # end time of timer
         self.final_time = 0 # final time of timer
-        self.current_tick = 0 # count down timer
-        self.last_tick = 0 # previous number of countdown
+        self.current_tick = 0 # current count down timer
+        self.last_tick = 0 # previous number of count down
+        self.count_time = 0 # count down timer
         self.wpm = 0 # current wpm
         self.last_wpm_time = 0 # last time the wpm was calculated
         self.accuracy = 0 # end accuracy
@@ -17,6 +18,8 @@ class Stats:
         self.start_time = 0
         self.end_time = 0
         self.final_time = 0
+        self.current_tick = 0
+        self.last_tick = 0
         self.count_time = 0
         self.wpm = 0
         self.last_wpm_time = 0

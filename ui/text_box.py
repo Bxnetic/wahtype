@@ -113,6 +113,7 @@ class Text:
             ) # centre surface
         
         """ stats """
+        stats_text = ""
         self.elapsed_time = self.stats.get_elapsed_time()
         self.countdown_time = self.stats.get_countdown_timer()
         self.final_accuracy = self.stats.get_accuracy(self.target_text, self.usertext) # calculate accuracy
