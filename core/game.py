@@ -48,7 +48,8 @@ class Game:
         self.game_selection = Selection(self.screen, self.current_screen) # create selection object
         self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
         self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
-        self.text = Text(self.screen, self.number_of_words) # create text object
+        self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
+        self.text = Text(self.screen, self.number_of_words, self.time_selection) # create text object
         self.menu = Menu(self.screen) # create menu object and passes screen to menu
         self.results_screen = Results(self.screen) # create results screen object
             
@@ -129,6 +130,7 @@ class Game:
             # print(self.height)
             # print(self.game_mode)
             # print(f"lives: {self.text.game_lives}")
+            print(self.time_selection)
 
             """ methods """
             self.clock.tick(FPS) # sets the frames to 60
@@ -151,6 +153,8 @@ class Game:
 
             elif self.current_screen == "game": # if the current screen is the game
                 if not self.game_started: # and the game start condition is false
+                    self.time_selection = self.game_selection.getSeconds() # get user's selected time
+                    self.text.update_time(self.time_selection) # update user's selected time
                     self.number_of_words = self.game_selection.getNumberOfWords() # get number of words
                     self.game_mode = self.game_selection.getGameMode() # get game mode
                     self.text.create_sentence(self.number_of_words) # create target sentence

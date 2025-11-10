@@ -99,8 +99,12 @@ class Selection:
             return self.current_screen # return current screen state
 
     def getGameMode(self):
-        self.__game_mode = self.game_mode_list[self.game_current_index]
-        return self.__game_mode
+        self.__game_mode = self.game_mode_list[self.game_current_index] # get game mode name
+        return self.__game_mode # return name
+    
+    def getSeconds(self):
+        self.__time_select = self.time_list[self.time_current_index][:2] # get seconds
+        return self.__time_select
     
     def getNumberOfWords(self):
         self.__number_of_words = self.words_list[self.words_current_index][:2] # get the first 2 letters

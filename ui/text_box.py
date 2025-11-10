@@ -4,14 +4,15 @@ from data.stats_tracker import *
 from data.sentence_manager import *
 
 class Text:
-    def __init__(self, screen, number_of_words):
+    def __init__(self, screen, number_of_words, time_selection):
         # screen
         self.screen = screen
         # text
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # variable which stores what the user types
-        self.game_lives = 3
-        self.number_of_words = int(number_of_words)
+        self.game_lives = 3 # number of lives user has (survival mode)
+        self.number_of_words = int(number_of_words) # user's selected no. of words
+        self.time_selection = int(time_selection) # user's selected time (timed mode)
         self.target_text = sentence.get_easy_sentence(self.number_of_words) # grabs the constructed target sentence in the sentence class
         # classes
         self.stats = Stats() # create stats object
@@ -32,7 +33,11 @@ class Text:
         self.number_of_words = int(number_of_words)
         # grabs the constructed target sentence in the sentence class
         self.target_text = sentence.get_easy_sentence(self.number_of_words)
-    
+
+    def update_time(self, time_selection):
+        # updates time with user's new selected time
+        self.time_selection = int(time_selection)
+
     """ text inputs from user """
     def text_handle(self, event, gameMode):
         if not self.done and self.stats.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
@@ -40,7 +45,7 @@ class Text:
             if gameMode == "Normal" or "Survival": # stopwatch timer for normal / survival mode
                 self.stats.start() # start the timer
             if gameMode == "Timed": # countdown timer for timed mode
-                self.stats.start_countdown(60) # start countdown timer
+                self.stats.start_countdown(self.time_selection) # start countdown timer
 
         # split words into own variable
         user_words = self.usertext.split(" ") # put current words into array
