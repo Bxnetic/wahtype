@@ -9,7 +9,8 @@ class Text:
         self.screen = screen
         # text
         self.done = False # turns into true once user finishes typing
-        self.usertext = "" # variable which stores what the user types
+        self.usertext = "" # attribute which stores what the user types
+        self.full_usertext = "" # attribute that stores what the user types and is not reset
         self.game_lives = 3 # number of lives user has (survival mode)
         self.number_of_words = int(number_of_words) # user's selected no. of words
         self.time_selection = int(time_selection) # user's selected time (timed mode)
@@ -77,6 +78,7 @@ class Text:
                         self.game_lives -= 1
                     
                     self.usertext += event.unicode # adds user's letter to the usertext string
+                    self.full_usertext += event.unicode # user's sentence that won't be resetted
                 
     """ text wrapping """
     def wrap_text(self, text, font_roboto, max_width):
@@ -122,7 +124,7 @@ class Text:
         self.elapsed_time = self.stats.get_elapsed_time()
         self.countdown_time = self.stats.get_countdown_timer()
         self.final_accuracy = self.stats.get_accuracy(self.target_text, self.usertext) # calculate accuracy
-        self.current_wpm = self.stats.get_wpm(self.usertext, self.elapsed_time)
+        self.current_wpm = self.stats.get_wpm(self.full_usertext, self.elapsed_time)
    
         # if the timer hasn't started, display timer & wpm
         if self.elapsed_time != 0:

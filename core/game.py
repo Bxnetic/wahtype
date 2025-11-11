@@ -55,6 +55,7 @@ class Game:
             
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
+        self.text.full_usertext = "" # set full_usertext back to normal state
         self.text.game_lives = 3 # reset number of lives
         self.text.target_text = sentence.get_easy_sentence(self.text.number_of_words) # set target_text back to normal state
         self.text.stats.reset() # set timer back to normal state
@@ -82,7 +83,6 @@ class Game:
         int((self.height / 2)) - int(rect.height / 2) + heightPadding
         ) # centre surface
         
-
     def testElements(self):
         if self.current_screen == "game": # if the test is running
             self.screen.fill(self.bgcolour) # sets the display background to selected background colour
@@ -95,9 +95,14 @@ class Game:
             if len(self.text.usertext) == len(self.text.target_text) and not self.text.done:
             # checks if user's sentence fully matches target sentence
             # and the condition to check if the target sentence hasn't been completed
-                self.text.stats.stop() # stop the time
-                self.text.done = True # stop the user from typing
-            
+                if self.game_mode == "Normal" or self.game_mode == "Survival":
+                    self.text.stats.stop() # stop the time
+                    self.text.done = True # stop the user from typing
+                elif self.game_mode == "Timed":
+                    self.text.usertext = ""
+                    self.text.create_sentence(self.number_of_words) # create another target sentence
+                    print("new sentence generated")
+                      
             # survival mode
             if self.game_mode == "Survival" and self.text.game_lives <= 0:
                 self.text.stats.stop() # stop the time
@@ -130,7 +135,7 @@ class Game:
             # print(self.height)
             # print(self.game_mode)
             # print(f"lives: {self.text.game_lives}")
-            print(self.time_selection)
+            # print(self.time_selection)
 
             """ methods """
             self.clock.tick(FPS) # sets the frames to 60

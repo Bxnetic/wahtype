@@ -55,7 +55,7 @@ class Stats:
         if self.current_tick - self.last_tick >= 1000: # 1000ms = 1s
             self.count_time -= 1 # decrease timer by 1
             self.last_tick = self.current_tick # update last tick to current tick
-            print(self.count_time) # debug
+            # print(self.count_time) # debug
     
     def get_countdown_timer(self):
         return self.count_time # return countdown time
