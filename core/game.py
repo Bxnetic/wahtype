@@ -89,8 +89,8 @@ class Game:
             self.text.draw_text(self.width, self.height, self.game_mode) # draws to screen and passes current width to draw_text
 
             # set the the buttons to its default positions
-            self.reset_button.rect.topleft = (self.centre(self.reset_button.image, 30, 100)) # reset button
-            self.home_button.rect.topleft = (self.centre(self.home_button.image, -30, 100)) # home button
+            self.reset_button.rect.topleft = (self.centre(self.reset_button.image, 30, 250)) # reset button
+            self.home_button.rect.topleft = (self.centre(self.home_button.image, -30, 250)) # home button
 
             if len(self.text.usertext) == len(self.text.target_text) and not self.text.done:
             # checks if user's sentence fully matches target sentence
@@ -174,10 +174,6 @@ class Game:
                     self.width, self.height,
                     self.game_mode, self.test_failed, self.text.game_lives
                 ) # call the results_screen method
-
-                # move the buttons further down the screen
-                self.reset_button.rect.topleft = (self.centre(self.reset_button.image, 30, 250)) # reset button
-                self.home_button.rect.topleft = (self.centre(self.home_button.image, -30, 250)) # home button
 
                 # clicking buttons
                 if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
