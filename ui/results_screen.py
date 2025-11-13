@@ -40,8 +40,9 @@ class Results:
         draw_text(f"{wpm}", 0, 0, self.maincolour, 70) # display wpm
 
         # time
-        draw_text("time", -200, 50, self.subtextcolour, 24) # display "time"
-        draw_text(f"{time}", -200, 0, self.maincolour, 70) # display final time
+        if gameMode != "Timed":
+            draw_text("time", -200, 50, self.subtextcolour, 24) # display "time"
+            draw_text(f"{time}", -200, 0, self.maincolour, 70) # display final time
 
         # accuracy
         draw_text("accuracy", 200, 50, self.subtextcolour, 24) # display "accuracy"

@@ -80,7 +80,6 @@ class Text:
                     # check for mistake
                     if event.unicode != expected_char:
                         self.incorrect_chars += 1
-                        print(f"incorrect: {self.incorrect_chars}")
                         if gameMode == "Survival":
                             self.game_lives -= 1 # lose a life in survival mode
                         
