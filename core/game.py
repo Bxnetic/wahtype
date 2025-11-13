@@ -61,6 +61,7 @@ class Game:
         self.text.stats.reset() # set timer back to normal state
         self.text.done = False # set done back to false state
         self.test_failed = False # set failed state back to false
+        self.game_started = False
 
     def resizableWindow(self): # get current width & height of window
             self.width = self.screen.get_width()
@@ -111,6 +112,8 @@ class Game:
 
             if self.game_mode == "Timed":
                 self.text.stats.countdown() # call countdown method
+                if self.text.countdown_time == 0:
+                    self.text.done = True
 
             # once the test is over
             if self.text.done: # once test has been completed
@@ -136,6 +139,7 @@ class Game:
             # print(self.game_mode)
             # print(f"lives: {self.text.game_lives}")
             # print(self.time_selection)
+            # print(self.text.stats.count_time)
 
             """ methods """
             self.clock.tick(FPS) # sets the frames to 60
@@ -158,6 +162,7 @@ class Game:
 
             elif self.current_screen == "game": # if the current screen is the game
                 if not self.game_started: # and the game start condition is false
+                    self.text.stats.count_time = -1 # make the countdown timer decrement by one until game starts
                     self.time_selection = self.game_selection.getSeconds() # get user's selected time
                     self.text.update_time(self.time_selection) # update user's selected time
                     self.number_of_words = self.game_selection.getNumberOfWords() # get number of words
