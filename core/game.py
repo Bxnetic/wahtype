@@ -173,13 +173,18 @@ class Game:
                 self.testElements() # test elements to be displayed on screen
 
             elif self.current_screen == "results": # if the current screen is the result screen
-                self.results_screen.end_stats(
+                self.results_screen.end_stats (
                     round(self.text.current_wpm), 
                     round(self.text.elapsed_time),
                     round(self.text.final_accuracy),
                     self.width, self.height,
-                    self.game_mode, self.test_failed, self.text.game_lives
+                    self.game_mode, self.test_failed, self.text.game_lives,
+                    self.text.typed_characters, self.text.incorrect_chars
                 ) # call the results_screen method
+
+                # set the the buttons to its default positions
+                self.reset_button.rect.topleft = (self.centre(self.reset_button.image, 30, 250)) # reset button
+                self.home_button.rect.topleft = (self.centre(self.home_button.image, -30, 250)) # home button
 
                 # clicking buttons
                 if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
