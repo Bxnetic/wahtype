@@ -112,5 +112,5 @@ class Selection:
         if self.game_current_index == 0 or self.game_current_index == 1:
             self.__number_of_words = self.words_list[self.words_current_index][:2] # get the first 2 letters
         elif self.game_current_index == 2:
-            self.__number_of_words = "50"
+            self.__number_of_words = "45"
         return self.__number_of_words # return number of words

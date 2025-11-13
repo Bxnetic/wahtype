@@ -69,7 +69,7 @@ class Stats:
         return self.wpm # return wpm
 
     # accuracy
-    def get_accuracy(self, target_text, user_text):
+    def get_accuracy(self, target_text, user_text, incorrect_chars):
         correct_chars = 0 # number of correct characters
         total_chars = len(user_text) # get total number of characters
 
@@ -80,5 +80,5 @@ class Stats:
         if total_chars == 0: # if the user hasn't typed anything yet
             return 0
         else:
-            self.accuracy = (correct_chars / total_chars) * 100 # calculate accuracy
+            self.accuracy = (correct_chars / (total_chars + incorrect_chars)) * 100 # calculate accuracy
             return self.accuracy # return accuracy value

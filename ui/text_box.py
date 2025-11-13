@@ -12,6 +12,8 @@ class Text:
         self.usertext = "" # attribute which stores what the user types
         self.full_usertext = "" # attribute that stores what the user types and is not reset
         self.game_lives = 3 # number of lives user has (survival mode)
+        self.typed_characters = 0 # number of characters user typed
+        self.incorrect_chars = 0 # number of characters that were incorect
         self.number_of_words = int(number_of_words) # user's selected no. of words
         self.time_selection = int(time_selection) # user's selected time (timed mode)
         self.target_text = sentence.get_easy_sentence(self.number_of_words) # grabs the constructed target sentence in the sentence class
@@ -62,21 +64,26 @@ class Text:
         if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
             if len(self.usertext) > 0: 
                 self.usertext = self.usertext[:-1]
+                self.full_usertext = self.full_usertext[:-1]
         # can only press space if the length of the user's word and target word matches, 
         # adds blank space & prevents spamming
         elif event.key == pygame.K_SPACE:
             if len(current_word) == len(target_word):
                 self.usertext += " "
+                self.full_usertext += " "
         else:
             if event.unicode and event.unicode.isprintable():
                 if len(current_word) < len(target_word): # if the length of current word is less than the target word
                     # then let the user type
                     expected_char = target_word[len(current_word)] # get expected character
 
-                    # check for mistake if game mode is survival
-                    if gameMode == "Survival" and event.unicode != expected_char:
-                        self.game_lives -= 1
-                    
+                    # check for mistake
+                    if event.unicode != expected_char:
+                        self.incorrect_chars += 1
+                        print(f"incorrect: {self.incorrect_chars}")
+                        if gameMode == "Survival":
+                            self.game_lives -= 1 # lose a life in survival mode
+                        
                     self.usertext += event.unicode # adds user's letter to the usertext string
                     self.full_usertext += event.unicode # user's sentence that won't be resetted
                 
@@ -121,9 +128,11 @@ class Text:
         
         """ stats """
         stats_text = ""
+        other_stats_text = self.font_roboto.render("", True, self.maincolour)
+        self.typed_characters = len(self.full_usertext)
         self.elapsed_time = self.stats.get_elapsed_time()
         self.countdown_time = self.stats.get_countdown_timer()
-        self.final_accuracy = self.stats.get_accuracy(self.target_text, self.usertext) # calculate accuracy
+        self.final_accuracy = self.stats.get_accuracy(self.target_text, self.usertext, self.incorrect_chars) # calculate accuracy
         self.current_wpm = self.stats.get_wpm(self.full_usertext, self.elapsed_time)
    
         # if the timer hasn't started, display timer & wpm
@@ -138,12 +147,18 @@ class Text:
                 True, self.maincolour) # call the stats (with countdown timer)
             self.screen.blit(stats_text, (100, currentHeight / 2 - 135)) # display stats on screen
         
+        # extra stats for specific game modes
         # display no. of lives
         if gameMode == "Survival":
-            lives_text = self.font_roboto.render(
+            other_stats_text = self.font_roboto.render(
                 f"Lives: {self.game_lives}", True, self.maincolour
             ) 
-            self.screen.blit(lives_text, (centre(lives_text, 0, 150)))
+        # display characters typed
+        if gameMode == "Timed":
+            other_stats_text = self.font_roboto.render(
+                f"{self.typed_characters} characters", True, self.maincolour
+            ) 
+        self.screen.blit(other_stats_text, (centre(other_stats_text, 0, 150)))
 
         """ rendering characters """
         max_width = currentWidth - 200 # add 200px padding to edge

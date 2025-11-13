@@ -57,6 +57,7 @@ class Game:
         self.text.usertext = "" # set usertext back to normal state
         self.text.full_usertext = "" # set full_usertext back to normal state
         self.text.game_lives = 3 # reset number of lives
+        self.text.incorrect_chars = 0 # reset incorrect characters
         self.text.target_text = sentence.get_easy_sentence(self.text.number_of_words) # set target_text back to normal state
         self.text.stats.reset() # set timer back to normal state
         self.text.done = False # set done back to false state
