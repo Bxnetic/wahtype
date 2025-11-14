@@ -36,9 +36,6 @@ class Results:
         # time
         draw_text("time", -200, 50, self.subtextcolour, 24) # display "time"
         draw_text(f"{time}", -200, 0, self.maincolour, 70) # display final time
-        if gameMode == "Timed":
-            draw_text("characters", -200, 50, self.subtextcolour, 24) # display "time"
-            draw_text(f"{chars}", -200, 0, self.maincolour, 70) # display final time
 
         # accuracy
         draw_text("accuracy", 200, 50, self.subtextcolour, 24) # display "accuracy"
