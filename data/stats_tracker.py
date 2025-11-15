@@ -12,6 +12,8 @@ class Stats:
         self.wpm = 0 # current wpm
         self.last_wpm_time = 0 # last time the wpm was calculated
         self.accuracy = 0 # end accuracy
+        # scores
+        self.scores_file = "data\\scores.txt"
 
     def reset(self):
         # resets all instance attributes
@@ -82,3 +84,27 @@ class Stats:
         else:
             self.accuracy = (correct_chars / (total_chars + incorrect_chars)) * 100 # calculate accuracy
             return self.accuracy # return accuracy value
+
+    def load_scores(self):
+        scores = [] # list where the dictionaries will be stored
+        with open(self.scores_file, "r") as file: # open scores.txt
+            for line in file: # go through each line in file
+                mode, wpm, accuracy, time_taken, chars, incorrect = line.strip().split() # split each stat into its
+                # own value
+                scores.append ( # create list of dictionaries
+                {
+                    "mode": mode,
+                    "wpm": float(wpm),
+                    "accuracy": float(accuracy),
+                    "time": float(time_taken),
+                    "chars": int(chars),
+                    "incorrect": int(incorrect),
+                }
+                )
+        file.close() # close scores.txt
+        return scores # return list of stats
+
+    def save_score(self, mode, wpm, accuracy, time_taken, chars, incorrect):
+        with open(self.scores_file, "a") as file: # open file, create new one if not exisitng
+            file.write(f"{mode} {wpm} {accuracy} {time_taken} {chars} {incorrect}\n") # add new stats to file
+            file.close() # close scores.txt
