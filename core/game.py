@@ -5,6 +5,7 @@ from ui.button import * # import button variables, classes
 from ui.results_screen import * # import results_screen variables, classes
 from core.menu import * # import menu variables, classes
 from core.selection import Selection # import selection class
+from core.stats import StatsMenu # import statsmenu class
 
 class Game:
     def __init__(self): # game constructor
@@ -46,6 +47,7 @@ class Game:
         
         # classes
         self.game_selection = Selection(self.screen, self.current_screen) # create selection object
+        self.statsmenu = StatsMenu(self.screen, self.current_screen) # create statsmenu object
         self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
         self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
         self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
@@ -201,6 +203,12 @@ class Game:
                     self.reset() # reset the test
                     self.mouse_released = False
 
+            elif self.current_screen == "stats":
+                game_state = self.statsmenu.draw(self.width, self.height, self.mouse_released) # display the stats screen
+                if game_state:
+                    self.current_screen = game_state # set current screen as current game state
+                    self.mouse_released = False # left click has been clicked
+            
             elif self.current_screen == "quit":
                 self.running = False
 
