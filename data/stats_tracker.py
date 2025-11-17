@@ -108,3 +108,12 @@ class Stats:
         with open(self.scores_file, "a") as file: # open file, create new one if not exisitng
             file.write(f"{mode} {wpm} {accuracy} {time_taken} {chars} {incorrect}\n") # add new stats to file
             file.close() # close scores.txt
+
+    def get_personal_best(self):
+        scores = self.load_scores()
+
+        best_score = scores[0] # start with first score
+        for score in scores[1:]: # go    through rest of scores
+            if score["wpm"] > best_score["wpm"]:
+                best_score = score
+        return best_score
