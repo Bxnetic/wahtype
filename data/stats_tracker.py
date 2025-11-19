@@ -93,7 +93,7 @@ class Stats:
                 # own value
                 scores.append ( # create list of dictionaries
                 {
-                    "mode": mode,
+                    "mode": str(mode),
                     "wpm": float(wpm),
                     "accuracy": float(accuracy),
                     "time": float(time_taken),
@@ -110,10 +110,11 @@ class Stats:
             file.write(f"{mode} {wpm} {accuracy} {time_taken} {chars} {incorrect} {words}\n") # add new stats to file
             file.close() # close scores.txt
 
-    def get_personal_best(self):
+    def get_personal_best(self, mode):
         scores = self.load_scores()
         best_score = scores[0] # start with first score
         for score in scores[1:]: # go through rest of scores
-            if score["wpm"] > best_score["wpm"]: # if current score is bigger than the current best score
-                best_score = score # set that as the best score
+            if score["mode"] == mode:
+                if score["wpm"] > best_score["wpm"]: # if current score is bigger than the current best score
+                    best_score = score # set that as the best score
         return best_score

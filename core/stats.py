@@ -30,8 +30,13 @@ class StatsMenu:
         self.stats = Stats()
 
         # scores
-        self.pb = self.stats.get_personal_best()
+        self.normal_best = self.stats.get_personal_best("Normal")
+        self.survival_best = self.stats.get_personal_best("Survival")
 
+    def update_stats(self):
+        self.normal_best = self.stats.get_personal_best("Normal")
+        self.survival_best = self.stats.get_personal_best("Survival")
+    
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
         def centre(surface, widthPadding, heightPadding): # function that centres surface
@@ -51,8 +56,8 @@ class StatsMenu:
         # normal
         draw_text("Normal", -200, -250, self.maintext, 30) # display "normal"
         draw_text("15 words", -300, -200, self.subtextcolour, 24) # display "15 words"
-        draw_text(f"{round(self.pb["wpm"])}", -300, -150, self.maincolour, 70) # display wpm
-        draw_text(f"{round(self.pb["accuracy"])}", -300, -100, self.maincolour, 24) # display accuracy
+        draw_text(f"{round(self.normal_best["wpm"])}", -300, -150, self.maincolour, 70) # display wpm
+        draw_text(f"{round(self.normal_best["accuracy"])}%", -300, -100, self.maincolour, 24) # display accuracy
         draw_text("25 words", -100, -200, self.subtextcolour, 24) # display "25 words"
         draw_text(f"0", -100, -150, self.maincolour, 70) # display wpm
         draw_text(f"0%", -100, -100, self.maincolour, 24) # display accuracy
@@ -60,8 +65,8 @@ class StatsMenu:
         # survival
         draw_text("Survival", 200, -250, self.maintext, 30) # display "normal"
         draw_text("15 words", 100, -200, self.subtextcolour, 24) # display "15 words"
-        draw_text(f"0", 100, -150, self.maincolour, 70) # display wpm
-        draw_text(f"0%", 100, -100, self.maincolour, 24) # display accuracy
+        draw_text(f"{round(self.survival_best["wpm"])}", 100, -150, self.maincolour, 70) # display wpm
+        draw_text(f"{round(self.survival_best["accuracy"])}%", 100, -100, self.maincolour, 24) # display accuracy
         draw_text("25 words", 300, -200, self.subtextcolour, 24) # display "25 words"
         draw_text(f"0", 300, -150, self.maincolour, 70) # display wpm
         draw_text(f"0%", 300, -100, self.maincolour, 24) # display accuracy

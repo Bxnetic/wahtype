@@ -125,7 +125,8 @@ class Game:
                     self.game_mode, self.text.current_wpm, self.text.final_accuracy, self.text.elapsed_time,
                     self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words
                 )
-                print(self.text.stats.load_scores())
+                self.statsmenu.update_stats() # update stats
+                print("Saved score")
                 return self.current_screen
             
             # clicking buttons
@@ -208,7 +209,7 @@ class Game:
                 if game_state:
                     self.current_screen = game_state # set current screen as current game state
                     self.mouse_released = False # left click has been clicked
-            
+                
             elif self.current_screen == "quit":
                 self.running = False
 
