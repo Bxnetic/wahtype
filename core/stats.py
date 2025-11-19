@@ -10,6 +10,7 @@ class StatsMenu:
 
         # colours
         self.maincolour = pygame.Color(MAIN)
+        self.maintext = pygame.Color(MAINTEXT)
         self.subtextcolour = pygame.Color(SUBTEXT)
         self.submaincolour = pygame.Color(SUBMAIN)
         self.bgcolour = pygame.Color(BACKGROUND)
@@ -41,21 +42,34 @@ class StatsMenu:
             self.screen.blit(current_text, current_text_rect) # display the text on screen
 
         # normal
-        draw_text("Normal", 0, -250, self.subtextcolour, 24) # display "normal"
-        draw_text("15 words", -100, -200, self.subtextcolour, 24) # display "15 words"
+        draw_text("Normal", -200, -250, self.maintext, 30) # display "normal"
+        draw_text("15 words", -300, -200, self.subtextcolour, 24) # display "15 words"
+        draw_text(f"0", -300, -150, self.maincolour, 70) # display wpm
+        draw_text(f"0%", -300, -100, self.maincolour, 24) # display accuracy
+        draw_text("25 words", -100, -200, self.subtextcolour, 24) # display "25 words"
         draw_text(f"0", -100, -150, self.maincolour, 70) # display wpm
         draw_text(f"0%", -100, -100, self.maincolour, 24) # display accuracy
-        draw_text("25 words", 100, -200, self.subtextcolour, 24) # display "25 words"
+        
+        # survival
+        draw_text("Survival", 200, -250, self.maintext, 30) # display "normal"
+        draw_text("15 words", 100, -200, self.subtextcolour, 24) # display "15 words"
         draw_text(f"0", 100, -150, self.maincolour, 70) # display wpm
         draw_text(f"0%", 100, -100, self.maincolour, 24) # display accuracy
+        draw_text("25 words", 300, -200, self.subtextcolour, 24) # display "25 words"
+        draw_text(f"0", 300, -150, self.maincolour, 70) # display wpm
+        draw_text(f"0%", 300, -100, self.maincolour, 24) # display accuracy
 
-        # survival
-        # draw_text("Survival", 0, 0, self.subtextcolour, 24) # display "wpm"
-        # draw_text(f"0", 0, -130, self.maincolour, 70) # display wpm
-
-        # # accuracy
-        # draw_text("Timed", 200, -200, self.subtextcolour, 24) # display "accuracy"
-        # draw_text(f"0%", 200, -130, self.maincolour, 70) # display accuracy
+        # timed
+        draw_text("Timed", 0, 0, self.maintext, 30) # display "wpm"
+        draw_text("15s", -200, 50, self.subtextcolour, 24) # display "15s"
+        draw_text(f"0", -200, 100, self.maincolour, 70) # display wpm
+        draw_text(f"0%", -200, 150, self.maincolour, 24) # display accuracy
+        draw_text("30s", 0, 50, self.subtextcolour, 24) # display "30s"
+        draw_text(f"0", 0, 100, self.maincolour, 70) # display wpm
+        draw_text(f"0%", 0, 150, self.maincolour, 24) # display accuracy
+        draw_text("60s", 200, 50, self.subtextcolour, 24) # display "60s"
+        draw_text(f"0", 200, 100, self.maincolour, 70) # display wpm
+        draw_text(f"0%", 200, 150, self.maincolour, 24) # display accuracy
 
         # home button
         self.home_button.rect.topleft = (centre(self.home_button.image, 0, 250)) # home button

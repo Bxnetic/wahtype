@@ -122,8 +122,8 @@ class Game:
             if self.text.done: # once test has been completed
                 self.current_screen = "results"
                 self.text.stats.save_score(
-                    self.game_mode, self.text.current_wpm, self.text.final_accuracy,
-                    self.text.elapsed_time, self.text.typed_characters, self.text.incorrect_chars
+                    self.game_mode, self.text.current_wpm, self.text.final_accuracy, self.text.elapsed_time,
+                    self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words
                 )
                 print(self.text.stats.load_scores())
                 return self.current_screen
