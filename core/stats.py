@@ -1,6 +1,7 @@
 import pygame
 from config import *
 from ui.button import *
+from data.stats_tracker import Stats
 
 class StatsMenu:
     def __init__(self, screen, current_screen):
@@ -24,6 +25,12 @@ class StatsMenu:
         # initiate button
         self.home_button = Button(0, 0, self.home_img, # home button
          self.home_img_hover, 0.2, "", 0, self.maincolour, self.maincolour) 
+        
+        # classes
+        self.stats = Stats()
+
+        # scores
+        self.pb = self.stats.get_personal_best()
 
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
@@ -40,12 +47,12 @@ class StatsMenu:
             current_text_rect = current_text.get_rect(
                 topleft=(centre(current_text, x, y))) # display text in the centre
             self.screen.blit(current_text, current_text_rect) # display the text on screen
-
+            
         # normal
         draw_text("Normal", -200, -250, self.maintext, 30) # display "normal"
         draw_text("15 words", -300, -200, self.subtextcolour, 24) # display "15 words"
-        draw_text(f"0", -300, -150, self.maincolour, 70) # display wpm
-        draw_text(f"0%", -300, -100, self.maincolour, 24) # display accuracy
+        draw_text(f"{round(self.pb["wpm"])}", -300, -150, self.maincolour, 70) # display wpm
+        draw_text(f"{round(self.pb["accuracy"])}", -300, -100, self.maincolour, 24) # display accuracy
         draw_text("25 words", -100, -200, self.subtextcolour, 24) # display "25 words"
         draw_text(f"0", -100, -150, self.maincolour, 70) # display wpm
         draw_text(f"0%", -100, -100, self.maincolour, 24) # display accuracy

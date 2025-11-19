@@ -112,9 +112,8 @@ class Stats:
 
     def get_personal_best(self):
         scores = self.load_scores()
-
         best_score = scores[0] # start with first score
-        for score in scores[1:]: # go    through rest of scores
-            if score["wpm"] > best_score["wpm"]:
-                best_score = score
+        for score in scores[1:]: # go through rest of scores
+            if score["wpm"] > best_score["wpm"]: # if current score is bigger than the current best score
+                best_score = score # set that as the best score
         return best_score
