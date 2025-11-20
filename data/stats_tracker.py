@@ -107,7 +107,7 @@ class Stats:
 
     def save_score(self, mode, wpm, accuracy, time_taken, chars, incorrect, words):
         with open(self.scores_file, "a") as file: # open file, create new one if not exisitng
-            file.write(f"{mode} {wpm} {accuracy} {round(time_taken)} {chars} {incorrect} {words}\n") # add new stats to file
+            file.write(f"{mode} {round(wpm)} {round(accuracy)} {round(time_taken)} {chars} {incorrect} {words}\n") # add new stats to file
             file.close() # close scores.txt
 
     def get_personal_best(self, mode, words):
