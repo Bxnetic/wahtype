@@ -38,6 +38,7 @@ class StatsMenu:
         self.timed_best_30 = self.stats.get_timed_personal_best(30)
         self.timed_best_60 = self.stats.get_timed_personal_best(60)
 
+    # update the stats when score has been submitted
     def update_stats(self):
         self.normal_best = self.stats.get_personal_best("Normal", 15)
         self.survival_best = self.stats.get_personal_best("Survival", 15)
@@ -71,18 +72,18 @@ class StatsMenu:
         # 15 words
         if self.normal_best is None:
             draw_text(f"0", -300, -150, self.maincolour, 70) # display 0 wpm
-            draw_text(f"0%", -300, -100, self.maincolour, 24) # display 0 accuracy
+            draw_text(f"0%", -300, -100, self.maintext, 24) # display 0 accuracy
         else:
             draw_text(f"{round(self.normal_best["wpm"])}", -300, -150, self.maincolour, 70) # display wpm
-            draw_text(f"{round(self.normal_best["accuracy"])}%", -300, -100, self.maincolour, 24) # display accuracy
+            draw_text(f"{round(self.normal_best["accuracy"])}%", -300, -100, self.maintext, 24) # display accuracy
         
         # 25 words
         if self.normal_best_25 is None:
             draw_text(f"0", -100, -150, self.maincolour, 70) # display 0 wpm
-            draw_text(f"0%", -100, -100, self.maincolour, 24) # display 0 accuracy
+            draw_text(f"0%", -100, -100, self.maintext, 24) # display 0 accuracy
         else:
             draw_text(f"{round(self.normal_best_25["wpm"])}", -100, -150, self.maincolour, 70) # display 0 wpm
-            draw_text(f"{round(self.normal_best_25["accuracy"])}%", -100, -100, self.maincolour, 24) # display 0 accuracy
+            draw_text(f"{round(self.normal_best_25["accuracy"])}%", -100, -100, self.maintext, 24) # display 0 accuracy
         
         # survival
         draw_text("Survival", 200, -250, self.maintext, 30) # display "normal"
@@ -92,18 +93,18 @@ class StatsMenu:
         # 15 words
         if self.survival_best is None:
             draw_text(f"0", 100, -150, self.maincolour, 70) # display 0 wpm
-            draw_text(f"0%", 100, -100, self.maincolour, 24) # display 0 accuracy
+            draw_text(f"0%", 100, -100, self.maintext, 24) # display 0 accuracy
         else:
             draw_text(f"{round(self.survival_best["wpm"])}", 100, -150, self.maincolour, 70) # display wpm
-            draw_text(f"{round(self.survival_best["accuracy"])}%", 100, -100, self.maincolour, 24) # display accuracy
+            draw_text(f"{round(self.survival_best["accuracy"])}%", 100, -100, self.maintext, 24) # display accuracy
 
         # 25 words
         if self.survival_best_25 is None:
             draw_text(f"0", 300, -150, self.maincolour, 70) # display 0 wpm
-            draw_text(f"0%", 300, -100, self.maincolour, 24) # display 0 accuracy
+            draw_text(f"0%", 300, -100, self.maintext, 24) # display 0 accuracy
         else:
             draw_text(f"{round(self.survival_best_25["wpm"])}", 300, -150, self.maincolour, 70) # display wpm
-            draw_text(f"{round(self.survival_best_25["accuracy"])}%", 300, -100, self.maincolour, 24) # display accuracy
+            draw_text(f"{round(self.survival_best_25["accuracy"])}%", 300, -100, self.maintext, 24) # display accuracy
 
         # timed
         draw_text("Timed", 0, 0, self.maintext, 30) # display "wpm"
@@ -113,18 +114,30 @@ class StatsMenu:
         
         # 15s
         if self.timed_best_15 is None:
-            draw_text(f"0%", 0, 150, self.maincolour, 24) # display accuracy
             draw_text(f"0", -200, 100, self.maincolour, 70) # display wpm
+            draw_text(f"0%", -200, 150, self.maintext, 24) # display accuracy
         else:
             draw_text(f"{round(self.timed_best_15["wpm"])}", -200, 100, self.maincolour, 70) # display wpm 
-            draw_text(f"{round(self.timed_best_15["accuracy"])}%", -200, 150, self.maincolour, 24) # display accuracy
+            draw_text(f"{round(self.timed_best_15["chars"])} chars", -200, 150, self.maintext, 24) # display characters
+            draw_text(f"{round(self.timed_best_15["accuracy"])}%", -200, 180, self.maintext, 24) # display accuracy
+        
+        # 30s
+        if self.timed_best_30 is None:
+            draw_text(f"0", 0, 100, self.maincolour, 70) # display wpm
+            draw_text(f"0%", 0, 150, self.maintext, 24) # display accuracy
+        else:
+            draw_text(f"{round(self.timed_best_30["wpm"])}", 0, 100, self.maincolour, 70) # display accuracy
+            draw_text(f"{round(self.timed_best_30["chars"])} chars", 0, 150, self.maintext, 24) # display characters
+            draw_text(f"{round(self.timed_best_30["accuracy"])}%", 0, 180, self.maintext, 24) # display wpm
             
-             
-        draw_text(f"0%", 0, 150, self.maincolour, 24) # display accuracy
-        draw_text(f"0", 0, 100, self.maincolour, 70) # display wpm
-        draw_text(f"0", 0, 100, self.maincolour, 70) # display wpm
-        draw_text(f"0", 200, 100, self.maincolour, 70) # display wpm
-        draw_text(f"0%", 200, 150, self.maincolour, 24) # display accuracy
+        # 60s
+        if self.timed_best_60 is None:
+            draw_text(f"0", 200, 100, self.maincolour, 70) # display wpm
+            draw_text(f"0%", 200, 150, self.maintext, 24) # display accuracy
+        else:
+            draw_text(f"{round(self.timed_best_60["wpm"])}", 200, 100, self.maincolour, 70) # display wpm
+            draw_text(f"{round(self.timed_best_60["chars"])} chars", 200, 150, self.maintext, 24) # display characters
+            draw_text(f"{round(self.timed_best_60["accuracy"])}", 200, 180, self.maintext, 24) # display accuracy
 
         # home button
         self.home_button.rect.topleft = (centre(self.home_button.image, 0, 250)) # home button

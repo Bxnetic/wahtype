@@ -136,8 +136,6 @@ class Stats:
         for s in scores: # go through each score in scores
             if s["mode"] == "Timed" and s["time"] == time_taken: # if score matches time
                 timed_scores.append(s) # add to timed_scores list
-
-        print(timed_scores)
         
         if not timed_scores: # if there is nothing in the list
             return None
