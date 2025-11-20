@@ -121,12 +121,13 @@ class Game:
             # once the test is over
             if self.text.done: # once test has been completed
                 self.current_screen = "results"
-                self.text.stats.save_score(
-                    self.game_mode, self.text.current_wpm, self.text.final_accuracy, self.text.elapsed_time,
-                    self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words
-                )
+                if self.test_failed != True:
+                    self.text.stats.save_score(
+                        self.game_mode, self.text.current_wpm, self.text.final_accuracy, self.text.elapsed_time,
+                        self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words
+                    )
+                    print("Saved score")
                 self.statsmenu.update_stats() # update stats
-                print("Saved score")
                 return self.current_screen
             
             # clicking buttons
