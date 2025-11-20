@@ -110,11 +110,20 @@ class Stats:
             file.write(f"{mode} {wpm} {accuracy} {time_taken} {chars} {incorrect} {words}\n") # add new stats to file
             file.close() # close scores.txt
 
-    def get_personal_best(self, mode):
+    def get_personal_best(self, mode, words):
         scores = self.load_scores()
-        best_score = scores[0] # start with first score
-        for score in scores[1:]: # go through rest of scores
-            if score["mode"] == mode:
-                if score["wpm"] > best_score["wpm"]: # if current score is bigger than the current best score
-                    best_score = score # set that as the best score
+        mode_scores = [] # list of scores for depending on mode
+
+        # filter only by matching game mode
+        for s in scores: # go through each score in scores
+            if s["mode"] == mode and s["words"] == words: # if score matches game mode
+                mode_scores.append(s) # add to mode_scores list
+        
+        if not mode_scores: # if there is nothing in the list
+            return None
+
+        best_score = mode_scores[0] # start with first score
+        for score in mode_scores[1:]: # go through rest of scores
+            if score["wpm"] > best_score["wpm"]: # if current score is bigger than the current best score
+                best_score = score # set that as the best score
         return best_score
