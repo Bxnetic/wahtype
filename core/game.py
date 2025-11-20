@@ -123,7 +123,7 @@ class Game:
                 self.current_screen = "results"
                 if self.test_failed != True:
                     self.text.stats.save_score(
-                        self.game_mode, self.text.current_wpm, self.text.final_accuracy, self.text.elapsed_time,
+                        self.game_mode, self.text.current_wpm, self.text.final_accuracy, self.text.time_selection,
                         self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words
                     )
                     print("Saved score")
