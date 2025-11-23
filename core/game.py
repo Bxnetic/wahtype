@@ -6,6 +6,7 @@ from ui.results_screen import * # import results_screen variables, classes
 from core.menu import * # import menu variables, classes
 from core.selection import Selection # import selection class
 from core.stats import StatsMenu # import statsmenu class
+from core.settings import Settings
 
 class Game:
     def __init__(self): # game constructor
@@ -48,6 +49,7 @@ class Game:
         # classes
         self.game_selection = Selection(self.screen, self.current_screen) # create selection object
         self.statsmenu = StatsMenu(self.screen, self.current_screen) # create statsmenu object
+        self.settingsmenu = Settings(self.screen, self.current_screen)
         self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
         self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
         self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
@@ -142,7 +144,9 @@ class Game:
         
     def run(self):
         while self.running: # gets current status of game
-            """ debug """
+            """ 
+            Debug
+            """
             # print(self.number_of_words)
             # print(self.current_screen)
             # print(self.height)
@@ -155,7 +159,11 @@ class Game:
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
             
-            """ screen states """
+            """ 
+            Screen States 
+            """
+
+            # menu
             if self.current_screen == "menu":
                 game_state = self.menu.draw(self.width, self.height, self.mouse_released) # display the menu
                 if game_state:
@@ -164,12 +172,14 @@ class Game:
                     self.game_started = False # don't start the game
                     self.reset() # reset the attributes for the test itself
 
+            # selection menu
             elif self.current_screen == "selection":
                 game_state = self.game_selection.draw(self.width, self.height, self.mouse_released) # display the selection screen
                 if game_state:
                     self.current_screen = game_state # set current screen as current game state
                     self.mouse_released = False # left click has been clicked
 
+            # game
             elif self.current_screen == "game": # if the current screen is the game
                 if not self.game_started: # and the game start condition is false
                     self.text.stats.count_time = -1 # make the countdown timer decrement by one until game starts
@@ -181,6 +191,7 @@ class Game:
                     self.game_started = True # game has started - so sentence stops being created
                 self.testElements() # test elements to be displayed on screen
 
+            # results
             elif self.current_screen == "results": # if the current screen is the result screen
                 self.displayed_time = 0 # either display elapsed_time or the time_selection
                 if self.game_mode == "Normal" or self.game_mode == "Survival":
@@ -210,12 +221,21 @@ class Game:
                     self.reset() # reset the test
                     self.mouse_released = False
 
+            # stats
             elif self.current_screen == "stats":
                 game_state = self.statsmenu.draw(self.width, self.height, self.mouse_released) # display the stats screen
                 if game_state:
                     self.current_screen = game_state # set current screen as current game state
                     self.mouse_released = False # left click has been clicked
-                
+
+            # settings
+            elif self.current_screen == "settings":
+                game_state = self.settingsmenu.draw(self.width, self.height, self.mouse_released) # display the stats screen
+                if game_state:
+                    self.current_screen = game_state # set current screen as current game state
+                    self.mouse_released = False # left click has been clicked
+
+            # quit   
             elif self.current_screen == "quit":
                 self.running = False
 
