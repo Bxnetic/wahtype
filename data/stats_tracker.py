@@ -89,7 +89,7 @@ class Stats:
         scores = [] # list where the dictionaries will be stored
         with open(self.scores_file, "r") as file: # open scores.txt
             for line in file: # go through each line in file
-                mode, wpm, accuracy, time_taken, chars, incorrect, words = line.strip().split() # split each stat into its
+                mode, wpm, accuracy, time_taken, chars, incorrect, words, lives = line.strip().split() # split each stat into its
                 # own value
                 scores.append ( # create list of dictionaries
                 {
@@ -100,14 +100,15 @@ class Stats:
                     "chars": int(chars),
                     "incorrect": int(incorrect),
                     "words": int(words),
+                    "lives": int(lives)
                 }
                 )
         file.close() # close scores.txt
         return scores # return list of stats
 
-    def save_score(self, mode, wpm, accuracy, time_taken, chars, incorrect, words):
+    def save_score(self, mode, wpm, accuracy, time_taken, chars, incorrect, words, lives):
         with open(self.scores_file, "a") as file: # open file, create new one if not exisitng
-            file.write(f"{mode} {round(wpm)} {round(accuracy)} {round(time_taken)} {chars} {incorrect} {words}\n") # add new stats to file
+            file.write(f"{mode} {round(wpm)} {round(accuracy)} {round(time_taken)} {chars} {incorrect} {words} {lives}\n") # add new stats to file
             file.close() # close scores.txt
 
     def get_personal_best(self, mode, words):

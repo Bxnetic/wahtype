@@ -124,7 +124,7 @@ class Game:
                 if self.test_failed != True:
                     self.text.stats.save_score(
                         self.game_mode, self.text.current_wpm, self.text.final_accuracy, self.text.time_selection,
-                        self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words
+                        self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words, self.text.game_lives
                     )
                     print("Saved score")
                 self.statsmenu.update_stats() # update stats
