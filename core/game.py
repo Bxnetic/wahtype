@@ -182,9 +182,14 @@ class Game:
                 self.testElements() # test elements to be displayed on screen
 
             elif self.current_screen == "results": # if the current screen is the result screen
+                self.displayed_time = 0 # either display elapsed_time or the time_selection
+                if self.game_mode == "Normal" or self.game_mode == "Survival":
+                    self.displayed_time = self.text.elapsed_time # display elapsed time
+                if self.game_mode == "Timed":
+                    self.displayed_time = self.text.time_selection # display time selection
                 self.results_screen.end_stats (
                     round(self.text.current_wpm), 
-                    round(self.text.elapsed_time),
+                    round(self.displayed_time),
                     round(self.text.final_accuracy),
                     self.width, self.height,
                     self.game_mode, self.test_failed, self.text.game_lives,
