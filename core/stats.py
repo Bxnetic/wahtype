@@ -50,6 +50,7 @@ class StatsMenu:
     
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
+        
         def centre(surface, widthPadding, heightPadding): # function that centres surface
             rect = surface.get_rect()
             return (
