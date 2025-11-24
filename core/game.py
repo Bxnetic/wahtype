@@ -143,7 +143,7 @@ class Game:
             self.reset() # reset the test
         
     def run(self):
-        while self.running: # gets current status of game
+        while self.running:
             """ 
             Debug
             """
@@ -155,7 +155,9 @@ class Game:
             # print(self.time_selection)
             # print(self.text.stats.count_time)
 
-            """ methods """
+            """ 
+            Methods
+            """
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
             
@@ -247,4 +249,5 @@ class Game:
                 if self.current_screen == "game": # if the test is running
                     if event.type == pygame.KEYDOWN: # if presses any key, then add character to string
                         self.text.text_handle(event, self.game_mode) # call text_handle method
+
         pygame.quit() # closes program
