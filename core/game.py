@@ -26,6 +26,11 @@ class Game:
         self.game_started = False # tracks if game has started
         self.test_failed = False # checks if user has failed test
         self.current_screen = "menu" # tracks the current screen
+        self.last_screen = None # tracks last screen it was on
+
+        # audio
+        self.current_music = None # tracks last music that was played
+        self.music_paused = False
     
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND) # theme colours
@@ -37,7 +42,7 @@ class Game:
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
         self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha() # game icon
-        
+
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
             self.reset_img_hover, 0.2, "test", 0, self.white, self.white)
@@ -57,6 +62,27 @@ class Game:
         self.menu = Menu(self.screen) # create menu object and passes screen to menu
         self.results_screen = Results(self.screen) # create results screen object
             
+    def play_music(self, path, volume=0.2, loop=-1): # plays bgm
+        if self.current_music == path:
+            return # if last music equals to current music then don't restart music
+        
+        pygame.mixer.music.stop() # stops bgm
+        pygame.mixer.music.load(path) # loads music
+        pygame.mixer.music.set_volume(volume) # set volume
+        pygame.mixer.music.play(loop) # play bgm and loop it
+
+        self.current_music = path
+
+    def pause_music(self):
+        if not self.music_paused:
+            pygame.mixer.music.pause()
+            self.music_paused = True
+
+    def resume_music(self):
+        if self.music_paused:
+            pygame.mixer.music.unpause()
+            self.music_paused = False
+    
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
         self.text.full_usertext = "" # set full_usertext back to normal state
@@ -240,6 +266,19 @@ class Game:
             # quit   
             elif self.current_screen == "quit":
                 self.running = False
+            
+            # audio
+            if self.current_screen != self.last_screen:
+                if self.current_screen in ("menu", "selection"):
+                    self.play_music("audio\\main_menu.mp3") # play bgm
+                if self.current_screen == "stats":
+                    self.play_music("audio\\stats_menu.mp3") # play bgm
+                if self.current_screen == "game":
+                    self.pause_music()
+                else:
+                    self.resume_music()
+                
+            self.last_screen = self.current_screen
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: # if user quits progra,
