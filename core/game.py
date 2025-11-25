@@ -29,8 +29,8 @@ class Game:
         self.last_screen = None # tracks last screen it was on
 
         # audio
-        self.current_music = None # tracks last music that was played
-        self.music_paused = False
+        self.last_music = None # tracks last music that was played
+        self.music_paused = False # checks if the music has been paused or not
     
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND) # theme colours
@@ -41,11 +41,11 @@ class Game:
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
-        self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha() # game icon
+        self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha()
 
         # initiate buttons
         self.reset_button = Button(0, 0, self.reset_img, 
-            self.reset_img_hover, 0.2, "test", 0, self.white, self.white)
+            self.reset_img_hover, 0.2, "", 0, self.white, self.white)
         self.home_button = Button(0, 0, self.home_img,
             self.home_img_hover, 0.2, "", 0, self.white, self.white)
         
@@ -54,7 +54,7 @@ class Game:
         # classes
         self.game_selection = Selection(self.screen, self.current_screen) # create selection object
         self.statsmenu = StatsMenu(self.screen, self.current_screen) # create statsmenu object
-        self.settingsmenu = Settings(self.screen, self.current_screen)
+        self.settingsmenu = Settings(self.screen, self.current_screen) # create settingsmenu object
         self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
         self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
         self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
@@ -63,7 +63,7 @@ class Game:
         self.results_screen = Results(self.screen) # create results screen object
             
     def play_music(self, path, volume=0.2, loop=-1): # plays bgm
-        if self.current_music == path:
+        if self.last_music == path:
             return # if last music equals to current music then don't restart music
         
         pygame.mixer.music.stop() # stops bgm
@@ -71,7 +71,7 @@ class Game:
         pygame.mixer.music.set_volume(volume) # set volume
         pygame.mixer.music.play(loop) # play bgm and loop it
 
-        self.current_music = path
+        self.last_music = path
 
     def pause_music(self):
         if not self.music_paused:
@@ -243,11 +243,11 @@ class Game:
                 if self.reset_button.draw(self.screen, self.mouse_released): # if the reset button is clicked
                     self.reset() # call the reset method in the Text class (set values to default)
                     self.current_screen = "game" # start game
-                    self.mouse_released = False
+                    self.mouse_released = False # left click has been clicked
                 if self.home_button.draw(self.screen, self.mouse_released): # if the home button is clicked
                     self.current_screen = "menu" # display menu
                     self.reset() # reset the test
-                    self.mouse_released = False
+                    self.mouse_released = False # left click has been clicked
 
             # stats
             elif self.current_screen == "stats":
@@ -265,7 +265,7 @@ class Game:
 
             # quit   
             elif self.current_screen == "quit":
-                self.running = False
+                self.running = False # end program
             
             # audio
             if self.current_screen != self.last_screen:
@@ -274,14 +274,16 @@ class Game:
                 if self.current_screen == "stats":
                     self.play_music("audio\\stats_menu.mp3") # play bgm
                 if self.current_screen == "game":
-                    self.pause_music()
+                    self.pause_music() # pause music
                 else:
-                    self.resume_music()
+                    self.resume_music() # resume music
+                if self.current_screen == "settings":
+                    self.play_music("audio\\settings_menu.mp3") # play bgm
                 
             self.last_screen = self.current_screen
 
             for event in pygame.event.get():
-                if event.type == pygame.QUIT: # if user quits progra,
+                if event.type == pygame.QUIT: # if user quits program,
                     self.running = False # end program
                 elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     self.mouse_released = True
