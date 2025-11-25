@@ -72,7 +72,7 @@ class Game:
         self.text.stats.reset() # set timer back to normal state
         self.text.done = False # set done back to false state
         self.test_failed = False # set failed state back to false
-        self.game_started = False
+        self.game_started = True # game / test is still running
 
     def resizableWindow(self): # get current width & height of window
             self.width = self.screen.get_width()
@@ -160,6 +160,7 @@ class Game:
             # print(f"lives: {self.text.game_lives}")
             # print(self.time_selection)
             # print(self.text.stats.count_time)
+            # print(self.settingsmenu.getMusicSelection())
 
             """ 
             Methods
@@ -248,17 +249,20 @@ class Game:
                 self.running = False # end program
             
             # audio
-            if self.current_screen != self.last_screen:
-                if self.current_screen in ("menu", "selection"):
-                    self.audio.play_music("audio\\main_menu.mp3") # play bgm
-                if self.current_screen == "stats":
-                    self.audio.play_music("audio\\stats_menu.mp3") # play bgm
-                if self.current_screen == "game":
-                    self.audio.pause_music() # pause music
-                else:
-                    self.audio.resume_music() # resume music
-                if self.current_screen == "settings":
-                    self.audio.play_music("audio\\settings_menu.mp3") # play bgm
+            if self.settingsmenu.getMusicSelection() == "On":
+                if self.current_screen != self.last_screen:
+                        if self.current_screen in ("menu", "selection"):
+                            self.audio.play_music("audio\\main_menu.mp3") # play bgm
+                        if self.current_screen == "stats":
+                            self.audio.play_music("audio\\stats_menu.mp3") # play bgm
+                        if self.current_screen == "game":
+                            self.audio.pause_music() # pause music
+                        else:
+                            self.audio.resume_music() # resume music
+                        if self.current_screen == "settings":
+                            self.audio.play_music("audio\\settings_menu.mp3") # play bgm
+            if self.settingsmenu.getMusicSelection() == "Off":
+                self.audio.pause_music()           
                 
             self.last_screen = self.current_screen
 

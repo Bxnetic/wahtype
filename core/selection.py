@@ -6,13 +6,16 @@ from core.game import *
 class Selection:
     def __init__(self, screen, current_screen):
         self.__number_of_words = 0
+
         # screen
         self.screen = screen
         self.current_screen = current_screen
+
         # colours
         self.white = pygame.Color(WHITE)
         self.submaincolour = pygame.Color(SUBMAIN)
         self.bgcolour = pygame.Color(BACKGROUND)
+
         # images of buttons
         self.rounded_button_img  = pygame.image.load("images\\rounded_button.png").convert_alpha()
         self.rounded_button_hover_img = pygame.image.load("images\\rounded_button_hover.png").convert_alpha()
@@ -22,6 +25,7 @@ class Selection:
         self.green_button_hover_img = pygame.image.load("images\\rounded_button_green_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
+
         # list
         self.game_mode_list = ["Normal", "Survival", "Timed"] # game modes
         self.words_list = ["15 words", "25 words"] # no. of words
@@ -29,6 +33,7 @@ class Selection:
         self.game_current_index = 0 # current index of the game mode list
         self.words_current_index = 0 # current index of the no. of words list
         self.time_current_index = 0 # current index of time selections
+        
         # initiate buttons
         self.home_button = Button(0, 0, self.home_img, # home button
          self.home_img_hover, 0.2, "", 0, self.white, self.white) 
