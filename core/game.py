@@ -6,7 +6,8 @@ from ui.results_screen import * # import results_screen variables, classes
 from core.menu import * # import menu variables, classes
 from core.selection import Selection # import selection class
 from core.stats import StatsMenu # import statsmenu class
-from core.settings import Settings
+from core.settings import Settings # import settings class
+from core.audio_handle import Audio # import audio class
 
 class Game:
     def __init__(self): # game constructor
@@ -27,10 +28,6 @@ class Game:
         self.test_failed = False # checks if user has failed test
         self.current_screen = "menu" # tracks the current screen
         self.last_screen = None # tracks last screen it was on
-
-        # audio
-        self.last_music = None # tracks last music that was played
-        self.music_paused = False # checks if the music has been paused or not
     
         # theme colours
         self.bgcolour = pygame.Color(BACKGROUND) # theme colours
@@ -52,36 +49,19 @@ class Game:
         pygame.display.set_icon(self.game_icon) # set window icon
         
         # classes
+        self.menu = Menu(self.screen) # create menu object and passes screen to menu
+
         self.game_selection = Selection(self.screen, self.current_screen) # create selection object
+        self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
+        self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
+        self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
+
         self.statsmenu = StatsMenu(self.screen, self.current_screen) # create statsmenu object
         self.settingsmenu = Settings(self.screen, self.current_screen) # create settingsmenu object
-        self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
-        self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
-        self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
         self.text = Text(self.screen, self.number_of_words, self.time_selection) # create text object
-        self.menu = Menu(self.screen) # create menu object and passes screen to menu
         self.results_screen = Results(self.screen) # create results screen object
-            
-    def play_music(self, path, volume=0.2, loop=-1): # plays bgm
-        if self.last_music == path:
-            return # if last music equals to current music then don't restart music
-        
-        pygame.mixer.music.stop() # stops bgm
-        pygame.mixer.music.load(path) # loads music
-        pygame.mixer.music.set_volume(volume) # set volume
-        pygame.mixer.music.play(loop) # play bgm and loop it
 
-        self.last_music = path
-
-    def pause_music(self):
-        if not self.music_paused:
-            pygame.mixer.music.pause()
-            self.music_paused = True
-
-    def resume_music(self):
-        if self.music_paused:
-            pygame.mixer.music.unpause()
-            self.music_paused = False
+        self.audio = Audio() # create audio object
     
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
@@ -270,15 +250,15 @@ class Game:
             # audio
             if self.current_screen != self.last_screen:
                 if self.current_screen in ("menu", "selection"):
-                    self.play_music("audio\\main_menu.mp3") # play bgm
+                    self.audio.play_music("audio\\main_menu.mp3") # play bgm
                 if self.current_screen == "stats":
-                    self.play_music("audio\\stats_menu.mp3") # play bgm
+                    self.audio.play_music("audio\\stats_menu.mp3") # play bgm
                 if self.current_screen == "game":
-                    self.pause_music() # pause music
+                    self.audio.pause_music() # pause music
                 else:
-                    self.resume_music() # resume music
+                    self.audio.resume_music() # resume music
                 if self.current_screen == "settings":
-                    self.play_music("audio\\settings_menu.mp3") # play bgm
+                    self.audio.play_music("audio\\settings_menu.mp3") # play bgm
                 
             self.last_screen = self.current_screen
 
