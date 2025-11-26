@@ -24,7 +24,7 @@ class Settings:
 
         # list
         self.music_list = ["On", "Off"] # turn music on or off
-        self.sound_fx_list = ["15 words", "25 words"] # turn sound fx on or off
+        self.sound_fx_list = ["On", "Off"] # turn sound fx on or off
         self.music_current_index = 0 # current index of the game mode list
         self.sound_fx_current_index = 0 # current index of the no. of words list
         
