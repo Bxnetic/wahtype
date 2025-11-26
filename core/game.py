@@ -72,7 +72,7 @@ class Game:
         self.text.stats.reset() # set timer back to normal state
         self.text.done = False # set done back to false state
         self.test_failed = False # set failed state back to false
-        self.game_started = True # game / test is still running
+        self.game_started = False # game / test is still running
 
     def resizableWindow(self): # get current width & height of window
             self.width = self.screen.get_width()
