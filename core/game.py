@@ -249,22 +249,27 @@ class Game:
                 self.running = False # end program
             
             # audio
-            if self.settingsmenu.getMusicSelection() == "On":
-                if self.current_screen != self.last_screen:
-                        if self.current_screen in ("menu", "selection"):
+            if self.settingsmenu.getMusicSelection() == "Off": # button is set to off
+                self.audio.pause_music() # pause the audio
+
+            else:
+                if self.current_screen != self.last_screen: # if current screen is different to last screen
+
+                        if self.current_screen in ("menu", "selection"): # in menu and selection menu
                             self.audio.play_music("audio\\main_menu.mp3") # play bgm
-                        if self.current_screen == "stats":
+
+                        if self.current_screen == "stats": # in stats menu
                             self.audio.play_music("audio\\stats_menu.mp3") # play bgm
-                        if self.current_screen == "game":
-                            self.audio.pause_music() # pause music
-                        else:
-                            self.audio.resume_music() # resume music
-                        if self.current_screen == "settings":
+
+                        if self.current_screen == "settings": # in settings menu
                             self.audio.play_music("audio\\settings_menu.mp3") # play bgm
-            if self.settingsmenu.getMusicSelection() == "Off":
-                self.audio.pause_music()           
+
+                if self.current_screen == "game": # test / game 
+                        self.audio.pause_music() # pause music
+                else:
+                    self.audio.resume_music() # resume music
                 
-            self.last_screen = self.current_screen
+            self.last_screen = self.current_screen # set last screen to current screen
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: # if user quits program,
