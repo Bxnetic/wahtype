@@ -252,9 +252,11 @@ class Game:
             
             # audio
             if self.music == "Off": # button is set to off
+                self.settingsmenu.update_settings(self.music, self.sound_fx)
                 self.audio.pause_music() # pause the audio
 
             else:
+                self.settingsmenu.update_settings(self.music, self.sound_fx)
                 if self.current_screen != self.last_screen: # if current screen is different to last screen
 
                         if self.current_screen in ("menu", "selection"): # in menu and selection menu

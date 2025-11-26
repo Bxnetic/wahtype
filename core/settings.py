@@ -27,6 +27,7 @@ class Settings:
         self.sound_fx_list = ["On", "Off"] # turn sound fx on or off
         self.music_current_index = 0 # current index of the game mode list
         self.sound_fx_current_index = 0 # current index of the no. of words list
+        self.settings_file = "data\\settings.txt"
         
         # initiate button
         self.home_button = Button(0, 0, self.home_img, # home button
@@ -35,6 +36,31 @@ class Settings:
          self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
         self.sound_fx_button = Button(0, 0, self.rounded_button_img, # music select button
          self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
+    
+    def load_settings(self):
+        settings = [] # list where the dictionaries will be stored
+        with open(self.settings_file, "r") as file: # open scores.txt
+            for line in file: # go through each line in file
+                music, sound_fx = line.strip().split() # split each stat into its
+                # own value
+                settings.append ( # create list of dictionaries
+                {
+                    "music": str(music),
+                    "sound_fx": float(sound_fx),
+                }
+                )
+        file.close() # close scores.txt
+        return settings # return list of stats
+    
+    def update_settings(self, music, sound_fx):
+        with open(self.settings_file, "w") as file: # open file, create new one if not exisitng
+            file.write(f"{music} {sound_fx}") # add new stats to file
+            file.close() # close scores.txt
+    
+    def get_settings(self, setting):
+        settings = self.load_settings()
+
+        return settings[setting]
     
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
