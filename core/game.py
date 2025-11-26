@@ -160,13 +160,15 @@ class Game:
             # print(f"lives: {self.text.game_lives}")
             # print(self.time_selection)
             # print(self.text.stats.count_time)
-            # print(self.settingsmenu.getMusicSelection())
+            # print(self.music)
 
             """ 
             Methods
             """
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
+            self.sound_fx = self.settingsmenu.getSoundFXSelection()
+            self.music = self.settingsmenu.getMusicSelection()
             
             """ 
             Screen States 
@@ -249,7 +251,7 @@ class Game:
                 self.running = False # end program
             
             # audio
-            if self.settingsmenu.getMusicSelection() == "Off": # button is set to off
+            if self.music == "Off": # button is set to off
                 self.audio.pause_music() # pause the audio
 
             else:
@@ -278,6 +280,6 @@ class Game:
                     self.mouse_released = True
                 if self.current_screen == "game": # if the test is running
                     if event.type == pygame.KEYDOWN: # if presses any key, then add character to string
-                        self.text.text_handle(event, self.game_mode) # call text_handle method
+                        self.text.text_handle(event, self.game_mode, self.sound_fx) # call text_handle method
 
         pygame.quit() # closes program

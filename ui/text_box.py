@@ -3,6 +3,7 @@ from config import *
 from data.stats_tracker import *
 from data.sentence_manager import *
 from core.audio_handle import Audio
+from core.settings import Settings
 
 class Text:
     def __init__(self, screen, number_of_words, time_selection):
@@ -19,6 +20,7 @@ class Text:
         self.number_of_words = int(number_of_words) # user's selected no. of words
         self.time_selection = int(time_selection) # user's selected time (timed mode)
         self.target_text = sentence.get_easy_sentence(self.number_of_words) # grabs the constructed target sentence in the sentence class
+        self.sound_fx = ""
 
         # classes
         self.stats = Stats() # create stats object
@@ -52,12 +54,14 @@ class Text:
         self.time_selection = int(time_selection)
 
     """ text inputs from user """
-    def text_handle(self, event, gameMode):
+    def text_handle(self, event, game_mode, sound_fx):
+        self.sound_fx = sound_fx
+        
         if not self.done and self.stats.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
             # the timer hasn't started, and the user types a key
-            if gameMode == "Normal" or "Survival": # stopwatch timer for normal / survival mode
+            if game_mode == "Normal" or "Survival": # stopwatch timer for normal / survival mode
                 self.stats.start() # start the timer
-            if gameMode == "Timed": # countdown timer for timed mode
+            if game_mode == "Timed": # countdown timer for timed mode
                 self.stats.start_countdown(self.time_selection) # start countdown timer
 
         # split words into own variable
@@ -71,8 +75,9 @@ class Text:
         else:
             target_word = "" # no target word
 
-        if event.key in self.key_fx:
-            self.key_fx[event.key].play()
+        if self.sound_fx == "On":
+            if event.key in self.key_fx:
+                self.key_fx[event.key].play()
 
         if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
             if len(self.usertext) > 0: 
@@ -94,7 +99,7 @@ class Text:
                     # check for mistake
                     if event.unicode != expected_char:
                         self.incorrect_chars += 1
-                        if gameMode == "Survival":
+                        if game_mode == "Survival":
                             self.game_lives -= 1 # lose a life in survival mode
                         
                     self.usertext += event.unicode # adds user's letter to the usertext string
@@ -130,7 +135,7 @@ class Text:
             return self.screen.blit(cursor, cursor_rect) # display the cursor
 
     """ drawing text """
-    def draw_text(self, currentWidth, currentHeight, gameMode):
+    def draw_text(self, currentWidth, currentHeight, game_mode):
         """ functions """
         def centre(surface, widthPadding, heightPadding): # function that centres surface
             rect = surface.get_rect()
@@ -150,11 +155,11 @@ class Text:
    
         # if the timer hasn't started, display timer & wpm
         if self.elapsed_time != 0:
-            if gameMode == "Normal" or gameMode == "Survival": # gamemode is normal or survival
+            if game_mode == "Normal" or game_mode == "Survival": # game_mode is normal or survival
                 stats_text = self.font_roboto.render(
                     f"{round(self.elapsed_time)}s {round(self.current_wpm)} wpm",
                 True, self.maincolour) # call the stats (with stopwatch timer)
-            if gameMode == "Timed":
+            if game_mode == "Timed":
                 stats_text = self.font_roboto.render(
                     f"{round(self.countdown_time)}s {round(self.current_wpm)} wpm",
                 True, self.maincolour) # call the stats (with countdown timer)
@@ -162,12 +167,12 @@ class Text:
         
         # extra stats for specific game modes
         # display no. of lives
-        if gameMode == "Survival":
+        if game_mode == "Survival":
             other_stats_text = self.font_roboto.render(
                 f"Lives: {self.game_lives}", True, self.maincolour
             ) 
         # display characters typed
-        if gameMode == "Timed":
+        if game_mode == "Timed":
             other_stats_text = self.font_roboto.render(
                 f"{self.typed_characters} characters", True, self.maincolour
             ) 

@@ -80,3 +80,8 @@ class Settings:
     def getMusicSelection(self):
         self.music_selection = self.music_list[self.music_current_index] # get music_selection name
         return self.music_selection # return choice
+    
+    def getSoundFXSelection(self):
+        self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get music_selection name
+        return self.sound_fx_selection # return choice
+    
