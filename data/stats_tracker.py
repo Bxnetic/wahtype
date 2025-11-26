@@ -1,5 +1,6 @@
 import time
 import pygame
+import os
 
 class Stats:
     def __init__(self):
@@ -87,23 +88,28 @@ class Stats:
 
     def load_scores(self):
         scores = [] # list where the dictionaries will be stored
-        with open(self.scores_file, "r") as file: # open scores.txt
-            for line in file: # go through each line in file
-                mode, wpm, accuracy, time_taken, chars, incorrect, words, lives = line.strip().split() # split each stat into its
-                # own value
-                scores.append ( # create list of dictionaries
-                {
-                    "mode": str(mode),
-                    "wpm": float(wpm),
-                    "accuracy": float(accuracy),
-                    "time": float(time_taken),
-                    "chars": int(chars),
-                    "incorrect": int(incorrect),
-                    "words": int(words),
-                    "lives": int(lives)
-                }
-                )
-        file.close() # close scores.txt
+        if not os.path.exists(self.scores_file):
+            with open(self.scores_file, "a") as file:
+                file.write("")
+            file.close
+        else:
+            with open(self.scores_file, "r") as file: # open scores.txt
+                for line in file: # go through each line in file
+                    mode, wpm, accuracy, time_taken, chars, incorrect, words, lives = line.strip().split() # split each stat into its
+                    # own value
+                    scores.append ( # create list of dictionaries
+                    {
+                        "mode": str(mode),
+                        "wpm": float(wpm),
+                        "accuracy": float(accuracy),
+                        "time": float(time_taken),
+                        "chars": int(chars),
+                        "incorrect": int(incorrect),
+                        "words": int(words),
+                        "lives": int(lives)
+                    }
+                    )
+            file.close() # close scores.txt
         return scores # return list of stats
 
     def save_score(self, mode, wpm, accuracy, time_taken, chars, incorrect, words, lives):
