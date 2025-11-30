@@ -23,7 +23,6 @@ class Text:
 
         # classes
         self.stats = Stats() # create stats object
-        self.settings = Settings(None, None) # create settings object
         self.audio = Audio() # create audio object
 
         # basic colours

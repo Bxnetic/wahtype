@@ -56,12 +56,15 @@ class Game:
         self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
         self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
 
+        self.audio = Audio() # create audio object
+        self.music_index = self.audio.get_settings("music")
+        self.sound_fx = self.audio.get_settings("sound_fx")
         self.statsmenu = StatsMenu(self.screen, self.current_screen) # create statsmenu object
-        self.settingsmenu = Settings(self.screen, self.current_screen) # create settingsmenu object
+        self.settingsmenu = Settings(self.screen, self.current_screen, self.music_index, self.sound_fx) # create settingsmenu object
         self.text = Text(self.screen, self.number_of_words, self.time_selection) # create text object
         self.results_screen = Results(self.screen) # create results screen object
 
-        self.audio = Audio() # create audio object
+        
     
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
@@ -159,7 +162,7 @@ class Game:
             # print(self.time_selection)
             # print(self.text.stats.count_time)
             # print(self.music)
-            # print(self.audio.get_settings("audio"))
+            print(self.audio.get_settings("music"))
 
             ## METHODS ##
             self.clock.tick(FPS) # sets the frames to 60

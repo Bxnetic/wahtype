@@ -56,6 +56,16 @@ class Audio:
     
     # update user's settings
     def update_settings(self, music, sound_fx):
+        if music == "On":
+            music = 0
+        else:
+            music = 1
+
+        if sound_fx == "On":
+            sound_fx = 0
+        else:
+            sound_fx = 1
+
         with open(self.settings_file, "w") as file: # open file, create new one if not exisitng
             file.write(f"{music} {sound_fx}") # update settings
             file.close() # close settings.txt
@@ -64,7 +74,7 @@ class Audio:
     def get_settings(self, setting):
         settings = self.load_settings() # load settings
 
-        return settings
+        return settings[setting]
     
     def play_music(self, path, volume=0.2, loop=-1): # plays bgm
         if self.last_music == path:

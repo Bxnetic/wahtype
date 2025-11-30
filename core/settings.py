@@ -5,7 +5,7 @@ from data.stats_tracker import Stats
 from core.audio_handle import Audio
 
 class Settings:
-    def __init__(self, screen, current_screen):
+    def __init__(self, screen, current_screen, music_index, sound_fx_index):
         # screen
         self.screen = screen
         self.current_screen = current_screen
@@ -26,8 +26,8 @@ class Settings:
         # list
         self.music_list = ["On", "Off"] # turn music on or off
         self.sound_fx_list = ["On", "Off"] # turn sound fx on or off
-        self.music_current_index = 0 # current index of the game mode list
-        self.sound_fx_current_index = 0 # current index of the no. of words list
+        self.music_current_index = int(music_index) # current index of the game mode list
+        self.sound_fx_current_index = int(sound_fx_index) # current index of the no. of words list
         self.music_selection = self.music_list[self.music_current_index] # get music_selection name
         self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get music_selection name
         
@@ -37,7 +37,7 @@ class Settings:
         self.music_button = Button(0, 0, self.rounded_button_img, # music select button
          self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
         self.sound_fx_button = Button(0, 0, self.rounded_button_img, # music select button
-         self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
+         self.rounded_button_hover_img, 0.55, self.music_list[self.sound_fx_current_index], 25, self.maintext, self.maintext)
         
         # classes
         self.audio = Audio() # create audio object
