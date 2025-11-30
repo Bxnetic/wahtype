@@ -2,6 +2,7 @@ import pygame
 from config import *
 from ui.button import *
 from data.stats_tracker import Stats
+from core.audio_handle import Audio
 
 class Settings:
     def __init__(self, screen, current_screen):
@@ -27,7 +28,8 @@ class Settings:
         self.sound_fx_list = ["On", "Off"] # turn sound fx on or off
         self.music_current_index = 0 # current index of the game mode list
         self.sound_fx_current_index = 0 # current index of the no. of words list
-        self.settings_file = "data\\settings.txt"
+        self.music_selection = self.music_list[self.music_current_index] # get music_selection name
+        self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get music_selection name
         
         # initiate button
         self.home_button = Button(0, 0, self.home_img, # home button
@@ -36,32 +38,23 @@ class Settings:
          self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
         self.sound_fx_button = Button(0, 0, self.rounded_button_img, # music select button
          self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
+        
+        # classes
+        self.audio = Audio() # create audio object
     
-    def load_settings(self):
-        settings = [] # list where the dictionaries will be stored
-        with open(self.settings_file, "r") as file: # open scores.txt
-            for line in file: # go through each line in file
-                music, sound_fx = line.strip().split() # split each stat into its
-                # own value
-                settings.append ( # create list of dictionaries
-                {
-                    "music": str(music),
-                    "sound_fx": float(sound_fx),
-                }
-                )
-        file.close() # close scores.txt
-        return settings # return list of stats
-    
-    def update_settings(self, music, sound_fx):
-        with open(self.settings_file, "w") as file: # open file, create new one if not exisitng
-            file.write(f"{music} {sound_fx}") # add new stats to file
-            file.close() # close scores.txt
-    
-    def get_settings(self, setting):
-        settings = self.load_settings()
+    # checks buttons conditions in settings menu only
+    def check_buttons(self):
+        self.music_selection = self.music_list[self.music_current_index] # get music_selection name
+        self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get music_selection name
+        self.audio.update_settings(self.music_selection, self.sound_fx_selection) # update user's settings
 
-        return settings[setting]
+        if self.music_selection == "Off": # if button is set to off
+            print("True") # debug
+            self.audio.pause_music() # pause music
+        if self.music_selection == "On": # if button is set to on
+            self.audio.resume_music() # resume music
     
+    # displays menu
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
         def centre(surface, widthPadding, heightPadding): # function that centres surface
@@ -102,12 +95,4 @@ class Settings:
         if self.home_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.current_screen = "menu" # set current screen to menu
             return self.current_screen # return current screen state
-
-    def getMusicSelection(self):
-        self.music_selection = self.music_list[self.music_current_index] # get music_selection name
-        return self.music_selection # return choice
-    
-    def getSoundFXSelection(self):
-        self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get music_selection name
-        return self.sound_fx_selection # return choice
     

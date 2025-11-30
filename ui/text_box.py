@@ -20,10 +20,10 @@ class Text:
         self.number_of_words = int(number_of_words) # user's selected no. of words
         self.time_selection = int(time_selection) # user's selected time (timed mode)
         self.target_text = sentence.get_easy_sentence(self.number_of_words) # grabs the constructed target sentence in the sentence class
-        self.sound_fx = ""
 
         # classes
         self.stats = Stats() # create stats object
+        self.settings = Settings(None, None) # create settings object
         self.audio = Audio() # create audio object
 
         # basic colours
@@ -56,7 +56,7 @@ class Text:
     """ text inputs from user """
     def text_handle(self, event, game_mode, sound_fx):
         self.sound_fx = sound_fx
-        
+
         if not self.done and self.stats.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
             # the timer hasn't started, and the user types a key
             if game_mode == "Normal" or "Survival": # stopwatch timer for normal / survival mode
@@ -75,9 +75,9 @@ class Text:
         else:
             target_word = "" # no target word
 
-        if self.sound_fx == "On":
-            if event.key in self.key_fx:
-                self.key_fx[event.key].play()
+        if self.sound_fx == "On": # if sound fx is on
+            if event.key in self.key_fx: # match user's key with audio for that key
+                self.key_fx[event.key].play() # play audio
 
         if event.key == pygame.K_BACKSPACE: # if user presses backspace, removes last character 
             if len(self.usertext) > 0: 

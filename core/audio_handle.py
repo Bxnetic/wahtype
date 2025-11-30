@@ -5,6 +5,7 @@ class Audio:
         # audio
         self.last_music = None # tracks last music that was played
         self.music_paused = False # checks if the music has been paused or not
+        self.settings_file = "data\\settings.txt" # settings file
 
         # key sfx
         self.key_fx = {
@@ -37,7 +38,34 @@ class Audio:
             pygame.K_SPACE: pygame.mixer.Sound("audio\\typing\\space.wav"), # space sfx
             pygame.K_BACKSPACE: pygame.mixer.Sound("audio\\typing\\backspace.wav") # backspace sfx
         }
+    
+    # load settings from settings.txt
+    def load_settings(self):
+        settings = {} # settings dictionary
+        with open(self.settings_file, "r") as file: # open scores.txt
+            for line in file: # go through each line in file
+                music, sound_fx = line.strip().split() # split each setting value into its
+                # own variable
+                settings = { # create list of dictionaries
+                    "music": str(music),
+                    "sound_fx": str(sound_fx),
+                }
 
+        file.close() # close scores.txt
+        return settings # return settings
+    
+    # update user's settings
+    def update_settings(self, music, sound_fx):
+        with open(self.settings_file, "w") as file: # open file, create new one if not exisitng
+            file.write(f"{music} {sound_fx}") # update settings
+            file.close() # close settings.txt
+    
+    # get user's settings
+    def get_settings(self, setting):
+        settings = self.load_settings() # load settings
+
+        return settings
+    
     def play_music(self, path, volume=0.2, loop=-1): # plays bgm
         if self.last_music == path:
             return # if last music equals to current music then don't restart music

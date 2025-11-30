@@ -150,9 +150,7 @@ class Game:
         
     def run(self):
         while self.running:
-            """ 
-            Debug
-            """
+            ## DEBUG ##
             # print(self.number_of_words)
             # print(self.current_screen)
             # print(self.height)
@@ -161,19 +159,16 @@ class Game:
             # print(self.time_selection)
             # print(self.text.stats.count_time)
             # print(self.music)
+            # print(self.audio.get_settings("audio"))
 
-            """ 
-            Methods
-            """
+            ## METHODS ##
             self.clock.tick(FPS) # sets the frames to 60
             self.resizableWindow() # calls function so user can resize window
-            self.sound_fx = self.settingsmenu.getSoundFXSelection()
-            self.music = self.settingsmenu.getMusicSelection()
-            
-            """ 
-            Screen States 
-            """
+            self.music = self.settingsmenu.music_selection # get music selection
+            self.sound_fx = self.settingsmenu.sound_fx_selection # get sound fx selection
 
+            ## SCREEN STATES ##
+            
             # menu
             if self.current_screen == "menu":
                 game_state = self.menu.draw(self.width, self.height, self.mouse_released) # display the menu
@@ -241,7 +236,8 @@ class Game:
 
             # settings
             elif self.current_screen == "settings":
-                game_state = self.settingsmenu.draw(self.width, self.height, self.mouse_released) # display the stats screen
+                self.settingsmenu.check_buttons() # checks if user presses buttons
+                game_state = self.settingsmenu.draw(self.width, self.height, self.mouse_released) # display the settings screen
                 if game_state:
                     self.current_screen = game_state # set current screen as current game state
                     self.mouse_released = False # left click has been clicked
@@ -250,27 +246,21 @@ class Game:
             elif self.current_screen == "quit":
                 self.running = False # end program
             
-            # audio
-            if self.music == "Off": # button is set to off
-                self.settingsmenu.update_settings(self.music, self.sound_fx)
-                self.audio.pause_music() # pause the audio
+            if self.current_screen != self.last_screen: # if current screen is different to last screen
+                if self.music == "On": # music is on
+                    if self.current_screen in ("menu", "selection"): # in menu and selection menu
+                        self.audio.play_music("audio\\main_menu.mp3") # play bgm
 
+                    if self.current_screen == "stats": # in stats menu
+                        self.audio.play_music("audio\\stats_menu.mp3") # play bgm
+
+                    if self.current_screen == "settings": # in settings menu
+                        self.audio.play_music("audio\\settings_menu.mp3") # play bgm
+
+            if self.current_screen == "game": # test / game 
+                    self.audio.pause_music() # pause music
             else:
-                self.settingsmenu.update_settings(self.music, self.sound_fx)
-                if self.current_screen != self.last_screen: # if current screen is different to last screen
-
-                        if self.current_screen in ("menu", "selection"): # in menu and selection menu
-                            self.audio.play_music("audio\\main_menu.mp3") # play bgm
-
-                        if self.current_screen == "stats": # in stats menu
-                            self.audio.play_music("audio\\stats_menu.mp3") # play bgm
-
-                        if self.current_screen == "settings": # in settings menu
-                            self.audio.play_music("audio\\settings_menu.mp3") # play bgm
-
-                if self.current_screen == "game": # test / game 
-                        self.audio.pause_music() # pause music
-                else:
+                if self.music == "On": # music is on
                     self.audio.resume_music() # resume music
                 
             self.last_screen = self.current_screen # set last screen to current screen
