@@ -8,6 +8,7 @@ from core.selection import Selection # import selection class
 from core.stats import StatsMenu # import statsmenu class
 from core.settings import Settings # import settings class
 from core.audio_handle import Audio # import audio class
+from core.about import About
 
 class Game:
     def __init__(self): # game constructor
@@ -58,14 +59,13 @@ class Game:
 
         self.audio = Audio() # create audio object
         self.music_index = self.audio.get_settings("music")
-        self.sound_fx = self.audio.get_settings("sound_fx")
+        self.sound_fx_index = self.audio.get_settings("sound_fx")
         self.statsmenu = StatsMenu(self.screen, self.current_screen) # create statsmenu object
-        self.settingsmenu = Settings(self.screen, self.current_screen, self.music_index, self.sound_fx) # create settingsmenu object
+        self.settingsmenu = Settings(self.screen, self.current_screen, self.music_index, self.sound_fx_index) # create settingsmenu object
+        self.about = About(self.screen, self.current_screen)
         self.text = Text(self.screen, self.number_of_words, self.time_selection) # create text object
         self.results_screen = Results(self.screen) # create results screen object
 
-        
-    
     def reset(self):
         self.text.usertext = "" # set usertext back to normal state
         self.text.full_usertext = "" # set full_usertext back to normal state
@@ -162,7 +162,7 @@ class Game:
             # print(self.time_selection)
             # print(self.text.stats.count_time)
             # print(self.music)
-            print(self.audio.get_settings("music"))
+            # print(f"music: {self.audio.get_settings("music")} sound fx: {self.audio.get_settings("sound_fx")}")
 
             ## METHODS ##
             self.clock.tick(FPS) # sets the frames to 60
@@ -241,6 +241,13 @@ class Game:
             elif self.current_screen == "settings":
                 self.settingsmenu.check_buttons() # checks if user presses buttons
                 game_state = self.settingsmenu.draw(self.width, self.height, self.mouse_released) # display the settings screen
+                if game_state:
+                    self.current_screen = game_state # set current screen as current game state
+                    self.mouse_released = False # left click has been clicked
+
+            # settings
+            elif self.current_screen == "about":
+                game_state = self.about.draw(self.width, self.height, self.mouse_released) # display the settings screen
                 if game_state:
                     self.current_screen = game_state # set current screen as current game state
                     self.mouse_released = False # left click has been clicked

@@ -25,7 +25,7 @@ class Menu:
         self.quit_button = Button(0, 0, self.rounded_button_img, 
             self.rounded_button_hover_img, 0.55, "Quit", 25, self.white, self.white) # button that displays "Quit"
         self.about_button = Button(0, 0, self.blank_img, 
-            self.blank_img, 1, "v1 • bxnetic", 20, self.white, self.submaincolour) # button that displays "v1 • bxnetic"
+            self.blank_img, 1, "how to play", 20, self.white, self.submaincolour) # button that displays "v1 • bxnetic"
 
     def draw(self, width, height, mouse_released):
         def centre(surface, widthPadding, heightPadding): # function that centres surface
