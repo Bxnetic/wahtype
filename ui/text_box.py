@@ -3,7 +3,7 @@ from config import *
 from data.stats_tracker import *
 from data.sentence_manager import *
 from core.audio_handle import Audio
-from core.settings import Settings
+from ui.surface_handle import *
 
 class Text:
     def __init__(self, screen, number_of_words, time_selection):
@@ -36,9 +36,9 @@ class Text:
         self.errorcolour = pygame.Color(ERROR)
 
         # fonts
-        self.font_roboto = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
-        self.font_roboto_underline = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
-        self.font_roboto_underline.set_underline(True)
+        self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
+        self.font_underline = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
+        self.font_underline.set_underline(True)
 
         # audio
         self.key_fx = self.audio.key_fx
@@ -104,15 +104,15 @@ class Text:
                     self.usertext += event.unicode # adds user's letter to the usertext string
                     self.full_usertext += event.unicode # user's sentence that won't be resetted
                 
-    """ text wrapping """
-    def wrap_text(self, text, font_roboto, max_width):
+    # TEXT WRAPPING
+    def wrap_text(self, text, font, max_width):
         words = text.split(" ") # split the words in the sentence
         lines = [] # lines array
         current_line = "" # current line that's being constructed
 
         for word in words: 
             temp_line = current_line + word + " " # adds next word to the temporary line
-            if font_roboto.size(temp_line)[0] <= max_width: # checks if the size of the line (width) can fit the window (before it gets cut off)
+            if font.size(temp_line)[0] <= max_width: # checks if the size of the line (width) can fit the window (before it gets cut off)
                 current_line = temp_line # if the line still fits the window, then add the word
             else:
                 lines.append(current_line) # if not then wrap the line   
@@ -123,29 +123,22 @@ class Text:
 
         return lines
     
-    """ cursor """
+    # CURSOR
     def get_cursor(self, char_index, user_chars, x_offset, y_offset):
-        cursor = self.font_roboto.render("|", True, self.maintextcolour) # create cursor
-        cursor_rect = cursor.get_rect(topright=(x_offset + self.font_roboto.get_height() // 4, y_offset)) # cursor rect    
+        cursor = self.font.render("|", True, self.maintextcolour) # create cursor
+        cursor_rect = cursor.get_rect(topright=(x_offset + self.font.get_height() // 4, y_offset)) # cursor rect    
 
         # display cursor
         if (char_index == len(user_chars)) and not self.done: # checks the number of characters the user has inputted
             # matches the current characters
             return self.screen.blit(cursor, cursor_rect) # display the cursor
 
-    """ drawing text """
-    def draw_text(self, currentWidth, currentHeight, game_mode):
-        """ functions """
-        def centre(surface, widthPadding, heightPadding): # function that centres surface
-            rect = surface.get_rect()
-            return (
-                int((currentWidth / 2)) - int(rect.width / 2) + widthPadding,
-                int((currentHeight / 2)) - int(rect.height / 2) + heightPadding
-            ) # centre surface
+    # DRAWING TEXT
+    def draw_text(self, width, height, game_mode):
         
-        """ stats """
-        stats_text = ""
-        other_stats_text = self.font_roboto.render("", True, self.maincolour)
+        # STATS #
+        stats_text = self.font.render("", True, self.maincolour)
+        other_stats_text = self.font.render("", True, self.maincolour)
         self.typed_characters = len(self.full_usertext)
         self.elapsed_time = self.stats.get_elapsed_time()
         self.countdown_time = self.stats.get_countdown_timer()
@@ -155,33 +148,33 @@ class Text:
         # if the timer hasn't started, display timer & wpm
         if self.elapsed_time != 0:
             if game_mode == "Normal" or game_mode == "Survival": # game_mode is normal or survival
-                stats_text = self.font_roboto.render(
+                stats_text = self.font.render(
                     f"{round(self.elapsed_time)}s {round(self.current_wpm)} wpm",
                 True, self.maincolour) # call the stats (with stopwatch timer)
             if game_mode == "Timed":
-                stats_text = self.font_roboto.render(
+                stats_text = self.font.render(
                     f"{round(self.countdown_time)}s {round(self.current_wpm)} wpm",
                 True, self.maincolour) # call the stats (with countdown timer)
-            self.screen.blit(stats_text, (100, currentHeight / 2 - 135)) # display stats on screen
+            self.screen.blit(stats_text, (100, height / 2 - 135)) # display stats on screen
         
         # extra stats for specific game modes
         # display no. of lives
         if game_mode == "Survival":
-            other_stats_text = self.font_roboto.render(
+            other_stats_text = self.font.render(
                 f"Lives: {self.game_lives}", True, self.maincolour
             ) 
         # display characters typed
         if game_mode == "Timed":
-            other_stats_text = self.font_roboto.render(
+            other_stats_text = self.font.render(
                 f"{self.typed_characters} characters", True, self.maincolour
             ) 
-        self.screen.blit(other_stats_text, (centre(other_stats_text, 0, 150)))
+        self.screen.blit(other_stats_text, (centre(other_stats_text, width, height, 0, 150)))
 
-        """ rendering characters """
-        max_width = currentWidth - 200 # add 200px padding to edge
-        y_offset =  (currentHeight / 2) - 100 # height of the line
+        # RENDERING CAHRACTERS
+        max_width = width - 200 # add 200px padding to edge
+        y_offset =  (height / 2) - 100 # height of the line
         
-        target_text_lines = self.wrap_text(self.target_text, self.font_roboto, max_width)
+        target_text_lines = self.wrap_text(self.target_text, self.font, max_width)
 
         # break words down into each character
         user_chars = list(self.usertext)
@@ -203,21 +196,21 @@ class Text:
 
                 # display rendered character
                 if color == self.errorcolour: # if user get character incorrect
-                    rendered_char = self.font_roboto_underline.render(char, True, color) # underline character
+                    rendered_char = self.font_underline.render(char, True, color) # underline character
                 else:
-                    rendered_char = self.font_roboto.render(char, True, color) # display normally
+                    rendered_char = self.font.render(char, True, color) # display normally
 
                 # draw the character at the (x, y) positions of the screen
                 rendered_char_rect = rendered_char.get_rect(topleft=(x_offset, y_offset))
                 self.screen.blit(rendered_char, rendered_char_rect)
 
                 # move x pos to the right, by the width of the character just drawn, so the characters dont overlap themselves
-                x_offset += self.font_roboto.size(char)[0] # gets x pos of the character just rendered
+                x_offset += self.font.size(char)[0] # gets x pos of the character just rendered
                 # increase the character index, so it goes to the next character
                 char_index += 1
                 # get cursor
                 self.get_cursor(char_index, user_chars, x_offset, y_offset)
 
             # once line finishes, move the next line down vertically
-            y_offset += self.font_roboto.get_linesize() + 10 # add 10px of vertical spacing
+            y_offset += self.font.get_linesize() + 10 # add 10px of vertical spacing
         

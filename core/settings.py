@@ -1,7 +1,7 @@
 import pygame
 from config import *
 from ui.button import *
-from data.stats_tracker import Stats
+from ui.surface_handle import *
 from core.audio_handle import Audio
 
 class Settings:
@@ -49,7 +49,6 @@ class Settings:
         self.audio.update_settings(self.music_selection, self.sound_fx_selection) # update user's settings
 
         if self.music_selection == "Off": # if button is set to off
-            print("True") # debug
             self.audio.pause_music() # pause music
         if self.music_selection == "On": # if button is set to on
             self.audio.resume_music() # resume music
@@ -57,25 +56,12 @@ class Settings:
     # displays menu
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
-        def centre(surface, widthPadding, heightPadding): # function that centres surface
-            rect = surface.get_rect()
-            return (
-                int((width / 2)) - int(rect.width / 2) + widthPadding,
-             int((height / 2)) - int(rect.height / 2) + heightPadding
-            ) # centre surface
         
-        def draw_text(text, x, y, color, size):
-            font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", size) # font
-            current_text = font.render(text, True, color) # render the text
-            current_text_rect = current_text.get_rect(
-                topleft=(centre(current_text, x, y))) # display text in the centre
-            self.screen.blit(current_text, current_text_rect) # display the text on screen
-        
-        draw_text("Music", -100, -80, self.maintext, 24) # displays "Music"
-        draw_text("Sound FX", -100, 40, self.maintext, 24) # displays "Sound FX"
+        draw_text(self.screen, "Music", width, height, -100, -80, self.maintext, 24) # displays "Music"
+        draw_text(self.screen, "Sound FX", width, height, -100, 40, self.maintext, 24) # displays "Sound FX"
 
         # music select button
-        self.music_button.rect.topleft = (centre(self.music_button.image, 100, -80)) # centre the button
+        self.music_button.rect.topleft = centre(self.music_button.image, width, height, 100, -80) # centre the button
         if self.music_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.music_current_index = (self.music_current_index + 1) % len(self.music_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
@@ -83,7 +69,7 @@ class Settings:
             # the next game mode
 
         # sound fx button
-        self.sound_fx_button.rect.topleft = (centre(self.sound_fx_button.image, 100, 40)) # centre the button
+        self.sound_fx_button.rect.topleft = centre(self.sound_fx_button.image, width, height, 100, 40) # centre the button
         if self.sound_fx_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.sound_fx_current_index = (self.sound_fx_current_index + 1) % len(self.sound_fx_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
@@ -91,7 +77,7 @@ class Settings:
             # the next no. of words
 
         # home button
-        self.home_button.rect.topleft = (centre(self.home_button.image, 0, 250)) # home button
+        self.home_button.rect.topleft = centre(self.home_button.image, width, height, 0, 250) # home button
         if self.home_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.current_screen = "menu" # set current screen to menu
             return self.current_screen # return current screen state
