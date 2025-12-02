@@ -19,47 +19,50 @@ class Game:
         self.height = HEIGHT # height of window
         self.screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE) # sets size of the window
 
-        # runtime
+        # RUNTIME #
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         self.running = True # tracks if program is running
         self.mouse_released = True # check if user has stopped holding left click
 
-        # game conditions
+        # CONDITIONS #
         self.game_started = False # tracks if game has started
         self.test_failed = False # checks if user has failed test
         self.current_screen = "menu" # tracks the current screen
         self.last_screen = None # tracks last screen it was on
     
-        # theme colours
+        # THEME #
         self.bgcolour = pygame.Color(BACKGROUND) # theme colours
-        self.white = pygame.Color(WHITE) # theme colours
+        self.maintext = pygame.Color(MAINTEXT) # theme colours
 
-        # images
+        # IMAGES #
         self.reset_img = pygame.image.load("images\\reset_button.png").convert_alpha()
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
         self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha()
 
-        # initiate buttons
+        # BUTTONS #
         self.reset_button = Button(0, 0, self.reset_img, 
-            self.reset_img_hover, 0.2, "", 0, self.white, self.white)
+            self.reset_img_hover, 0.2, "", 0, self.maintext, self.maintext)
         self.home_button = Button(0, 0, self.home_img,
-            self.home_img_hover, 0.2, "", 0, self.white, self.white)
+            self.home_img_hover, 0.2, "", 0, self.maintext, self.maintext)
         
+        # ICON #
         pygame.display.set_icon(self.game_icon) # set window icon
         
-        # classes
+        # CLASSES #
         self.menu = Menu(self.screen) # create menu object and passes screen to menu
 
         self.game_selection = Selection(self.screen, self.current_screen) # create selection object
         self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
         self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
         self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
-
+        
+        # audio
         self.audio = Audio() # create audio object
         self.music_index = self.audio.get_settings("music")
         self.sound_fx_index = self.audio.get_settings("sound_fx")
+        
         self.statsmenu = StatsMenu(self.screen, self.current_screen) # create statsmenu object
         self.settingsmenu = Settings(self.screen, self.current_screen, self.music_index, self.sound_fx_index) # create settingsmenu object
         self.about = About(self.screen, self.current_screen)
