@@ -1,27 +1,12 @@
-import pygame
 from config import *
+from core.selection import Selection
 from ui.button import *
 from ui.surface_handle import *
 from core.audio_handle import Audio
 
-class Settings:
+class Settings(Selection): # inherit from settings class
     def __init__(self, screen, current_screen, music_index, sound_fx_index):
-        # screen
-        self.screen = screen
-        self.current_screen = current_screen
-
-        # colours
-        self.maincolour = pygame.Color(MAIN)
-        self.maintext = pygame.Color(MAINTEXT)
-        self.subtextcolour = pygame.Color(SUBTEXT)
-        self.submaincolour = pygame.Color(SUBMAIN)
-        self.bgcolour = pygame.Color(BACKGROUND)
-
-        # images & buttons
-        self.rounded_button_img  = pygame.image.load("images\\rounded_button.png").convert_alpha()
-        self.rounded_button_hover_img = pygame.image.load("images\\rounded_button_hover.png").convert_alpha()
-        self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
-        self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
+        super().__init__(screen, current_screen) # inherit parents function
 
         # list
         self.music_list = ["On", "Off"] # turn music on or off
@@ -32,8 +17,6 @@ class Settings:
         self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get music_selection name
         
         # initiate button
-        self.home_button = Button(0, 0, self.home_img, # home button
-         self.home_img_hover, 0.2, "", 0, self.maincolour, self.maincolour)
         self.music_button = Button(0, 0, self.rounded_button_img, # music select button
          self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
         self.sound_fx_button = Button(0, 0, self.rounded_button_img, # music select button
@@ -57,8 +40,8 @@ class Settings:
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
         
-        draw_text(self.screen, "Music", width, height, -100, -80, self.maintext, 24) # displays "Music"
-        draw_text(self.screen, "Sound FX", width, height, -100, 40, self.maintext, 24) # displays "Sound FX"
+        draw_text_centre(self.screen, "Music", width, height, -100, -80, self.maintext, 24) # displays "Music"
+        draw_text_centre(self.screen, "Sound FX", width, height, -100, 40, self.maintext, 24) # displays "Sound FX"
 
         # music select button
         self.music_button.rect.topleft = centre(self.music_button.image, width, height, 100, -80) # centre the button
