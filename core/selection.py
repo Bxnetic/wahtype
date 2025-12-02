@@ -13,7 +13,8 @@ class Selection:
         self.current_screen = current_screen
 
         # colours
-        self.white = pygame.Color(WHITE)
+        self.maincolour = pygame.Color(MAIN)
+        self.maintext = pygame.Color(MAINTEXT)
         self.submaincolour = pygame.Color(SUBMAIN)
         self.bgcolour = pygame.Color(BACKGROUND)
 
@@ -37,23 +38,23 @@ class Selection:
         
         # initiate buttons
         self.home_button = Button(0, 0, self.home_img, # home button
-         self.home_img_hover, 0.2, "", 0, self.white, self.white) 
+         self.home_img_hover, 0.2, "", 0, self.maintext, self.maintext) 
         self.gamemode_select_button = Button(0, 0, self.rounded_button_img, # gamemode button
-         self.rounded_button_hover_img, 0.55, self.game_mode_list[self.game_current_index], 25, self.white, self.white)
+         self.rounded_button_hover_img, 0.55, self.game_mode_list[self.game_current_index], 25, self.maintext, self.maintext)
         self.words_select_button = Button(0, 0, self.rounded_button_img, # no. of words
-         self.rounded_button_hover_img, 0.55, self.words_list[self.words_current_index], 25, self.white, self.white)
+         self.rounded_button_hover_img, 0.55, self.words_list[self.words_current_index], 25, self.maintext, self.maintext)
         self.time_select_button = Button(0, 0, self.rounded_button_small_img, # time selection
-         self.rounded_button_small_hover_img, 0.55, self.time_list[self.time_current_index], 25, self.white, self.white)
+         self.rounded_button_small_hover_img, 0.55, self.time_list[self.time_current_index], 25, self.maintext, self.maintext)
         self.start_button = Button(0, 0, self.green_button_img, # start button
-         self.green_button_hover_img, 0.55, "Start", 25, self.white, self.white)
+         self.green_button_hover_img, 0.55, "Start", 25, self.maintext, self.maintext)
 
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clean entities
         
         # text
-        draw_text(self.screen, "Game mode", width, height, -100, -80, self.white, 24) # displays "Game mode"
+        draw_text_centre(self.screen, "Game mode", width, height, -100, -80, self.maintext, 24) # displays "Game mode"
         if self.game_current_index == 0 or self.game_current_index == 1: # only displays when button is set on normal or survival
-            draw_text(self.screen, "Test length", width, height, -100, 40, self.white, 24) # displays "Test length"
+            draw_text_centre(self.screen, "Test length", width, height, -100, 40, self.maintext, 24) # displays "Test length"
 
         """ buttons """
         # gamemode button
