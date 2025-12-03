@@ -4,7 +4,7 @@ from ui.button import *
 from ui.surface_handle import *
 from core.audio_handle import Audio
 
-class Settings(Selection): # inherit from settings class
+class Settings(Selection): # inherit from selection class
     def __init__(self, screen, current_screen, music_index, sound_fx_index):
         super().__init__(screen, current_screen) # inherit parents function
 
