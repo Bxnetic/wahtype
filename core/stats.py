@@ -50,6 +50,7 @@ class StatsMenu:
         self.timed_best_60 = self.stats.get_timed_personal_best(60)
     
     def draw(self, width, height, mouse_released):
+        self.update_stats() # update stats when loaded
         self.screen.fill(self.bgcolour) # clear all the entities on screen
         
         # normal

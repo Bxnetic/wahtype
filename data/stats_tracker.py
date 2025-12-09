@@ -117,6 +117,11 @@ class Stats:
             file.write(f"{mode} {round(wpm)} {round(accuracy)} {round(time_taken)} {chars} {incorrect} {words} {lives}\n") # add new stats to file
             file.close() # close scores.txt
 
+    def delete_scores(self):
+        with open(self.scores_file, "w") as file: # open file in "write" mode
+            file.write(f"") # clear everything
+            file.close() # close file
+
     def get_personal_best(self, mode, words):
         scores = self.load_scores()
         mode_scores = [] # list of scores for depending on mode
