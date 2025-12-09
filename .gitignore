@@ -210,5 +210,5 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Scores
-data/scores.txt
-data/settings.txt
+data/databases/scores.txt
+data/databases/settings.txt
