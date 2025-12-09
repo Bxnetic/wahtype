@@ -5,7 +5,7 @@ class Audio:
         # audio
         self.last_music = None # tracks last music that was played
         self.music_paused = False # checks if the music has been paused or not
-        self.settings_file = "data\\settings.txt" # settings file
+        self.settings_file = "data\\databases\\settings.txt" # settings file
 
         # key sfx
         self.key_fx = {

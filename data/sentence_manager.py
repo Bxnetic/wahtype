@@ -8,7 +8,7 @@ class Sentence:
         words = [] # words are stored in the array
         sentence = "" # to construct the sentence
 
-        with open('data\\words.txt', 'r') as file:
+        with open('data\\databases\\words.txt', 'r') as file:
             # reads through each line
             for line in file:
                 # reads each word in the line

@@ -14,7 +14,7 @@ class Stats:
         self.last_wpm_time = 0 # last time the wpm was calculated
         self.accuracy = 0 # end accuracy
         # scores
-        self.scores_file = "data\\scores.txt"
+        self.scores_file = "data\\databases\\scores.txt"
 
     def reset(self):
         # resets all instance attributes
