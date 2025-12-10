@@ -52,7 +52,7 @@ class Text:
         # updates time with user's new selected time
         self.time_selection = int(time_selection)
 
-    """ text inputs from user """
+    # TEXT INPUTS FROM USER
     def text_handle(self, event, game_mode, sound_fx):
         self.sound_fx = sound_fx
 
@@ -103,25 +103,6 @@ class Text:
                         
                     self.usertext += event.unicode # adds user's letter to the usertext string
                     self.full_usertext += event.unicode # user's sentence that won't be resetted
-                
-    # TEXT WRAPPING
-    def wrap_text(self, text, font, max_width):
-        words = text.split(" ") # split the words in the sentence
-        lines = [] # lines array
-        current_line = "" # current line that's being constructed
-
-        for word in words: 
-            temp_line = current_line + word + " " # adds next word to the temporary line
-            if font.size(temp_line)[0] <= max_width: # checks if the size of the line (width) can fit the window (before it gets cut off)
-                current_line = temp_line # if the line still fits the window, then add the word
-            else:
-                lines.append(current_line) # if not then wrap the line   
-                current_line = word + " " # start new line
-            
-        if current_line: # if there is a final line left then
-            lines.append(current_line) # add it to the line array so it can appear on screen
-
-        return lines
     
     # CURSOR
     def get_cursor(self, char_index, user_chars, x_offset, y_offset):
@@ -157,7 +138,7 @@ class Text:
                 True, self.maincolour) # call the stats (with countdown timer)
             self.screen.blit(stats_text, (100, height / 2 - 135)) # display stats on screen
         
-        # extra stats for specific game modes
+        # STATS FOR GAMEMODES
         # display no. of lives
         if game_mode == "Survival":
             other_stats_text = self.font.render(
@@ -174,7 +155,7 @@ class Text:
         max_width = width - 200 # add 200px padding to edge
         y_offset =  (height / 2) - 100 # height of the line
         
-        target_text_lines = self.wrap_text(self.target_text, self.font, max_width)
+        target_text_lines = wrap_text(self.target_text, 24, max_width)
 
         # break words down into each character
         user_chars = list(self.usertext)
@@ -213,4 +194,3 @@ class Text:
 
             # once line finishes, move the next line down vertically
             y_offset += self.font.get_linesize() + 10 # add 10px of vertical spacing
-        
