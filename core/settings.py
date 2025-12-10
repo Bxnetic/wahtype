@@ -9,10 +9,10 @@ class Settings(Selection): # inherit from selection class
     def __init__(self, screen, current_screen, music_index, sound_fx_index):
         super().__init__(screen, current_screen) # inherit parents function
         
-        # theme
+        # THEME
         self.error = pygame.Color(ERROR)
 
-        # list
+        # LIST
         self.music_list = ["On", "Off"] # turn music on or off
         self.sound_fx_list = ["On", "Off"] # turn sound fx on or off
         self.delete_scores_list = ["Delete Scores", "Are you sure?"] # delete scores or not
@@ -23,7 +23,7 @@ class Settings(Selection): # inherit from selection class
         self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get music_selection name
         self.delete_scores_selection = self.delete_scores_list[self.delete_scores_current_index] # get delete_scores name
         
-        # initiate button
+        # BUTTONS
         self.music_button = Button(0, 0, self.rounded_button_img, # music select button
          self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
         self.sound_fx_button = Button(0, 0, self.rounded_button_img, # sound fx select button
@@ -31,11 +31,11 @@ class Settings(Selection): # inherit from selection class
         self.delete_scores_button = Button(0, 0, self.rounded_button_img, # delete scores button
          self.rounded_button_hover_img, 0.55, self.delete_scores_list[self.delete_scores_current_index], 22, self.maintext, self.error)
         
-        # classes
+        # CLASSES
         self.audio = Audio() # create audio object
         self.stats = Stats() # create stats object
     
-    # checks buttons conditions in settings menu only
+    # CHECK BUTTONS CONDITIONS
     def check_buttons(self):
         self.music_selection = self.music_list[self.music_current_index] # get music_selection name
         self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get sound_fx name
@@ -46,7 +46,7 @@ class Settings(Selection): # inherit from selection class
         if self.music_selection == "On": # if button is set to on
             self.audio.resume_music() # resume music
     
-    # displays menu
+    # DISPLAYS MENU
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
         
@@ -58,15 +58,14 @@ class Settings(Selection): # inherit from selection class
         if self.music_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.music_current_index = (self.music_current_index + 1) % len(self.music_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
-            self.music_button.setText(self.music_list[self.music_current_index]) # update the button text with
-            # the next game mode
+            self.music_button.setText(self.music_list[self.music_current_index]) # update the button text with next game mode
 
         # sound fx button
         self.sound_fx_button.rect.topleft = centre(self.sound_fx_button.image, width, height, 100, 40) # centre the button
         if self.sound_fx_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.sound_fx_current_index = (self.sound_fx_current_index + 1) % len(self.sound_fx_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
-            self.sound_fx_button.setText(self.sound_fx_list[self.sound_fx_current_index]) # update the button text with next vvalue
+            self.sound_fx_button.setText(self.sound_fx_list[self.sound_fx_current_index]) # update the button text with next value
 
         # delete scores button
         self.delete_scores_button.rect.topleft = centre(self.delete_scores_button.image, width, height, 250, 250) # centre the button

@@ -10,27 +10,27 @@ class StatsMenu:
         self.screen = screen
         self.current_screen = current_screen
 
-        # colours
+        # THEME
         self.maincolour = pygame.Color(MAIN)
         self.maintext = pygame.Color(MAINTEXT)
         self.subtextcolour = pygame.Color(SUBTEXT)
         self.submaincolour = pygame.Color(SUBMAIN)
         self.bgcolour = pygame.Color(BACKGROUND)
 
-        # images & buttons
+        # IMAGES
         self.rounded_button_img  = pygame.image.load("images\\rounded_button.png").convert_alpha()
         self.rounded_button_hover_img = pygame.image.load("images\\rounded_button_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
         
-        # initiate button
+        # BUTTONS
         self.home_button = Button(0, 0, self.home_img, # home button
          self.home_img_hover, 0.2, "", 0, self.maincolour, self.maincolour) 
         
-        # classes
+        # CLASSES
         self.stats = Stats()
 
-        # scores
+        # SCORES
         self.normal_best = self.stats.get_personal_best("Normal", 15)
         self.survival_best = self.stats.get_personal_best("Survival", 15)
         self.normal_best_25 = self.stats.get_personal_best("Normal", 25)

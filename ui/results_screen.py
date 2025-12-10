@@ -8,7 +8,7 @@ class Results:
         # screen
         self.screen = screen
         
-        # theme colours
+        # THEME colours
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
         self.subtextcolour = pygame.Color(SUBTEXT)

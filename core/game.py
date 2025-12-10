@@ -20,38 +20,38 @@ class Game:
         self.height = HEIGHT # height of window
         self.screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE) # sets size of the window
 
-        # RUNTIME #
+        # RUNTIME
         self.clock = pygame.time.Clock() # creates time using time pygame clock module
         self.running = True # tracks if program is running
         self.mouse_released = True # check if user has stopped holding left click
 
-        # CONDITIONS #
+        # CONDITIONS
         self.game_started = False # tracks if game has started
         self.test_failed = False # checks if user has failed test
         self.current_screen = "menu" # tracks the current screen
         self.last_screen = None # tracks last screen it was on
     
-        # THEME #
+        # THEME
         self.bgcolour = pygame.Color(BACKGROUND) # theme colours
         self.maintext = pygame.Color(MAINTEXT) # theme colours
 
-        # IMAGES #
+        # IMAGES
         self.reset_img = pygame.image.load("images\\reset_button.png").convert_alpha()
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
         self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha()
 
-        # BUTTONS #
+        # BUTTONS
         self.reset_button = Button(0, 0, self.reset_img, 
             self.reset_img_hover, 0.2, "", 0, self.maintext, self.maintext)
         self.home_button = Button(0, 0, self.home_img,
             self.home_img_hover, 0.2, "", 0, self.maintext, self.maintext)
         
-        # ICON #
+        # ICON
         pygame.display.set_icon(self.game_icon) # set window icon
         
-        # CLASSES #
+        # CLASSES
         self.menu = Menu(self.screen) # create menu object and passes screen to menu
 
         self.game_selection = Selection(self.screen, self.current_screen) # create selection object
@@ -59,7 +59,7 @@ class Game:
         self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
         self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
         
-        # audio
+        # AUDIO
         self.audio = Audio() # create audio object
         self.music_index = self.audio.get_settings("music")
         self.sound_fx_index = self.audio.get_settings("sound_fx")

@@ -6,16 +6,16 @@ class Menu:
     def __init__(self, screen):
         # screen
         self.screen = screen
-        # colours
+        # THEME
         self.white = pygame.Color(WHITE)
         self.submaincolour = pygame.Color(SUBMAIN)
         self.bgcolour = pygame.Color(BACKGROUND)
-        # images & buttons
+        # IMAGES
         self.game_img = pygame.image.load("images\\game_logo.png").convert_alpha()
         self.rounded_button_img  = pygame.image.load("images\\rounded_button.png").convert_alpha()
         self.rounded_button_hover_img = pygame.image.load("images\\rounded_button_hover.png").convert_alpha()
         self.blank_img = pygame.image.load("images\\blank.png")
-        # initiate button
+        # BUTTONS
         self.play_button = Button(0, 0, self.rounded_button_img, 
             self.rounded_button_hover_img, 0.55, "Play", 25, self.white, self.white) # button that displays "Play"
         self.stats_button = Button(0, 0, self.rounded_button_img, 

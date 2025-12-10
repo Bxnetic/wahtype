@@ -13,7 +13,7 @@ class Stats:
         self.wpm = 0 # current wpm
         self.last_wpm_time = 0 # last time the wpm was calculated
         self.accuracy = 0 # end accuracy
-        # scores
+        # SCORES
         self.scores_file = "data\\databases\\scores.txt"
 
     def reset(self):

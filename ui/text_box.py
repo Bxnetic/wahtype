@@ -21,7 +21,7 @@ class Text:
         self.time_selection = int(time_selection) # user's selected time (timed mode)
         self.target_text = sentence.get_easy_sentence(self.number_of_words) # grabs the constructed target sentence in the sentence class
 
-        # classes
+        # CLASSES
         self.stats = Stats() # create stats object
         self.audio = Audio() # create audio object
 
@@ -29,7 +29,7 @@ class Text:
         self.white = WHITE  
         self.black = BLACK
 
-        # theme colours
+        # THEME colours
         self.maincolour = pygame.Color(MAIN)
         self.maintextcolour = pygame.Color(MAINTEXT)
         self.subtextcolour = pygame.Color(SUBTEXT)

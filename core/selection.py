@@ -12,7 +12,7 @@ class Selection:
         self.screen = screen
         self.current_screen = current_screen
 
-        # colours
+        # THEME
         self.maincolour = pygame.Color(MAIN)
         self.maintext = pygame.Color(MAINTEXT)
         self.submaincolour = pygame.Color(SUBMAIN)
@@ -36,7 +36,7 @@ class Selection:
         self.words_current_index = 0 # current index of the no. of words list
         self.time_current_index = 0 # current index of time selections
         
-        # initiate buttons
+        # BUTTONSs
         self.home_button = Button(0, 0, self.home_img, # home button
          self.home_img_hover, 0.2, "", 0, self.maintext, self.maintext) 
         self.gamemode_select_button = Button(0, 0, self.rounded_button_img, # gamemode button

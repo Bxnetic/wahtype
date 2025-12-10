@@ -7,10 +7,10 @@ class About(Selection): # inherit from selection class
     def __init__(self, screen, current_screen):
         super().__init__(screen, current_screen) # inherit parents function
         
-        # theme
+        # THEME
         self.subtextcolour = pygame.Color(SUBTEXT)
 
-        # text
+        # TEXT
         self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24) # font
        
     def draw(self, width, height, mouse_released):

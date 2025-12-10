@@ -6,7 +6,7 @@ FPS = 60
 WHITE = (255, 255, 255)
 BLACK = (0,0,0)
 
-# theme colours
+# THEME colours
 BACKGROUND = "#242933"
 MAIN = "#88c0d0"
 SUBMAIN = "#929aaa"
