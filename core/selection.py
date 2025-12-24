@@ -61,7 +61,7 @@ class Selection:
         self.gamemode_select_button.rect.topleft = centre(self.gamemode_select_button.image, width, height, 100, -80) # centre the button
         if self.gamemode_select_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.game_current_index = (self.game_current_index + 1) % len(self.game_mode_list) # go to the next value,
-            self.gamemode_select_button.setText(self.game_mode_list[self.game_current_index]) # update the button text with
+            self.gamemode_select_button.set_text(self.game_mode_list[self.game_current_index]) # update the button text with
             # the next game mode
         
         # seconds button
@@ -69,7 +69,7 @@ class Selection:
             self.time_select_button.rect.topleft = centre(self.time_select_button.image, width, height, 230, -80) # centre the button
             if self.time_select_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
                 self.time_current_index = (self.time_current_index + 1) % len(self.time_list) # go to the next value,
-                self.time_select_button.setText(self.time_list[self.time_current_index]) # update the button text with
+                self.time_select_button.set_text(self.time_list[self.time_current_index]) # update the button text with
                 # the next time selection
 
         # words button
@@ -78,7 +78,7 @@ class Selection:
             if self.words_select_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
                 self.words_current_index = (self.words_current_index + 1) % len(self.words_list) # go to the next value,
                 # once current_index = 3, the current index will become 0 again
-                self.words_select_button.setText(self.words_list[self.words_current_index]) # update the button text with
+                self.words_select_button.set_text(self.words_list[self.words_current_index]) # update the button text with
                 # the next no. of words
 
         # home button

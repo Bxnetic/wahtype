@@ -58,21 +58,21 @@ class Settings(Selection): # inherit from selection class
         if self.music_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.music_current_index = (self.music_current_index + 1) % len(self.music_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
-            self.music_button.setText(self.music_list[self.music_current_index]) # update the button text with next game mode
+            self.music_button.set_text(self.music_list[self.music_current_index]) # update the button text with next game mode
 
         # sound fx button
         self.sound_fx_button.rect.topleft = centre(self.sound_fx_button.image, width, height, 100, 40) # centre the button
         if self.sound_fx_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.sound_fx_current_index = (self.sound_fx_current_index + 1) % len(self.sound_fx_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
-            self.sound_fx_button.setText(self.sound_fx_list[self.sound_fx_current_index]) # update the button text with next value
+            self.sound_fx_button.set_text(self.sound_fx_list[self.sound_fx_current_index]) # update the button text with next value
 
         # delete scores button
         self.delete_scores_button.rect.topleft = centre(self.delete_scores_button.image, width, height, 250, 250) # centre the button
         if self.delete_scores_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
             self.delete_scores_current_index = (self.delete_scores_current_index + 1) % len(self.delete_scores_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
-            self.delete_scores_button.setText(self.delete_scores_list[self.delete_scores_current_index]) # update the button text with next value
+            self.delete_scores_button.set_text(self.delete_scores_list[self.delete_scores_current_index]) # update the button text with next value
 
             if self.delete_scores_current_index == 0 and mouse_released == True: # button is displaying "are you sure?"
                 self.stats.delete_scores() # delete scores when user presses button
