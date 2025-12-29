@@ -5,13 +5,13 @@
 # wahtype
 wahtype is a type racing game inspired by monkeytype, fully written in Python, utilising the Pygame library.
 
-## proposed features
-- live colour feedback when typing ✅
-- useful statistics such as wpm, accuracy and time ✅
-- variety of game modes ✅
-- fully useable menu (in progress)
-- save PBs to see progress ✅
-- type sounds and background music ✅
+## features
+- live colour feedback when typing
+- useful statistics such as wpm, accuracy and time
+- variety of game modes
+- fully useable menu
+- save PBs to see progress
+- type sounds and background music
 
 ## about
 this is my computer science a-level NEA project which i've been developing since June 2025.
