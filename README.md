@@ -15,7 +15,8 @@ wahtype is a type racing game inspired by monkeytype, fully written in Python, u
 
 ## about
 this is my computer science a-level NEA project which i've been developing since June 2025.
-i currently do not have any plans to update this game once i've submitted it to my exam board since monkeytype is better.
+
+this project will be obsolete once its submitted. please check out [monkeytype](https://monkeytype.com/) if you liked this project.
 
 ## credits
 - [monkeytype](https://monkeytype.com/) for the main inspiration
