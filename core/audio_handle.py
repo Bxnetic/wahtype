@@ -47,7 +47,7 @@ class Audio:
         # load default settings
         if not os.path.exists(self.settings_file): # if file doesnt exist
             with open(self.settings_file, "w") as file:
-                file.write("1 1") # create file
+                file.write("0 0") # create file
 
             settings = { 
                 "music": "1",
