@@ -50,8 +50,8 @@ class Audio:
                 file.write("0 0") # create file
 
             settings = { 
-                "music": "1",
-                "sound_fx": "1",
+                "music": "0",
+                "sound_fx": "0",
             }
         else:
             with open(self.settings_file, "r") as file: # open scores.txt
