@@ -5,11 +5,11 @@ from ui.button import * # import button attributes, classes
 from ui.surface_handle import * # import commonly used procedures for surface
 from ui.results_screen import * # import results_screen attributes, classes
 from core.menu import * # import menu attributes, classes
-from core.selection import Selection # import selection class
-from core.stats import StatsMenu # import statsmenu class
-from core.settings import Settings # import settings class
+from core.selection_menu import Selection # import selection class
+from core.stats_menu import StatsMenu # import statsmenu class
+from core.settings_menu import Settings # import settings class
+from core.about_menu import About # import about class
 from core.audio_handle import Audio # import audio class
-from core.about import About # import about class
 
 class Game:
     def __init__(self): # game constructor
@@ -54,7 +54,7 @@ class Game:
         # CLASSES
         self.menu = Menu(self.screen) # create menu object and passes screen to menu
 
-        self.game_selection = Selection(self.screen, self.current_screen) # create selection object
+        self.game_selection = Selection(self.screen) # create selection object
         self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
         self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
         self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
@@ -64,9 +64,9 @@ class Game:
         self.music_index = self.audio.get_settings("music")
         self.sound_fx_index = self.audio.get_settings("sound_fx")
 
-        self.stats_menu = StatsMenu(self.screen, self.current_screen) # create statsmenu object
-        self.settings_menu = Settings(self.screen, self.current_screen, self.music_index, self.sound_fx_index) # create settingsmenu object
-        self.about_menu = About(self.screen, self.current_screen)
+        self.stats_menu = StatsMenu(self.screen) # create statsmenu object
+        self.settings_menu = Settings(self.screen, self.music_index, self.sound_fx_index) # create settingsmenu object
+        self.about_menu = About(self.screen)
         self.text = Text(self.screen, self.number_of_words, self.time_selection) # create text object
         self.results_screen = Results(self.screen) # create results screen object
 
