@@ -3,12 +3,12 @@ import os
 
 class Audio:
     def __init__(self):
-        # audio
+        # AUDIO
         self.last_music = None # tracks last music that was played
         self.music_paused = False # checks if the music has been paused or not
         self.settings_file = "data\\databases\\settings.txt" # settings file
 
-        # key sfx
+        # KEY SFX
         self.key_fx = {
             pygame.K_a: pygame.mixer.Sound("audio\\typing\\a.wav"), # a sfx
             pygame.K_b: pygame.mixer.Sound("audio\\typing\\b.wav"), # b sfx

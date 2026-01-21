@@ -38,15 +38,18 @@ class Game:
         # IMAGES
         self.reset_img = pygame.image.load("images\\reset_button.png").convert_alpha()
         self.reset_img_hover = pygame.image.load("images\\reset_button_hover.png").convert_alpha()
+
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
+
         self.game_icon = pygame.image.load("images\\game_icon.png").convert_alpha()
 
         # BUTTONS
         self.reset_button = Button(0, 0, self.reset_img, 
-            self.reset_img_hover, 0.2, "", 0, self.maintext, self.maintext)
+            self.reset_img_hover, 0.2, "", 0, self.maintext, self.maintext) # reset button
+        
         self.home_button = Button(0, 0, self.home_img,
-            self.home_img_hover, 0.2, "", 0, self.maintext, self.maintext)
+            self.home_img_hover, 0.2, "", 0, self.maintext, self.maintext) # home button
         
         # ICON
         pygame.display.set_icon(self.game_icon) # set window icon
@@ -64,9 +67,9 @@ class Game:
         self.music_index = self.audio.get_settings("music")
         self.sound_fx_index = self.audio.get_settings("sound_fx")
 
-        self.stats_menu = StatsMenu(self.screen) # create statsmenu object
-        self.settings_menu = Settings(self.screen, self.music_index, self.sound_fx_index) # create settingsmenu object
-        self.about_menu = About(self.screen)
+        self.stats_menu = StatsMenu(self.screen) # create stats menu object
+        self.settings_menu = Settings(self.screen, self.music_index, self.sound_fx_index) # create settings menu object
+        self.about_menu = About(self.screen) # create about menu object
         self.text = Text(self.screen, self.number_of_words, self.time_selection) # create text object
         self.results_screen = Results(self.screen) # create results screen object
 

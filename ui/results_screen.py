@@ -5,10 +5,10 @@ from ui.surface_handle import *
 
 class Results:
     def __init__(self, screen):
-        # screen
+        # SCREEN
         self.screen = screen
         
-        # THEME colours
+        # THEME
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
         self.subtextcolour = pygame.Color(SUBTEXT)

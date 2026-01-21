@@ -15,20 +15,20 @@ class Selection(Menu):
         self.submaincolour = pygame.Color(SUBMAIN)
         self.bgcolour = pygame.Color(BACKGROUND)
 
-        # images of buttons
-      
+        # IMAGES
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
 
-        # list
+        # LIST
         self.game_mode_list = ["Normal", "Survival", "Timed"] # game modes
         self.words_list = ["15 words", "25 words"] # no. of words
         self.time_list = ["15s", "30s", "60s"] # time selections for timed mode
+
         self.game_current_index = 0 # current index of the game mode list
         self.words_current_index = 0 # current index of the no. of words list
         self.time_current_index = 0 # current index of time selections
         
-        # BUTTONSs
+        # BUTTONS
         self.gamemode_select_button = Button(0, 0, self.rounded_button_img, # gamemode button
          self.rounded_button_hover_img, 0.55, self.game_mode_list[self.game_current_index], 25, self.maintext, self.maintext)
         self.words_select_button = Button(0, 0, self.rounded_button_img, # no. of words
@@ -46,7 +46,6 @@ class Selection(Menu):
         if self.game_current_index == 0 or self.game_current_index == 1: # only displays when button is set on normal or survival
             draw_text_centre(self.screen, "Test length", width, height, -100, 40, self.maintext, 24) # displays "Test length"
 
-        """ buttons """
         # gamemode button
         self.gamemode_select_button.rect.topleft = centre(self.gamemode_select_button.image, width, height, 100, -80) # centre the button
         if self.gamemode_select_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked

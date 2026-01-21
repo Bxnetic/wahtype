@@ -13,9 +13,11 @@ class Settings(Menu): # inherit from menu class
         self.music_list = ["On", "Off"] # turn music on or off
         self.sound_fx_list = ["On", "Off"] # turn sound fx on or off
         self.delete_scores_list = ["Delete Scores", "Are you sure?"] # delete scores or not
+
         self.music_current_index = int(music_index) # current index of the game mode list
         self.sound_fx_current_index = int(sound_fx_index) # current index of the no. of words list
         self.delete_scores_current_index = 0 # current index of delete scores list
+
         self.music_selection = self.music_list[self.music_current_index] # get music_selection name
         self.sound_fx_selection = self.sound_fx_list[self.sound_fx_current_index] # get music_selection name
         self.delete_scores_selection = self.delete_scores_list[self.delete_scores_current_index] # get delete_scores name
@@ -23,8 +25,10 @@ class Settings(Menu): # inherit from menu class
         # BUTTONS
         self.music_button = Button(0, 0, self.rounded_button_img, # music select button
          self.rounded_button_hover_img, 0.55, self.music_list[self.music_current_index], 25, self.maintext, self.maintext)
+        
         self.sound_fx_button = Button(0, 0, self.rounded_button_img, # sound fx select button
          self.rounded_button_hover_img, 0.55, self.music_list[self.sound_fx_current_index], 25, self.maintext, self.maintext)
+        
         self.delete_scores_button = Button(0, 0, self.rounded_button_img, # delete scores button
          self.rounded_button_hover_img, 0.55, self.delete_scores_list[self.delete_scores_current_index], 22, self.maintext, self.error)
         

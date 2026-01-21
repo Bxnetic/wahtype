@@ -7,10 +7,10 @@ from ui.surface_handle import *
 
 class Text:
     def __init__(self, screen, number_of_words, time_selection):
-        # screen
+        # SCREEN
         self.screen = screen
 
-        # text
+        # TEXT
         self.done = False # turns into true once user finishes typing
         self.usertext = "" # attribute which stores what the user types
         self.full_usertext = "" # attribute that stores what the user types and is not reset
@@ -25,22 +25,18 @@ class Text:
         self.stats = Stats() # create stats object
         self.audio = Audio() # create audio object
 
-        # basic colours
-        self.white = WHITE  
-        self.black = BLACK
-
-        # THEME colours
+        # THEME
         self.maincolour = pygame.Color(MAIN)
         self.maintextcolour = pygame.Color(MAINTEXT)
         self.subtextcolour = pygame.Color(SUBTEXT)
         self.errorcolour = pygame.Color(ERROR)
 
-        # fonts
+        # FONTS
         self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
         self.font_underline = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24)
         self.font_underline.set_underline(True)
 
-        # audio
+        # AUDIO
         self.key_fx = self.audio.key_fx
 
     def create_sentence(self, number_of_words):

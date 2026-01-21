@@ -15,14 +15,17 @@ class StatsMenu(Menu):
         # IMAGES
         self.rounded_button_img  = pygame.image.load("images\\rounded_button.png").convert_alpha()
         self.rounded_button_hover_img = pygame.image.load("images\\rounded_button_hover.png").convert_alpha()
+        
         self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
         self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
         
         # SCORES
         self.normal_best = self.stats.get_personal_best("Normal", 15)
         self.survival_best = self.stats.get_personal_best("Survival", 15)
+
         self.normal_best_25 = self.stats.get_personal_best("Normal", 25)
         self.survival_best_25 = self.stats.get_personal_best("Survival", 25)
+
         self.timed_best_15 = self.stats.get_timed_personal_best(15) 
         self.timed_best_30 = self.stats.get_timed_personal_best(30)
         self.timed_best_60 = self.stats.get_timed_personal_best(60)
