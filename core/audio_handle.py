@@ -1,4 +1,5 @@
 import pygame
+import os
 
 class Audio:
     def __init__(self):
@@ -42,14 +43,25 @@ class Audio:
     # load settings from settings.txt
     def load_settings(self):
         settings = {} # settings dictionary
-        with open(self.settings_file, "r") as file: # open scores.txt
-            for line in file: # go through each line in file
-                music, sound_fx = line.strip().split() # split each setting value into its
-                # own variable
-                settings = { # create list of dictionaries
-                    "music": str(music),
-                    "sound_fx": str(sound_fx),
-                }
+    
+        # load default settings
+        if not os.path.exists(self.settings_file): # if file doesnt exist
+            with open(self.settings_file, "w") as file:
+                file.write("1 1") # create file
+
+            settings = { 
+                "music": "1",
+                "sound_fx": "1",
+            }
+        else:
+            with open(self.settings_file, "r") as file: # open scores.txt
+                for line in file: # go through each line in file
+                    music, sound_fx = line.strip().split() # split each setting value into its
+                    # own variable
+                    settings = { # create list of dictionaries
+                        "music": str(music),
+                        "sound_fx": str(sound_fx),
+                    }
 
         file.close() # close scores.txt
         return settings # return settings
