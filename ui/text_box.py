@@ -78,8 +78,10 @@ class Text:
             if len(self.usertext) > 0: 
                 self.usertext = self.usertext[:-1]
                 self.full_usertext = self.full_usertext[:-1]
+
         # can only press space if the length of the user's word and target word matches, 
         # adds blank space & prevents spamming
+        
         elif event.key == pygame.K_SPACE:
             if len(current_word) == len(target_word):
                 self.usertext += " "
@@ -97,8 +99,8 @@ class Text:
                         if game_mode == "Survival":
                             self.game_lives -= 1 # lose a life in survival mode
                         
-                    self.usertext += event.unicode # adds user's letter to the usertext string
-                    self.full_usertext += event.unicode # user's sentence that won't be resetted
+                    self.usertext += event.unicode.lower() # adds user's letter to the usertext string
+                    self.full_usertext += event.unicode.lower() # user's sentence that won't be resetted
     
     # CURSOR
     def get_cursor(self, char_index, user_chars, x_offset, y_offset):
