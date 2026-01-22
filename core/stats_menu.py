@@ -1,23 +1,14 @@
-import pygame
 from config import *
 from core.menu import Menu
-from ui.button import *
 from data.stats_tracker import Stats
 from ui.surface_handle import *
 
-class StatsMenu(Menu):
+class StatsMenu(Menu): # inherit from menu class
     def __init__(self, screen):
-        super().__init__(screen)
+        super().__init__(screen) # inherit screen from menu class
 
         # CLASSES
         self.stats = Stats()
-        
-        # IMAGES
-        self.rounded_button_img  = pygame.image.load("images\\rounded_button.png").convert_alpha()
-        self.rounded_button_hover_img = pygame.image.load("images\\rounded_button_hover.png").convert_alpha()
-        
-        self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
-        self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
         
         # SCORES
         self.normal_best = self.stats.get_personal_best("Normal", 15)

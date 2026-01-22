@@ -53,23 +53,23 @@ class Game:
         
         # ICON
         pygame.display.set_icon(self.game_icon) # set window icon
-        
-        # CLASSES
-        self.menu = Menu(self.screen) # create menu object and passes screen to menu
 
-        self.game_selection = Selection(self.screen) # create selection object
-        self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
-        self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
-        self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
-        
         # AUDIO
         self.audio = Audio() # create audio object
         self.music_index = self.audio.get_settings("music")
         self.sound_fx_index = self.audio.get_settings("sound_fx")
-
+        
+        # MENUS
+        self.menu = Menu(self.screen) # create menu object and passes screen to menu
         self.stats_menu = StatsMenu(self.screen) # create stats menu object
         self.settings_menu = Settings(self.screen, self.music_index, self.sound_fx_index) # create settings menu object
         self.about_menu = About(self.screen) # create about menu object
+        
+        # GAME
+        self.game_selection = Selection(self.screen) # create selection object
+        self.number_of_words = self.game_selection.getNumberOfWords() # get number of words from selection class
+        self.time_selection = self.game_selection.getSeconds() # get user's selected seconds from selection class
+        self.game_mode = self.game_selection.getGameMode() # get game mode from selection class
         self.text = Text(self.screen, self.number_of_words, self.time_selection) # create text object
         self.results_screen = Results(self.screen) # create results screen object
 

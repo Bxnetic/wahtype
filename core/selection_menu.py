@@ -4,20 +4,10 @@ from ui.button import *
 from ui.surface_handle import *
 from core.game import *
 
-class Selection(Menu):
+class Selection(Menu): # inherits from menu class
     def __init__(self, screen):
-        super().__init__(screen)
-        self.__number_of_words = 0
-
-        # THEME
-        self.maincolour = pygame.Color(MAIN)
-        self.maintext = pygame.Color(MAINTEXT)
-        self.submaincolour = pygame.Color(SUBMAIN)
-        self.bgcolour = pygame.Color(BACKGROUND)
-
-        # IMAGES
-        self.home_img = pygame.image.load("images\\home_button.png").convert_alpha()
-        self.home_img_hover = pygame.image.load("images\\home_button_hover.png").convert_alpha()
+        super().__init__(screen) # inherit screen from menu class
+        self.__number_of_words = 0 # user's selected no. of words
 
         # LIST
         self.game_mode_list = ["Normal", "Survival", "Timed"] # game modes

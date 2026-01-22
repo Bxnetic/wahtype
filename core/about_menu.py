@@ -5,7 +5,7 @@ from core.menu import Menu
 
 class About(Menu): # inherit from menu class
     def __init__(self, screen):
-        super().__init__(screen) # inherit parents function
+        super().__init__(screen) # inherit screen from menu class
 
         # TEXT
         self.font = pygame.font.Font("fonts\\RobotoMono-Regular.ttf", 24) # font
@@ -29,13 +29,16 @@ class About(Menu): # inherit from menu class
 
         draw_text(self.screen, "how to play", 20, 20, self.maincolour, 24) # display "how to play"
         self.how_to_play_text = wrap_text(
-            "just start typing and the timer will start! the game will end once you have completed the sentence.",
+            "just start typing and the timer will start! the game will" \
+            " end once you have completed the sentence.",
              24, width - 50) # about how to play the game
         self.extra_modes_text = wrap_text(
-            "in survival mode you play against 3 lives. if you lose all of them, you have failed the test. in timed mode, you type until the timer has finished.",
+            "in survival mode you play against 3 lives. if you lose all of them, you have" \
+            " failed the test. in timed mode, you type until the timer has finished.",
              24, width - 50) # about how to extra modes work
         self.about_text = wrap_text(
-            "this is my computer science nea, which is a minimalstic python typeracer mainly inspired by monkeytype. i have no plans to update once its been submitted.",
+            "this is my computer science nea, which is a minimalstic python typeracer mainly" \
+            " inspired by monkeytype. i have no plans to update once its been submitted.",
              24, width - 50) # explanation of this project
 
         for line in self.how_to_play_text: # go through each line in the text
