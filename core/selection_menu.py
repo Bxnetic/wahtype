@@ -21,12 +21,12 @@ class Selection(Menu): # inherits from menu class
         # BUTTONS
         self.gamemode_select_button = Button(0, 0, self.rounded_button_img, # gamemode button
          self.rounded_button_hover_img, 0.55, self.game_mode_list[self.game_current_index], 25, self.maintext, self.maintext)
+
         self.words_select_button = Button(0, 0, self.rounded_button_img, # no. of words
          self.rounded_button_hover_img, 0.55, self.words_list[self.words_current_index], 25, self.maintext, self.maintext)
+
         self.time_select_button = Button(0, 0, self.rounded_button_small_img, # time selection
          self.rounded_button_small_hover_img, 0.55, self.time_list[self.time_current_index], 25, self.maintext, self.maintext)
-        self.start_button = Button(0, 0, self.green_button_img, # start button
-         self.green_button_hover_img, 0.55, "Start", 25, self.maintext, self.maintext)
 
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clean entities
