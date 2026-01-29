@@ -119,7 +119,7 @@ class Game:
             self.reset() # call the reset method in the Text class (resets all attributes)
             self.mouse_released = False # user is holding down left click
         if self.home_button.draw(self.screen, self.mouse_released): # if the home button is clicked
-            self.current_screen = "menu" # display menu
+            self.current_screen = "selection" # display menu
             self.mouse_released = False # user is holding down left click 
     
     # ELEMENTS FOR THE TEST
@@ -207,6 +207,7 @@ class Game:
             if game_state:
                 self.current_screen = game_state # set current screen as current game state
                 self.mouse_released = False # user is holding down left click
+                self.reset() # reset the attributes for the test itself
 
         # game
         elif self.current_screen == "game": # if the current screen is the game
