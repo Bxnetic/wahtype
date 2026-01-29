@@ -154,7 +154,7 @@
         <mxCell id="PRc5SCy16KoD0cmj7y2S-6" parent="WIyWlLk6GJQsqaUBKTNV-1" style="rhombus;html=1;spacing=9;spacingLeft=0;whiteSpace=wrap;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingBottom=0;gradientColor=none;fillColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=14;fontColor=default;" value="Game mode == Timed" vertex="1">
           <mxGeometry height="100" width="218.43" x="60.79" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="PRc5SCy16KoD0cmj7y2S-8" parent="WIyWlLk6GJQsqaUBKTNV-1" style="rhombus;html=1;spacing=9;spacingLeft=0;whiteSpace=wrap;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingBottom=0;gradientColor=none;fillColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=14;fontColor=default;" value="Test finished is True" vertex="1">
+        <mxCell id="PRc5SCy16KoD0cmj7y2S-8" parent="WIyWlLk6GJQsqaUBKTNV-1" style="rhombus;html=1;spacing=9;spacingLeft=0;whiteSpace=wrap;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingBottom=0;gradientColor=none;fillColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=14;fontColor=default;" value="Test finished == True" vertex="1">
           <mxGeometry height="100" width="218.43" x="-209.21" y="400" as="geometry" />
         </mxCell>
         <mxCell id="PRc5SCy16KoD0cmj7y2S-15" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=14;" target="PRc5SCy16KoD0cmj7y2S-11">
