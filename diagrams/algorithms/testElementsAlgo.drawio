@@ -129,7 +129,7 @@
         <mxCell id="PRc5SCy16KoD0cmj7y2S-5" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="x8K9COdGfruetC6gtXrc-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=14;" target="PRc5SCy16KoD0cmj7y2S-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="x8K9COdGfruetC6gtXrc-44" parent="WIyWlLk6GJQsqaUBKTNV-1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;spacingLeft=0;spacingBottom=0;spacing=9;fontFamily=Helvetica;fontSize=14;fontColor=default;fillColor=default;gradientColor=none;" value="test_failed = True" vertex="1">
+        <mxCell id="x8K9COdGfruetC6gtXrc-44" parent="WIyWlLk6GJQsqaUBKTNV-1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;align=center;verticalAlign=middle;spacingLeft=0;spacingBottom=0;spacing=9;fontFamily=Helvetica;fontSize=14;fontColor=default;fillColor=default;gradientColor=none;" value="Test failed = True" vertex="1">
           <mxGeometry height="60" width="120" x="380" y="670" as="geometry" />
         </mxCell>
         <mxCell id="PRc5SCy16KoD0cmj7y2S-56" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="PRc5SCy16KoD0cmj7y2S-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=14;" target="PRc5SCy16KoD0cmj7y2S-8">
@@ -217,7 +217,7 @@
             <mxPoint x="-100" y="780" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="PRc5SCy16KoD0cmj7y2S-25" parent="WIyWlLk6GJQsqaUBKTNV-1" style="rhombus;html=1;spacing=9;spacingLeft=0;whiteSpace=wrap;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingBottom=0;gradientColor=none;fillColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=14;fontColor=default;" value="Test failed is NOT True" vertex="1">
+        <mxCell id="PRc5SCy16KoD0cmj7y2S-25" parent="WIyWlLk6GJQsqaUBKTNV-1" style="rhombus;html=1;spacing=9;spacingLeft=0;whiteSpace=wrap;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingBottom=0;gradientColor=none;fillColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=14;fontColor=default;" value="Test failed != True" vertex="1">
           <mxGeometry height="100" width="218.43" x="-209.20000000000002" y="639.23" as="geometry" />
         </mxCell>
         <mxCell id="PRc5SCy16KoD0cmj7y2S-30" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=14;">
