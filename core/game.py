@@ -248,7 +248,6 @@ class Game:
 
         # settings
         elif self.current_screen == "settings":
-            self.settings_menu.check_buttons() # checks if user presses buttons
             game_state = self.settings_menu.draw(self.width, self.height, self.mouse_released) # display the settings screen
             if game_state:
                 self.current_screen = game_state # set current screen as current game state

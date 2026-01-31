@@ -50,6 +50,7 @@ class Settings(Menu): # inherit from menu class
     # DISPLAYS MENU
     def draw(self, width, height, mouse_released):
         self.screen.fill(self.bgcolour) # clear all the entities on screen
+        self.check_buttons() # check if user is pressing buttons
         
         draw_text_centre(self.screen, "Music", width, height, -100, -80, self.maintext, 24) # displays "Music"
         draw_text_centre(self.screen, "Sound FX", width, height, -100, 40, self.maintext, 24) # displays "Sound FX"
