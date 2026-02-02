@@ -1,0 +1,68 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.6">
+  <diagram name="Page-1" id="CkqmnVT4macS071AjfNu">
+    <mxGraphModel dx="1642" dy="425" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l17djRrTudAg9IlKVf_R-3" edge="1" parent="1" source="PEXeMZqtQIavO_8ZO6sd-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="gHBixGVRQEfrYkjMDrfi-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-620.79" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PEXeMZqtQIavO_8ZO6sd-1" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=14;" value="Start" vertex="1">
+          <mxGeometry height="30" width="80" x="-660.79" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l17djRrTudAg9IlKVf_R-9" edge="1" parent="1" source="l17djRrTudAg9IlKVf_R-6" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-760" y="1119" />
+              <mxPoint x="-760" y="255" />
+            </Array>
+            <mxPoint x="-780" y="1100" as="sourcePoint" />
+            <mxPoint x="-690.79" y="255" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l17djRrTudAg9IlKVf_R-10" connectable="0" parent="l17djRrTudAg9IlKVf_R-9" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="No" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="16" y="452" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-7" edge="1" parent="1" source="gHBixGVRQEfrYkjMDrfi-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="gHBixGVRQEfrYkjMDrfi-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Update last wpm time to current WPM time" vertex="1">
+          <mxGeometry height="60" width="120" x="-680.79" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-3" parent="1" style="rhombus;html=1;spacing=9;spacingLeft=0;whiteSpace=wrap;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingBottom=0;gradientColor=none;fillColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=14;fontColor=default;" value="&lt;span style=&quot;font-size: 12px;&quot;&gt;Current WPM time does&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;not match last WPM time&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="218.43" x="-730" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-4" edge="1" parent="1" source="gHBixGVRQEfrYkjMDrfi-3" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="gHBixGVRQEfrYkjMDrfi-2" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-560" y="160" as="sourcePoint" />
+            <mxPoint x="-460" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-5" connectable="0" parent="gHBixGVRQEfrYkjMDrfi-4" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="Yes" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-9" edge="1" parent="1" source="gHBixGVRQEfrYkjMDrfi-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="gHBixGVRQEfrYkjMDrfi-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="WPM = (Length of user input / 5) / Time in minutes" vertex="1">
+          <mxGeometry height="60" width="120" x="-680.79" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-10" edge="1" parent="1" source="gHBixGVRQEfrYkjMDrfi-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="gHBixGVRQEfrYkjMDrfi-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-620.8571428571429" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="return WPM" vertex="1">
+          <mxGeometry height="60" width="120" x="-680.79" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-11" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=14;" value="End" vertex="1">
+          <mxGeometry height="30" width="80" x="-660.79" y="480" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
