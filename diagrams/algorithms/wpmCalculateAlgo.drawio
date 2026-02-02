@@ -12,21 +12,6 @@
         <mxCell id="PEXeMZqtQIavO_8ZO6sd-1" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=14;" value="Start" vertex="1">
           <mxGeometry height="30" width="80" x="-660.79" y="30" as="geometry" />
         </mxCell>
-        <mxCell id="l17djRrTudAg9IlKVf_R-9" edge="1" parent="1" source="l17djRrTudAg9IlKVf_R-6" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" value="">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="-760" y="1119" />
-              <mxPoint x="-760" y="255" />
-            </Array>
-            <mxPoint x="-780" y="1100" as="sourcePoint" />
-            <mxPoint x="-690.79" y="255" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="l17djRrTudAg9IlKVf_R-10" connectable="0" parent="l17djRrTudAg9IlKVf_R-9" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="No" vertex="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="16" y="452" as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="gHBixGVRQEfrYkjMDrfi-7" edge="1" parent="1" source="gHBixGVRQEfrYkjMDrfi-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="gHBixGVRQEfrYkjMDrfi-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
