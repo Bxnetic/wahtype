@@ -198,7 +198,6 @@ class Game:
             if game_state:
                 self.current_screen = game_state # set current screen as current game state
                 self.mouse_released = False # user is holding down left click
-                self.game_started = False # don't start the game
                 self.reset() # reset the attributes for the test itself
 
         # game selection
