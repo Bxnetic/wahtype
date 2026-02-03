@@ -61,6 +61,7 @@ class Settings(Menu): # inherit from menu class
             self.music_current_index = (self.music_current_index + 1) % len(self.music_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
             self.music_button.set_text(self.music_list[self.music_current_index]) # update the button text with next game mode
+            print(f"Music: {self.music_list[self.music_current_index]} ") # debug
 
         # sound fx button
         self.sound_fx_button.rect.topleft = centre(self.sound_fx_button.image, width, height, 100, 40) # centre the button
@@ -68,6 +69,7 @@ class Settings(Menu): # inherit from menu class
             self.sound_fx_current_index = (self.sound_fx_current_index + 1) % len(self.sound_fx_list) # go to the next value,
             # once current_index = 3, the current index will become 0 again
             self.sound_fx_button.set_text(self.sound_fx_list[self.sound_fx_current_index]) # update the button text with next value
+            print(f"Sound FX: {self.sound_fx_list[self.sound_fx_current_index]}") # debug
 
         # delete scores button
         self.delete_scores_button.rect.topleft = centre(self.delete_scores_button.image, width, height, 250, 250) # centre the button

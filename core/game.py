@@ -161,6 +161,7 @@ class Game:
                         self.game_mode, self.text.current_wpm, self.text.final_accuracy, self.text.time_selection,
                         self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words, self.text.game_lives
                     ) # save score
+                    print(f"Scored saved | WPM: {round(self.text.current_wpm)} | Mode: {self.game_mode}")
                 self.stats_menu.update_stats() # update stats
                 return self.current_screen
             

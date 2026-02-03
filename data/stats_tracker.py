@@ -91,7 +91,6 @@ class Stats:
         if not os.path.exists(self.scores_file):
             with open(self.scores_file, "a") as file:
                 file.write("")
-            file.close
         else:
             with open(self.scores_file, "r") as file: # open scores.txt
                 for line in file: # go through each line in file
@@ -109,7 +108,7 @@ class Stats:
                         "lives": int(lives)
                     }
                     )
-            file.close() # close scores.txt
+        file.close() # close scores.txt
         return scores # return list of stats
 
     def save_score(self, mode, wpm, accuracy, time_taken, chars, incorrect, words, lives):
