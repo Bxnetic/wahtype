@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0" version="29.3.6">
   <diagram name="Page-1" id="CkqmnVT4macS071AjfNu">
-    <mxGraphModel dx="2430" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2830" dy="1013" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -107,8 +107,10 @@
             <mxPoint x="-4" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="RDqg4MCH-BNBlpScKUed-30" edge="1" parent="1" source="RDqg4MCH-BNBlpScKUed-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RDqg4MCH-BNBlpScKUed-29">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="RDqg4MCH-BNBlpScKUed-30" edge="1" parent="1" source="RDqg4MCH-BNBlpScKUed-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RDqg4MCH-BNBlpScKUed-61">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-380.78999999999996" y="850" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="RDqg4MCH-BNBlpScKUed-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=13;" value="&lt;div&gt;&lt;font&gt;accuracy = (Correct&amp;nbsp;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font&gt;chars&amp;nbsp;&lt;/font&gt;&lt;span class=&quot;Yjhzub&quot;&gt;÷&lt;/span&gt;&lt;font&gt;&amp;nbsp;(Total chars&amp;nbsp;&lt;/font&gt;&lt;span class=&quot;Yjhzub&quot;&gt;÷&lt;/span&gt;&lt;font&gt;&amp;nbsp;Incorrect chars)) × 100&lt;/font&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="70" width="170.79" x="-466.19" y="750" as="geometry" />
@@ -121,9 +123,6 @@
         </mxCell>
         <mxCell id="RDqg4MCH-BNBlpScKUed-28" connectable="0" parent="RDqg4MCH-BNBlpScKUed-27" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="No" vertex="1">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="RDqg4MCH-BNBlpScKUed-29" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" value="return accuracy" vertex="1">
-          <mxGeometry height="60" width="120" x="-440.78999999999996" y="850" as="geometry" />
         </mxCell>
         <mxCell id="RDqg4MCH-BNBlpScKUed-35" edge="1" parent="1" source="RDqg4MCH-BNBlpScKUed-12" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RDqg4MCH-BNBlpScKUed-9" value="">
           <mxGeometry relative="1" as="geometry">
@@ -152,8 +151,11 @@
         <mxCell id="RDqg4MCH-BNBlpScKUed-47" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=14;" value="End" vertex="1">
           <mxGeometry height="30" width="80" x="-420.79999999999995" y="940" as="geometry" />
         </mxCell>
-        <mxCell id="RDqg4MCH-BNBlpScKUed-48" edge="1" parent="1" source="RDqg4MCH-BNBlpScKUed-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="RDqg4MCH-BNBlpScKUed-47">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="RDqg4MCH-BNBlpScKUed-48" edge="1" parent="1" source="RDqg4MCH-BNBlpScKUed-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="RDqg4MCH-BNBlpScKUed-47">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="-380.78999999999996" y="910" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="RDqg4MCH-BNBlpScKUed-50" edge="1" parent="1" source="RDqg4MCH-BNBlpScKUed-6" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="RDqg4MCH-BNBlpScKUed-12" value="">
           <mxGeometry relative="1" as="geometry">
@@ -169,6 +171,9 @@
         </mxCell>
         <mxCell id="RDqg4MCH-BNBlpScKUed-59" edge="1" parent="1" source="RDqg4MCH-BNBlpScKUed-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="RDqg4MCH-BNBlpScKUed-47">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RDqg4MCH-BNBlpScKUed-61" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=14;" value="&lt;div&gt;Display target&amp;nbsp;&lt;/div&gt;&lt;div&gt;sentence&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="160" x="-460.79999999999995" y="850" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
