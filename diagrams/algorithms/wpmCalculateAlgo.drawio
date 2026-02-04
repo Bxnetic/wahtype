@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.6">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0" version="29.3.7">
   <diagram name="Page-1" id="CkqmnVT4macS071AjfNu">
-    <mxGraphModel dx="2864" dy="1061" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1920" dy="553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -30,25 +30,28 @@
         <mxCell id="gHBixGVRQEfrYkjMDrfi-5" connectable="0" parent="gHBixGVRQEfrYkjMDrfi-4" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;" value="Yes" vertex="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gHBixGVRQEfrYkjMDrfi-9" edge="1" parent="1" source="gHBixGVRQEfrYkjMDrfi-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="gHBixGVRQEfrYkjMDrfi-8">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-9" edge="1" parent="1" source="gHBixGVRQEfrYkjMDrfi-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-680.79" y="420" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="gHBixGVRQEfrYkjMDrfi-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="WPM = (Length of user input&amp;nbsp;&lt;span class=&quot;Yjhzub&quot;&gt;÷&lt;/span&gt;&amp;nbsp;5)&amp;nbsp;&lt;span class=&quot;Yjhzub&quot;&gt;÷&lt;/span&gt;&amp;nbsp;Time in minutes" vertex="1">
           <mxGeometry height="60" width="120" x="-740.79" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="gHBixGVRQEfrYkjMDrfi-10" edge="1" parent="1" source="gHBixGVRQEfrYkjMDrfi-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="gHBixGVRQEfrYkjMDrfi-11">
+        <mxCell id="gHBixGVRQEfrYkjMDrfi-10" edge="1" parent="1" source="8euOVqgdomoMBUIdIO_o-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="gHBixGVRQEfrYkjMDrfi-11">
           <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-680.79" y="480" as="sourcePoint" />
             <mxPoint x="-680.8571428571429" y="510" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gHBixGVRQEfrYkjMDrfi-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="return WPM" vertex="1">
-          <mxGeometry height="60" width="120" x="-740.79" y="420" as="geometry" />
-        </mxCell>
         <mxCell id="gHBixGVRQEfrYkjMDrfi-11" parent="1" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;fontSize=14;" value="End" vertex="1">
-          <mxGeometry height="30" width="80" x="-720.79" y="510" as="geometry" />
+          <mxGeometry height="30" width="80" x="-720.79" y="490" as="geometry" />
         </mxCell>
         <mxCell id="RDqg4MCH-BNBlpScKUed-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=19;fontFamily=Calibri;" value="&lt;b&gt;WPM&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="-710.79" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="8euOVqgdomoMBUIdIO_o-1" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=14;" value="return WPM" vertex="1">
+          <mxGeometry height="50" width="160" x="-760.79" y="420" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
