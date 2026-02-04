@@ -3,7 +3,7 @@ from config import* # import config attributes, classes
 from ui.text_box import * # import text_box attributes, classes
 from ui.button import * # import button attributes, classes
 from ui.surface_handle import * # import commonly used procedures for surface
-from ui.results_screen import * # import results_screen attributes, classes
+from core.results_screen import * # import results_screen attributes, classes
 from core.menu import * # import menu attributes, classes
 from core.selection_menu import Selection # import selection class
 from core.stats_menu import StatsMenu # import statsmenu class
@@ -198,7 +198,7 @@ class Game:
             game_state = self.menu.draw(self.width, self.height, self.mouse_released) # display the menu
             if game_state:
                 self.current_screen = game_state # set current screen as current game state
-                self.mouse_released = False # user is holding down left click
+                self.jnse_released = False # user is holding down left click
                 self.reset() # reset the attributes for the test itself
 
         # game selection
