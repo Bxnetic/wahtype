@@ -121,7 +121,7 @@ class Stats:
             file.write(f"") # clear everything
             file.close() # close file
 
-    def get_personal_best(self, mode, words):
+    def get_personal_best(self, mode, words, time_taken):
         scores = self.load_scores()
         mode_scores = [] # list of scores for depending on mode
 
@@ -129,30 +129,15 @@ class Stats:
         for s in scores: # go through each score in scores
             if s["mode"] == mode and s["words"] == words: # if score matches game mode
                 mode_scores.append(s) # add to mode_scores list
+            if mode == "Timed":
+                if s["mode"] == "Timed" and s["time"] == time_taken: # if score matches time
+                    mode_scores.append(s) # add to timed_scores list
         
         if not mode_scores: # if there is nothing in the list
             return None
 
         best_score = mode_scores[0] # start with first score
         for score in mode_scores[1:]: # go through rest of scores
-            if score["wpm"] > best_score["wpm"]: # if current score is bigger than the current best score
-                best_score = score # set that as the best score
-        return best_score
-
-    def get_timed_personal_best(self, time_taken):
-        scores = self.load_scores()
-        timed_scores = [] # list of scores for depending on mode
-
-        # filter only by matching time
-        for s in scores: # go through each score in scores
-            if s["mode"] == "Timed" and s["time"] == time_taken: # if score matches time
-                timed_scores.append(s) # add to timed_scores list
-        
-        if not timed_scores: # if there is nothing in the list
-            return None
-
-        best_score = timed_scores[0] # start with first score
-        for score in timed_scores[1:]: # go through rest of scores
             if score["wpm"] > best_score["wpm"]: # if current score is bigger than the current best score
                 best_score = score # set that as the best score
         return best_score

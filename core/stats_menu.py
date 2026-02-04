@@ -11,25 +11,25 @@ class StatsMenu(Menu): # inherit from menu class
         self.stats = Stats()
         
         # SCORES
-        self.normal_best = self.stats.get_personal_best("Normal", 15)
-        self.survival_best = self.stats.get_personal_best("Survival", 15)
+        self.normal_best = self.stats.get_personal_best("Normal", 15, 0)
+        self.survival_best = self.stats.get_personal_best("Survival", 15, 0)
 
-        self.normal_best_25 = self.stats.get_personal_best("Normal", 25)
-        self.survival_best_25 = self.stats.get_personal_best("Survival", 25)
+        self.normal_best_25 = self.stats.get_personal_best("Normal", 25, 0)
+        self.survival_best_25 = self.stats.get_personal_best("Survival", 25, 0)
 
-        self.timed_best_15 = self.stats.get_timed_personal_best(15) 
-        self.timed_best_30 = self.stats.get_timed_personal_best(30)
-        self.timed_best_60 = self.stats.get_timed_personal_best(60)
+        self.timed_best_15 = self.stats.get_personal_best("Timed", 0, 15) 
+        self.timed_best_30 = self.stats.get_personal_best("Timed", 0, 30)
+        self.timed_best_60 = self.stats.get_personal_best("Timed", 0, 60)
 
     # update the stats when score has been submitted
     def update_stats(self):
-        self.normal_best = self.stats.get_personal_best("Normal", 15)
-        self.survival_best = self.stats.get_personal_best("Survival", 15)
-        self.normal_best_25 = self.stats.get_personal_best("Normal", 25)
-        self.survival_best_25 = self.stats.get_personal_best("Survival", 25)
-        self.timed_best_15 = self.stats.get_timed_personal_best(15)
-        self.timed_best_30 = self.stats.get_timed_personal_best(30)
-        self.timed_best_60 = self.stats.get_timed_personal_best(60)
+        self.normal_best = self.stats.get_personal_best("Normal", 15, 0)
+        self.survival_best = self.stats.get_personal_best("Survival", 15, 0)
+        self.normal_best_25 = self.stats.get_personal_best("Normal", 25, 0)
+        self.survival_best_25 = self.stats.get_personal_best("Survival", 25, 0)
+        self.timed_best_15 = self.stats.get_personal_best("Timed", 0, 15)
+        self.timed_best_30 = self.stats.get_personal_best("Timed", 0, 30)
+        self.timed_best_60 = self.stats.get_personal_best("Timed", 0, 60)
     
     def draw(self, width, height, mouse_released):
         self.update_stats() # update stats when loaded
