@@ -8,7 +8,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="B0kNyevlkLk6P7HR--Ut-1" parent="1" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="Selection" vertex="1">
-          <mxGeometry height="320" width="290" x="-60" y="60" as="geometry">
+          <mxGeometry height="320" width="290" x="-50" y="60" as="geometry">
             <mxRectangle height="26" width="160" x="220" y="120" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -162,7 +162,7 @@
           <mxGeometry height="26" width="260" y="840" as="geometry" />
         </mxCell>
         <mxCell id="dHfXNnTK-8PM0I6OBvHI-89" parent="1" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" value="Settings" vertex="1">
-          <mxGeometry height="374" width="290" x="250" y="60" as="geometry">
+          <mxGeometry height="374" width="290" x="255" y="60" as="geometry">
             <mxRectangle height="26" width="160" x="220" y="120" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
