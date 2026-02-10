@@ -9,7 +9,6 @@ class Menu:
         self.screen = screen
 
         # THEME
-        self.white = pygame.Color(WHITE)
         self.submaincolour = pygame.Color(SUBMAIN)
         self.bgcolour = pygame.Color(BACKGROUND)
         self.maincolour = pygame.Color(MAIN)
@@ -36,19 +35,19 @@ class Menu:
 
         # BUTTONS
         self.play_button = Button(0, 0, self.rounded_button_img, 
-            self.rounded_button_hover_img, 0.55, "Play", 25, self.white, self.white) # button that displays "Play"
+            self.rounded_button_hover_img, 0.55, "Play", 25, self.maintext, self.maintext) # button that displays "Play"
         
         self.stats_button = Button(0, 0, self.rounded_button_img, 
-            self.rounded_button_hover_img, 0.55, "Stats", 25, self.white, self.white) # button that displays "Stats"
+            self.rounded_button_hover_img, 0.55, "Stats", 25, self.maintext, self.maintext) # button that displays "Stats"
         
         self.settings_button = Button(0, 0, self.rounded_button_img, 
-            self.rounded_button_hover_img, 0.55, "Settings", 25, self.white, self.white) # button that displays "Settings"
+            self.rounded_button_hover_img, 0.55, "Settings", 25, self.maintext, self.maintext) # button that displays "Settings"
         
         self.quit_button = Button(0, 0, self.rounded_button_img, 
-            self.rounded_button_hover_img, 0.55, "Quit", 25, self.white, self.white) # button that displays "Quit"
+            self.rounded_button_hover_img, 0.55, "Quit", 25, self.maintext, self.maintext) # button that displays "Quit"
         
         self.about_button = Button(0, 0, self.blank_img, 
-            self.blank_img, 1, "how to play", 20, self.white, self.submaincolour) # button that displays "how to play"
+            self.blank_img, 1, "how to play", 20, self.maintext, self.submaincolour) # button that displays "how to play"
         
         self.home_button = Button(10000, 10000, self.home_img, 
             self.home_img_hover, 0.2, "", 0, self.maintext, self.maintext) # home button (off screen)
