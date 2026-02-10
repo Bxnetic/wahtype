@@ -129,7 +129,7 @@ class Stats:
         for s in scores: # go through each score in scores
             if s["mode"] == mode and s["words"] == words: # if score matches game mode
                 mode_scores.append(s) # add to mode_scores list
-            if mode == "Timed":
+            if mode == "Timed": # if mode is Timed mode
                 if s["mode"] == "Timed" and s["time"] == time_taken: # if score matches time
                     mode_scores.append(s) # add to timed_scores list
         
