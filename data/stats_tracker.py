@@ -5,7 +5,6 @@ import os
 class Stats:
     def __init__(self):
         self.start_time = 0 # start time of timer
-        self.end_time = 0 # end time of timer
         self.final_time = 0 # final time of timer
         self.current_tick = 0 # current count down timer
         self.last_tick = 0 # previous number of count down
@@ -19,7 +18,6 @@ class Stats:
     def reset(self):
         # resets all instance attributes
         self.start_time = 0
-        self.end_time = 0
         self.final_time = 0
         self.current_tick = 0
         self.last_tick = 0
