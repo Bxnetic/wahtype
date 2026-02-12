@@ -85,6 +85,8 @@ class Settings(Menu): # inherit from menu class
         # home button
         self.home_button.rect.topleft = centre(self.home_button.image, width, height, 0, 250) # home button
         if self.home_button.draw(self.screen, mouse_released): # display button on screen, checks if it has been clicked
+            self.__delete_scores_current_index = 0 # set button back to "delete scores"
+            self.delete_scores_button.set_text(self.__delete_scores_list[self.__delete_scores_current_index]) # update button text
             self.current_screen = "menu" # set current screen to menu
             return self.current_screen # return current screen state
     
