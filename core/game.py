@@ -198,7 +198,7 @@ class Game:
             game_state = self.menu.draw(self.width, self.height, self.mouse_released) # display the menu
             if game_state:
                 self.current_screen = game_state # set current screen as current game state
-                self.jnse_released = False # user is holding down left click
+                self.mouse_released = False # user is holding down left click
                 self.reset() # reset the attributes for the test itself
 
         # game selection
