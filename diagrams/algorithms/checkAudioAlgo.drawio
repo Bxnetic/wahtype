@@ -59,9 +59,6 @@
         <mxCell id="FHjaZprncTEaHrv46nks-1" parent="1" style="rhombus;html=1;spacing=9;spacingLeft=0;whiteSpace=wrap;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;spacingBottom=0;gradientColor=none;fillColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=14;fontColor=default;fontStyle=0" value="current_screen != last_screen" vertex="1">
           <mxGeometry height="100" width="218.43" x="-730" y="420" as="geometry" />
         </mxCell>
-        <mxCell id="FHjaZprncTEaHrv46nks-2" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=14;" value="return scores" vertex="1">
-          <mxGeometry height="50" width="180" x="-504" y="1280" as="geometry" />
-        </mxCell>
         <mxCell id="U8NYEsB5TPw7Nvn7b_mD-6" edge="1" parent="1" source="U8NYEsB5TPw7Nvn7b_mD-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="U8NYEsB5TPw7Nvn7b_mD-5" value="Yes">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
