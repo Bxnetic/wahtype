@@ -135,7 +135,7 @@ class Game:
             if len(self.text.usertext) == len(self.text.target_text) and not self.text.done:
             # checks if user's sentence fully matches target sentence
             # and the condition to check if the target sentence hasn't been completed
-                if self.game_mode == "Normal" or self.game_mode == "Survival":
+                if self.game_mode in ("Normal", "Survival"):
                     self.text.stats.stop() # stop the time
                     self.text.done = True # stop the user from typing
                 elif self.game_mode == "Timed":
@@ -224,7 +224,7 @@ class Game:
         # results
         elif self.current_screen == "results": # if the current screen is the result screen
             self.displayed_time = 0 # either display elapsed_time or the time_selection
-            if self.game_mode == "Normal" or self.game_mode == "Survival":
+            if self.game_mode in ("Normal", "Survival"):
                 self.displayed_time = self.text.elapsed_time # display elapsed time
             if self.game_mode == "Timed":
                 self.displayed_time = self.text.time_selection # display time selection

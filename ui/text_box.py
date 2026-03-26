@@ -54,7 +54,7 @@ class Text:
 
         if not self.done and self.stats.start_time == 0 and event.unicode and event.unicode.isprintable(): # if the sentence hasn't been completed
             # the timer hasn't started, and the user types a key
-            if game_mode == "Normal" or "Survival": # stopwatch timer for normal / survival mode
+            if game_mode in ("Normal", "Survival"): # stopwatch timer for normal / survival mode
                 self.stats.start() # start the timer
             if game_mode == "Timed": # countdown timer for timed mode
                 self.stats.start_countdown(self.time_selection) # start countdown timer
