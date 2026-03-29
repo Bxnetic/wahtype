@@ -45,7 +45,8 @@ class Results:
         if gameMode == "Survival":
             draw_text_centre(self.screen, f"lives left", width, height, 200, 80, self.subtextcolour, 24) # display lives
             draw_text_centre(self.screen, f"{lives}", width, height, 200, 110, self.maincolour, 24) # display number of lives
-            if testFailed:
+            
+        if testFailed:
                 draw_text_centre(self.screen, "FAILED", width, height, 0, -150, self.error, 60) # display "FAILED" # display FAILED if the user fails test
 
             

@@ -135,6 +135,10 @@ class Game:
             if len(self.text.usertext) == len(self.text.target_text) and not self.text.done:
             # checks if user's sentence fully matches target sentence
             # and the condition to check if the target sentence hasn't been completed
+
+                if self.text.final_accuracy < 50: # score only saves if acc is greater than 50%
+                    self.test_failed = True # user has failed test
+
                 if self.game_mode in ("Normal", "Survival"):
                     self.text.stats.stop() # stop the time
                     self.text.done = True # stop the user from typing
@@ -162,6 +166,9 @@ class Game:
                         self.text.typed_characters, self.text.incorrect_chars, self.text.number_of_words, self.text.game_lives
                     ) # save score
                     print(f"Scored saved | WPM: {round(self.text.current_wpm)} | Mode: {self.game_mode}")
+                else:
+                    pass
+                
                 self.stats_menu.update_stats() # update stats
                 return self.current_screen
             
